@@ -1,12 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=3 format=3 uid="uid://cswy8e8u3047b"]
 
-[ext_resource type="PackedScene" uid="uid://bn4m7d6bqaimn" path="res://scenes/player.tscn" id="1_kvbkx"]
+[ext_resource type="Script" path="res://code/local_input.gd" id="1_nlf06"]
+[ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
 
 [node name="World" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_kvbkx")]
-position = Vector2(314, 251)
-
-[node name="MockInput" type="Node" parent="."]
+[node name="LocalInput" type="Node" parent="."]
+script = ExtResource("1_nlf06")
 
 [node name="InputConnector" type="Node" parent="."]
+
+[node name="Players" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_qriy4")
