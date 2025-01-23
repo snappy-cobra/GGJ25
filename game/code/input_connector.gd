@@ -5,7 +5,7 @@ var socket = WebSocketPeer.new()
 var has_introduced := false
 
 func _ready() -> void:
-	var connect_result := socket.connect_to_url("ws://localhost:2025")
+	var connect_result := socket.connect_to_url(Config.server_url())
 	if connect_result != OK:
 		quit("Failed to connect to host: " + str(connect_result), connect_result)
 
@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 	match socket.get_ready_state():
 		WebSocketPeer.STATE_OPEN:
 			if !has_introduced:
-				socket.send_text(JSON.stringify({"type": "hostconnect", "password": "hunter2"}))
+				socket.send_text(JSON.stringify({"type": "hostconnect", "password": Config.server_password()}))
 				has_introduced = true
 			
 			while socket.get_available_packet_count() > 0:
