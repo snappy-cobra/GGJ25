@@ -14,7 +14,7 @@ func read_env(key: String) -> String:
 	if OS.has_environment(key):
 		return OS.get_environment(key)
 	else:
-		return dotenv.get(key)
+		return dotenv.get(key, "")
 
 
 func server_url() -> String:
@@ -22,3 +22,6 @@ func server_url() -> String:
 
 func server_password() -> String:
 	return read_env("SNAPPY_PASSWORD")
+
+func is_local() -> bool:
+	return read_env("MODE").to_lower() == "local"
