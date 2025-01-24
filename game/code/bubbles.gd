@@ -14,5 +14,6 @@ func _ready() -> void:
 			add_child(bubble)
 	
 func pop(pos: Vector2i, player: Player) -> void:
+	prints("pop", pop, player)
 	if bubbles.has(pos):
-		bubbles[pos].pop()
+		bubbles[pos].pop(player)
