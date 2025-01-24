@@ -27,6 +27,11 @@ defmodule BubbleserverWeb.UserSocket do
   @impl true
   def connect(_params, socket, _connect_info) do
     IO.puts("A Client connected")
+
+    my_player_id = GameState.player_join()
+    socket = assign(socket, :player_id, my_player_id)
+    {:ok, socket}
+
     {:ok, socket}
   end
 

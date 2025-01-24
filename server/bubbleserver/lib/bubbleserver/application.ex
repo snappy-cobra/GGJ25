@@ -13,6 +13,9 @@ defmodule Bubbleserver.Application do
       {Phoenix.PubSub, name: Bubbleserver.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: Bubbleserver.Finch},
+      # Start the Presence server
+      # to track joins and leaves:
+      BubbleserverWeb.Presence,
       # Start the main game server
       GameState,
 
