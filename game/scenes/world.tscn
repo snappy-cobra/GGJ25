@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=5 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/local_input.gd" id="1_nlf06"]
 [ext_resource type="Script" path="res://code/input_connector.gd" id="2_i78hf"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
+[ext_resource type="Script" path="res://code/bubbles.gd" id="4_sei7x"]
 
 [node name="World" type="Node2D"]
 
@@ -15,3 +16,7 @@ script = ExtResource("2_i78hf")
 [node name="Players" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_qriy4")
+
+[node name="Bubbles" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_sei7x")
