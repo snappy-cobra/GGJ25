@@ -32,12 +32,3 @@ func player_leave(id: String) -> EmptyResult:
 	var player: Player = get_node(id)
 	player.queue_free()
 	return EmptyResult.ok()
-
-# can be used for generic input if needed
-func player_move(id: String, movement: Vector2) -> EmptyResult:
-	if !has_node(id):
-		return EmptyResult.err("unknown player %s" % id)
-	var player: Player = get_node(id)
-	player.move(movement)
-	return EmptyResult.ok()
-	

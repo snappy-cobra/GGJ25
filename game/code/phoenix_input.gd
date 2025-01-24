@@ -58,7 +58,8 @@ func _on_Socket_connecting(is_connecting):
 # Channel events
 #
 
-func _on_Channel_event(event, payload, status):
+func _on_Channel_event(event: String, payload, status):
+	%Bubbles.pop(Vector2i(payload.x, payload.y), null)
 	print("_on_Channel_event:  ", event, ", ", status, ", ", payload)
 
 func _on_Channel_join_result(status, result):
