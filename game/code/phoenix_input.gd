@@ -5,9 +5,7 @@ var channel : PhoenixChannel
 var presence : PhoenixPresence
 
 func _ready() -> void:
-	socket = PhoenixSocket.new(Config.server_url(), {
-	  params = {token = Config.server_password()}
-	})
+	socket = PhoenixSocket.new(Config.server_url(), {"host": "godot"})
 
 	# Subscribe to Socket events
 	socket.connect("on_open", _on_Socket_open)
