@@ -2,9 +2,9 @@ var bubblePopFunction = function() {
     navigator.vibrate(200);
     alert("pop");
 
-    if (typeof navigator.mozVibrate === 'function') {
-        navigator.mozVibrate(200);
-    }
+    // if (typeof navigator.mozVibrate === 'function') {
+    //     navigator.mozVibrate(200);
+    // }
 };
 
 
