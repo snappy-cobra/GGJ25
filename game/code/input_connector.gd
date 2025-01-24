@@ -5,7 +5,7 @@ var socket = WebSocketPeer.new()
 var has_introduced := false
 
 func _ready() -> void:
-	if Config.is_local():
+	if true:
 		queue_free()
 		return
 	var connect_result := socket.connect_to_url(Config.server_url())
