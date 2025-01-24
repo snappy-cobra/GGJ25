@@ -3,7 +3,7 @@ extends Node
 const id0 := "local_0"
 const id1 := "local_1"
 
-func _input(_event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("join_0"):
 		%Players.player_join(id0, "Local 0")
 	if Input.is_action_just_pressed("leave_0"):
