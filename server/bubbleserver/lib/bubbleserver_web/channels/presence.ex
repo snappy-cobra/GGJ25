@@ -16,8 +16,11 @@ defmodule BubbleserverWeb.Presence do
 
   @impl true
   def handle_metas(topic, %{joins: joins, leaves: leaves}, presences, state) do
-    for {user_id, metas} <- leaves do
-      GameState.player_left(user_id)
+    for {player_id, metas} <- leaves do
+      # Presence turns all IDs into strings;
+      # let's make sure they are ints
+      player_id = String.to_integer(player_id)
+      GameState.player_left(player_id)
     end
 
     {:ok, state}
