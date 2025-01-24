@@ -61,9 +61,9 @@ channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
-window.pop = function () {
+window.pop = function (y, x) {
   console.log("POP")
-  channel.push("pop", {x: 1, y: 2});
+  channel.push("pop", {x: x, y: y});
 }
 
 export default socket
