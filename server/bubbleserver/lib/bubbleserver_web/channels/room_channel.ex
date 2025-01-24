@@ -3,7 +3,11 @@ defmodule BubbleserverWeb.RoomChannel do
   alias BubbleserverWeb.Presence
 
   @impl true
-  def join("room:lobby", payload, socket) do
+  def join("godot", payload, socket) do
+    IO.inspect("Godot is joining!")
+    {:ok, socket}
+  end
+  def join("player_client", payload, socket) do
     # if authorized?(payload) do
       # my_player_id = GameState.player_join()
       # socket = assign(socket, :player_id, my_player_id)

@@ -8,7 +8,8 @@ defmodule BubbleserverWeb.UserSocket do
 
   ## Channels
 
-  channel "room:*", BubbleserverWeb.RoomChannel
+  channel "godot", BubbleserverWeb.RoomChannel
+  channel "player_client", BubbleserverWeb.RoomChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
@@ -31,7 +32,8 @@ defmodule BubbleserverWeb.UserSocket do
   end
 
 
-  def connect(params, socket, _connect_info) do
+  def connect(params, socket, connect_info) do
+  IO.inspect({params, connect_info})
     IO.puts("A Client connected")
 
     my_player_id = GameState.player_join()

@@ -5,7 +5,7 @@ var channel : PhoenixChannel
 var presence : PhoenixPresence
 
 func _ready() -> void:
-	socket = PhoenixSocket.new(Config.server_url(), {"host": "godot"})
+	socket = PhoenixSocket.new(Config.server_url(), {params = {"host": "godot"}})
 
 	# Subscribe to Socket events
 	socket.connect("on_open", _on_Socket_open)
@@ -21,7 +21,7 @@ func _ready() -> void:
 	presence.connect("on_leave", _on_Presence_leave)
 
 	# Create a Channel
-	channel = socket.channel("game:abc", {}, presence)
+	channel = socket.channel("godot", {}, presence)
 
 	# Subscribe to Channel events
 	channel.connect("on_event", _on_Channel_event)
