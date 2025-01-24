@@ -22,7 +22,6 @@ func player_join(id: String, name: String) -> EmptyResult:
 	player.id = id
 	player.name = id
 	player.display_name = name
-	player.position = Vector2(randf_range(100, 400), randf_range(100, 400))
 	add_child(player)
 	return EmptyResult.ok()
 
@@ -32,3 +31,9 @@ func player_leave(id: String) -> EmptyResult:
 	var player: Player = get_node(id)
 	player.queue_free()
 	return EmptyResult.ok()
+
+func has_player(id) -> bool:
+	return has_node(id)
+
+func get_player(id) -> Player:
+	return get_node(id)

@@ -59,8 +59,8 @@ func _on_Socket_connecting(is_connecting):
 #
 
 func _on_Channel_event(event: String, payload, status):
-	%Bubbles.pop(Vector2i(payload.x, payload.y), null)
 	print("_on_Channel_event:  ", event, ", ", status, ", ", payload)
+	%Bubbles.pop(Vector2i(payload.x, payload.y), null)
 
 func _on_Channel_join_result(status, result):
 	print("_on_Channel_join_result:  ", status, result)
@@ -76,7 +76,11 @@ func _on_Channel_close(closed):
 #
 
 func _on_Presence_join(joins):
+	for join in joins:
+		%Players.player_join(join.key, join.key)
 	print("_on_Presence_join: " + str(joins))
 
 func _on_Presence_leave(leaves):
+	for leave in leaves:
+		%Players.player_leave(leave.key)
 	print("_on_Presence_leave: " + str(leaves))
