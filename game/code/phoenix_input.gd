@@ -5,6 +5,9 @@ var channel : PhoenixChannel
 var presence : PhoenixPresence
 
 func _ready() -> void:
+	if Config.is_local():
+		queue_free()
+		return
 	socket = PhoenixSocket.new(Config.server_url(), {params = {"host": "godot"}})
 
 	# Subscribe to Socket events
