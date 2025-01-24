@@ -26,6 +26,7 @@ defmodule BubbleserverWeb.UserSocket do
   # performing token verification on connect.
   @impl true
   def connect(_params, socket, _connect_info) do
+    IO.puts("A Client connected")
     {:ok, socket}
   end
 
