@@ -19,7 +19,7 @@ defmodule BubbleserverWeb.Presence do
     for {player_id, metas} <- leaves do
       # Presence turns all IDs into strings;
       # let's make sure they are ints
-      player_id = String.to_integer(player_id)
+      player_id = player_id
       GameState.player_left(player_id)
     end
 

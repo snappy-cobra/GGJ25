@@ -34,7 +34,7 @@ defmodule GameState do
 
   @impl true
   def handle_call(:player_join, _from, state) do
-    player_id = map_size(state.players)
+    player_id = to_string(map_size(state.players))
     state = update_in(state.players, &Map.put_new(&1, player_id, %{}))
     IO.puts("GameState: Player #{player_id} added")
     IO.inspect(state)

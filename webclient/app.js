@@ -21,7 +21,7 @@ const svgString = `
 `;
 
 const svgStarString = `
-<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
 <polygon 
     points="100,10 120,70 180,70 130,110 150,170 100,130 50,170 70,110 20,70 80,70" 
     fill="gold" 

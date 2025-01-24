@@ -171,6 +171,13 @@ func trigger(message : PhoenixMessage):
 		
 		if event == PRESENCE_EVENTS.diff or event == PRESENCE_EVENTS.state:
 			if _presence:
+				if event == PRESENCE_EVENTS.diff:
+					var presence = _presence.sync_diff(message.get_payload())
+					# emit_signal("on_event", event, presence, STATUS.ok)
+				elif event == PRESENCE_EVENTS.state:
+					var presence = _presence.sync_state(message.get_payload())
+					# emit_signal("on_event", event, presence, STATUS.ok)
+			else:
 				emit_signal("on_event", event, message.get_payload(), STATUS.ok)
 				
 		else:		
