@@ -25,7 +25,13 @@ defmodule BubbleserverWeb.UserSocket do
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
   @impl true
-  def connect(_params, socket, _connect_info) do
+  def connect(%{"host" => "godot"}, socket, _connect_info) do
+    IO.puts("GODOT wants to connect!")
+    {:ok, socket}
+  end
+
+
+  def connect(params, socket, _connect_info) do
     IO.puts("A Client connected")
 
     my_player_id = GameState.player_join()
