@@ -14,7 +14,7 @@ defmodule BubbleserverWeb.RoomChannel do
     # if authorized?(payload) do
     # my_player_id = GameState.player_join()
     # socket = assign(socket, :player_id, my_player_id)
-    # send(self(), :after_join)
+    send(self(), :after_join)
     # send(self(), :after_join)
     {:ok, socket}
     # else
