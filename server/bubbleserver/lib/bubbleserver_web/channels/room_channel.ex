@@ -4,10 +4,18 @@ defmodule BubbleserverWeb.RoomChannel do
   @impl true
   def join("room:lobby", payload, socket) do
     if authorized?(payload) do
+      my_player_id = GameState.player_join()
+      socket = assign(socket, :player_id, my_player_id)
+      IO.inspect(socket)
       {:ok, socket}
     else
       {:error, %{reason: "unauthorized"}}
     end
+  end
+
+  @impl true
+  def handle_in("pop", %{}, socket) do
+    {:reply, {:ok, "Popped!"}, socket}
   end
 
   # Channels can be used in a request/response fashion

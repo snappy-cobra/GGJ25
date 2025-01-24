@@ -13,6 +13,9 @@ defmodule Bubbleserver.Application do
       {Phoenix.PubSub, name: Bubbleserver.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: Bubbleserver.Finch},
+      # Start the main game server
+      GameState,
+
       # Start a worker by calling: Bubbleserver.Worker.start_link(arg)
       # {Bubbleserver.Worker, arg},
       # Start to serve requests, typically the last entry
