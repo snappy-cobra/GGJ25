@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=6 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/local_input.gd" id="1_nlf06"]
 [ext_resource type="Script" path="res://code/input_connector.gd" id="2_i78hf"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
+[ext_resource type="Script" path="res://code/phoenix_input.gd" id="3_6kcq6"]
 [ext_resource type="Script" path="res://code/bubbles.gd" id="4_sei7x"]
 
 [node name="World" type="Node2D"]
@@ -12,6 +13,9 @@ script = ExtResource("1_nlf06")
 
 [node name="InputConnector" type="Node" parent="."]
 script = ExtResource("2_i78hf")
+
+[node name="PhoenixInput" type="Node" parent="."]
+script = ExtResource("3_6kcq6")
 
 [node name="Players" type="Node2D" parent="."]
 unique_name_in_owner = true
