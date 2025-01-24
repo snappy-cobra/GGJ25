@@ -9,7 +9,7 @@ defmodule BubbleserverWeb.UserSocket do
   ## Channels
 
   channel "godot", BubbleserverWeb.RoomChannel
-  channel "player_client", BubbleserverWeb.RoomChannel
+  # channel "godot", BubbleserverWeb.RoomChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After

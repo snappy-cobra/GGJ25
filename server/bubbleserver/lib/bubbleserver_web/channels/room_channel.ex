@@ -3,17 +3,19 @@ defmodule BubbleserverWeb.RoomChannel do
   alias BubbleserverWeb.Presence
 
   @impl true
-  def join("godot", payload, socket) do
+  def join("godot", %{"host" => "godot"}, socket) do
     IO.inspect("Godot is joining!")
     {:ok, socket}
   end
 
-  def join("player_client", payload, socket) do
+  def join("godot", payload, socket) do
+    IO.inspect("Another player is joining")
+    IO.inspect(payload)
     # if authorized?(payload) do
     # my_player_id = GameState.player_join()
     # socket = assign(socket, :player_id, my_player_id)
     # send(self(), :after_join)
-    send(self(), :after_join)
+    # send(self(), :after_join)
     {:ok, socket}
     # else
     #   {:error, %{reason: "unauthorized"}}
@@ -34,6 +36,7 @@ defmodule BubbleserverWeb.RoomChannel do
 
   @impl true
   def handle_in("pop", %{}, socket) do
+    broadcast!(socket, "pop", %{player_id: socket.assigns.player_id})
     {:reply, {:ok, "Popped!"}, socket}
   end
 

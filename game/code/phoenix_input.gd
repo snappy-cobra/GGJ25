@@ -24,7 +24,7 @@ func _ready() -> void:
 	presence.connect("on_leave", _on_Presence_leave)
 
 	# Create a Channel
-	channel = socket.channel("godot", {}, presence)
+	channel = socket.channel("godot", {"host": "godot"}, presence)
 
 	# Subscribe to Channel events
 	channel.connect("on_event", _on_Channel_event)
