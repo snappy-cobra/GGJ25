@@ -32,9 +32,16 @@ html, body {
     height: 2000px;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */ 
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    width: 200px;
+    height: 200px;
 }
 
 .bubble {
-    margin: 5px;
+    width: 200px;
     height: 200px;
 }

@@ -1,7 +1,10 @@
 var bubblePopFunction = function() {
     navigator.vibrate(200);
-    navigator.mozVibrate(200);
     alert("pop");
+
+    if (typeof navigator.mozVibrate === 'function') {
+        navigator.mozVibrate(200);
+    }
 };
 
 
@@ -25,7 +28,8 @@ const svgStarString = `
 `;
 
 for (var i = 0; i < 100; i++) {
-    const cell = document.createElement('span');
+    const cell = document.createElement('div');
+    cell.className = "cell"
 
     board.appendChild(cell);
 
