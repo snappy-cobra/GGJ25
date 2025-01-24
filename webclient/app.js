@@ -1,10 +1,14 @@
 var bubblePopFunction = function() {
     navigator.vibrate(200);
-    alert("pop");
+    var sound = new Howl({
+        src: ['pop.mp3']
+    });
+      
+    sound.play();
 
-    // if (typeof navigator.mozVibrate === 'function') {
-    //     navigator.mozVibrate(200);
-    // }
+    if (typeof navigator.mozVibrate === 'function') {
+        navigator.mozVibrate(200);
+    }
 };
 
 
