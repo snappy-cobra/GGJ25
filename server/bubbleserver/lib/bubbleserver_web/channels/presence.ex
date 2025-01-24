@@ -9,18 +9,17 @@ defmodule BubbleserverWeb.Presence do
     otp_app: :bubbleserver,
     pubsub_server: Bubbleserver.PubSub
 
-
   @impl true
   def init(_opts) do
     {:ok, %{}}
   end
-
 
   @impl true
   def handle_metas(topic, %{joins: joins, leaves: leaves}, presences, state) do
     for {user_id, metas} <- leaves do
       GameState.player_left(user_id)
     end
+
     {:ok, state}
   end
 end
