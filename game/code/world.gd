@@ -53,8 +53,20 @@ func _on_player_join(player_id: String) -> void:
 	%Players.player_join(player_id)
 	if state == State.LOBBY && %Players.check_full():
 		start_game()
-	
+	update_team_labels()
 
+func update_team_labels():
+	var n1: int = 0
+	var n2: int = 0
+	for p in %Players.get_children():
+		if p.team.id == 0:
+			n1 = n1 +1
+		else:
+			n2 = n2 +1 
+			
+	%T1_P.text = "Player count: " + str(n1)
+	%T2_P.text = "Player count: " + str(n2)
+	
 func _on_player_leave(player_id: String) -> void:
 	%Players.player_leave(player_id)
 

@@ -2,9 +2,8 @@ class_name Players
 extends Node
 
 var teams: Array[Player.Team] = [
-	Player.Team.new(0, Color(1, 0, 0)),
-	# Player.Team.new(1, Color(0, 1, 0)),
-	Player.Team.new(2, Color(0, 0, 1))
+	Player.Team.new(0, Color.CYAN),
+	Player.Team.new(1, Color.PURPLE)
 ]
 var next_team: int = 0
 
