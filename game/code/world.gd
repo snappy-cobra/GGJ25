@@ -35,6 +35,10 @@ func start_game() -> void:
 	%GameLogic.state_setter = set_state
 	start.emit()
 
+func send_gamestate() -> void:
+	if bubbles != null:
+		$PhoenixInput.send_game_state(game_state_json())
+
 func set_state(is_lobby: bool):
 	if is_lobby:
 		state = State.LOBBY
@@ -58,5 +62,4 @@ func game_state_json() -> Dictionary:
 		return {}
 
 func _on_heartbeat_timeout() -> void:
-	if bubbles != null:
-		$PhoenixInput.send_game_state(game_state_json())
+	send_gamestate()
