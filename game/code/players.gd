@@ -25,16 +25,12 @@ class EmptyResult:
 		res.is_err = true
 		res.err_msg = msg
 		return res
-func _ready() -> void:
-	# TESTING
-	player_join("1", "1")
-	player_join("2", "2")
-	
-func player_join(id: String, name: String) -> EmptyResult:
-	
+
+
+func player_join(id: String) -> EmptyResult:
 	if has_node(id):
 		return EmptyResult.err("Player %s already exists" % id)
-	var player: Player = Player.create(id, name) #, teams[next_team]) assign teams when game starts
+	var player: Player = Player.create(id, id) #, teams[next_team]) assign teams when game starts
 	# next_team = (next_team + 1) % teams.size()
 	add_child(player)
 	players.append(player)
