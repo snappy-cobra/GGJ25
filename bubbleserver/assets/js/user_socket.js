@@ -149,26 +149,28 @@ var redrawBubble = function(cell, bubbleState) {
   if (bubbleState[0]) {
     cell.classList.add("unpopped")
     cell.classList.remove("popped")
+    if(cell.dataset.popped) {
+      delete cell.dataset.popped
+    }
   } else {
     cell.classList.remove("unpopped")
     cell.classList.add("popped")
+    cell.dataset.popped = "popped"
     cell.innerText = "\u00A0"
   }
 }
 
 var bubblePopFunction = function() {
-    
-    // Sound
-    sounds = ['/sounds/pop.mp3', '/sounds/pop1.mp3', '/sounds/pop2.mp3', '/sounds/pop3.mp3']
-    const random = Math.floor(Math.random() * sounds.length);
+    if(this.dataset.popped) {
+      return
+    }
 
-    var sound = new Howl({
-        src: sounds[random]
-    });
-    sound.rate = 1 + (Math.random() - 0.5)
-    sound.volume(Math.random() * 0.4 + 0.6)
-      
-    sound.play();
+    if(+this.dataset.tapsLeft > 1) {
+      // Play tap sound
+    } else {
+      // Play pop sound
+      playPopSound();
+    }
 
     // get the XY of this div
     const index_y = +this.dataset.row
@@ -189,6 +191,20 @@ var bubblePopFunction = function() {
         navigator.mozVibrate(50);
     }
 };
+
+var playPopSound = function() {
+    // Sound
+    sounds = ['/sounds/pop.mp3', '/sounds/pop1.mp3', '/sounds/pop2.mp3', '/sounds/pop3.mp3']
+    const random = Math.floor(Math.random() * sounds.length);
+
+    var sound = new Howl({
+        src: sounds[random]
+    });
+    sound.rate = 1 + (Math.random() - 0.5)
+    sound.volume(Math.random() * 0.4 + 0.6)
+      
+    sound.play();
+}
 
 
 board = document.getElementById("board");
