@@ -5,7 +5,7 @@ extends Control
 signal game_over()
 
 var round_time: float = 0 
-var round_limit: float = 4 
+var round_limit: float = 10 
 var window_size = DisplayServer.window_get_size()
 var is_tweening = false
 var tween:Tween

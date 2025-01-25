@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=9 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
 [ext_resource type="Script" path="res://code/phoenix_input.gd" id="3_6kcq6"]
 [ext_resource type="PackedScene" uid="uid://clcyvn2gf0kae" path="res://scenes/timer_bar.tscn" id="4_j3cyd"]
 [ext_resource type="Script" path="res://scenes/game_logic.gd" id="5_7s8de"]
+[ext_resource type="Script" path="res://code/score_text.gd" id="6_0vasn"]
 
 [sub_resource type="Gradient" id="Gradient_fh1bs"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -44,6 +45,31 @@ autostart = true
 visible = false
 position = Vector2(8, 8)
 texture = SubResource("GradientTexture2D_661np")
+
+[node name="Lobby" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ScoreView" type="Control" parent="Lobby"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ScoreText" type="Label" parent="Lobby/ScoreView"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 383.0
+offset_top = 2.0
+offset_right = 873.0
+offset_bottom = 79.0
+text = "DEFAULT TEXT!"
+horizontal_alignment = 1
+script = ExtResource("6_0vasn")
+
+[node name="GridContainer" type="GridContainer" parent="Lobby"]
+offset_left = -7.0
+offset_top = 52.0
+offset_right = 33.0
+offset_bottom = 92.0
 
 [connection signal="start" from="." to="TimerBar" method="_on_world_start"]
 [connection signal="start" from="." to="GameLogic" method="_on_world_start"]

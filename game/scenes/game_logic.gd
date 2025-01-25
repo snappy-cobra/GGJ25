@@ -40,6 +40,8 @@ func add_score(value: int, teamId: int) -> void:
 func _on_timer_bar_game_over() -> void:
 	state_setter.call(true)
 	print("GameLogic:: Game finished!")
+	%ScoreText.text = "Hi!" # + scores.values()[0]
+	# TODO  if debug
 	%Timer.start()
 
 
