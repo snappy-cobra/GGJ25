@@ -40,6 +40,7 @@ func pop(player: Player) -> void:
 	$Popped2.modulate = player.team.color
 	taps = taps_max
 	$Popped2.show()
+	get_tree().get_root().get_node("World").send_gamestate()
 	
 func score() -> int:
 	return taps_max

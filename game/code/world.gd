@@ -34,6 +34,10 @@ func start_game() -> void:
 	state = State.RUNNING
 
 
+func send_gamestate() -> void:
+	if bubbles != null:
+		$PhoenixInput.send_game_state(game_state_json())
+
 func _on_players_enough_players_joined(players: Array[Player]) -> void:
 	
 	print("Starting the game...")
@@ -56,5 +60,4 @@ func game_state_json() -> Dictionary:
 		return {}
 
 func _on_heartbeat_timeout() -> void:
-	if bubbles != null:
-		$PhoenixInput.send_game_state(game_state_json())
+	send_gamestate()

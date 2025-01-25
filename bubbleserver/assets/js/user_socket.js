@@ -166,31 +166,55 @@ const svgStarString = `
 </svg>
 `;
 
-
-
-
-let i = 0
-for (var y=0; y < HEIGHT; y++) {
-    const row = document.createElement('div');
-    row.className = "row";
-    board.appendChild(row);
-
-    for (var x = 0; x < WIDTH; x++) {
-        const cell = document.createElement('div');
-        cell.className = "cell";
-        cell.id = "cell-"+i;
-        cell.setAttribute('index', y * WIDTH + x);
-        state[i] = [1, 1]
-
-        row.appendChild(cell);
-
-        cell.innerHTML = svgString;
-
-        cell.addEventListener('click', bubblePopFunction, false);
-        i++;
-    }
+function buildCell(row, col) {
+  const index = row * WIDTH + col;
+  const cell = document.createElement('div')
+  cell.className = 'cell'
+  cell.id = "cell-" + index
+  cell.setAttribute('index', index);
+  cell.innerHTML = svgString
+  cell.addEventListener('click', bubblePopFunction, false)
+  return cell
 }
 
+function buildBoard(state) {
+  for(var row=0; row < HEIGHT; ++row) {
+
+    const rowElem = document.createElement('div')
+    rowElem.className = "row"
+
+    for(var col=0; col < WIDTH; ++col) {
+      state[row * WIDTH + col] = [1, 1]
+      const cell = buildCell(row, col)
+      rowElem.appendChild(cell)
+    }
+
+    board.appendChild(rowElem)
+  }
+  // let i = 0
+  // for (var y=0; y < HEIGHT; y++) {
+  //     const row = document.createElement('div');
+  //     row.className = "row";
+  //     board.appendChild(row);
+
+  //     for (var x = 0; x < WIDTH; x++) {
+  //         const cell = document.createElement('div');
+  //         cell.className = "cell";
+  //         cell.id = "cell-"+i;
+  //         cell.setAttribute('index', y * WIDTH + x);
+  //         state[i] = [1, 1]
+
+  //         row.appendChild(cell);
+
+  //         cell.innerHTML = svgString;
+
+  //         cell.addEventListener('click', bubblePopFunction, false);
+  //         i++;
+  //     }
+  // }
+}
+
+buildBoard(state)
 
 
 
