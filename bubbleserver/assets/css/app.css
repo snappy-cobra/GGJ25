@@ -16,7 +16,7 @@ html, body {
     top:0;
     width:100%;
     height:100%;
-    background-color: orange;
+    background-color: rgb(160, 185, 192);
 }
 
 .screen {
@@ -76,11 +76,19 @@ html, body {
     background-size: 75%;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url("/images/bubble1.png")
+    background-image: url("/images/bubble1.png");
+}
+
+.cell[data-bubble-pic="0"] {
+    background-image: url("/images/bubble1.png");
+}
+.cell[data-bubble-pic="1"] {
+    background-image: url("/images/bubble2.png");
 }
 
 .cell.popped {
-    background-image: url("/images/bubble2.png")
+    background-image: url("/images/bubble2.png");
+    background-color: blue;
 }
 
 .cell > svg {

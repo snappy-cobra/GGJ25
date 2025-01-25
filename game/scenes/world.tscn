@@ -66,6 +66,7 @@ horizontal_alignment = 1
 script = ExtResource("6_0vasn")
 
 [node name="GridContainer" type="GridContainer" parent="Lobby"]
+layout_mode = 0
 offset_left = -7.0
 offset_top = 52.0
 offset_right = 33.0
