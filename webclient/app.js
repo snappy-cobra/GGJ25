@@ -1,5 +1,5 @@
 // token for authentication. Read below how it should be used.
-let socket = new window.Phoenix.Socket("http://localhost:4000/socket", {params: {token: "oke"}})
+let socket = new window.Phoenix.Socket("http://localhost:4000/socket", {params: {token: "player:"+Math.random()*99999}})
 
 // connect to the websocket:
 socket.connect()
@@ -7,7 +7,7 @@ let channel = socket.channel("godot", {})
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
-
+  .receive("gamestate", resp => { console.log("gamestate", resp) })
 
 var SIZE = 16; 
 
@@ -30,7 +30,9 @@ var bubblePopFunction = function() {
     channel.push("pop", {x: index_x, y: index_y});
 
     // Vibrate
-    navigator.vibrate(200);
+    if (typeof navigator.vibrate === 'function') {
+        navigator.vibrate(200);
+    }
     if (typeof navigator.mozVibrate === 'function') {
         navigator.mozVibrate(200);
     }
@@ -57,19 +59,19 @@ const svgStarString = `
 `;
 
 
-for (var i = 0; i < 16; i++) {
+for (var y = 0; y < 50; y++) {
     const row = document.createElement('div');
     row.className = "row";
     board.appendChild(row);
 
-    for (var j = 0; j < 16; j++) {
+    for (var x = 0; x < 100; x++) {
         const cell = document.createElement('div');
         cell.className = "cell";
-        cell.setAttribute('id', i * 20 + j);
+        cell.setAttribute('id', y * 100 + x);
 
         row.appendChild(cell);
 
-        if (j % 20 == 7) {
+        if (x % 20 == 7) {
             cell.innerHTML = svgStarString;
         } else {
             cell.innerHTML = svgString;
