@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://l5go2111f05g"]
+[gd_scene load_steps=11 format=3 uid="uid://l5go2111f05g"]
 
 [ext_resource type="Script" path="res://code/bubble.gd" id="1_8xifa"]
 [ext_resource type="Texture2D" uid="uid://rygl6mf85v4r" path="res://scenes/orb 64.png" id="2_bruxq"]
@@ -14,9 +14,19 @@ radius = 32.0
 font_size = 36
 font_color = Color(0, 0, 0, 0.627451)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o1nmh"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y3sfi"]
 particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
+inherit_velocity_ratio = 0.554
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+anim_speed_max = 5.74
 
 [node name="Bubble" type="Node2D"]
 scale = Vector2(0.5, 0.5)
@@ -51,12 +61,14 @@ position = Vector2(8, 8)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_1r0ol")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="Explosion" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_o1nmh")
 position = Vector2(8, 8)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_y3sfi")
 texture = ExtResource("6_cvn6h")
-lifetime = 5.0
 one_shot = true
+explosiveness = 0.87
+trail_section_subdivisions = 5
 
 [connection signal="input_event" from="DebugInput" to="." method="_on_debug_input_input_event"]

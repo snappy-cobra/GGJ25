@@ -52,6 +52,9 @@ func pop(player: Player) -> void:
 	$Popped2.modulate = player.team.color
 	taps = taps_max
 	$Popped2.show()
+	
+	$Explosion.emitting = true
+	
 	get_tree().get_root().get_node("World").get_node("GameLogic").add_score(score(), player.team.id)
 	get_tree().get_root().get_node("World").send_gamestate()
 	
