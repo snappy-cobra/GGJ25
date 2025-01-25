@@ -89,6 +89,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="LOGO 1" type="Label" parent="Lobby"]
+layout_mode = 0
 offset_left = 438.0
 offset_top = 158.0
 offset_right = 760.0
@@ -101,6 +102,7 @@ theme_override_font_sizes/font_size = 76
 text = "† Bubblevania †"
 
 [node name="LOGO 2" type="Label" parent="Lobby"]
+layout_mode = 0
 offset_left = 212.0
 offset_top = 234.0
 offset_right = 964.0
@@ -151,6 +153,7 @@ horizontal_alignment = 1
 
 [node name="Team2" type="VFlowContainer" parent="Lobby"]
 modulate = Color(0.538702, 0.0187286, 0.883022, 1)
+layout_mode = 0
 offset_left = 833.0
 offset_top = 526.0
 offset_right = 1175.0
