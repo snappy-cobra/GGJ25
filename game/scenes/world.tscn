@@ -65,12 +65,78 @@ text = "DEFAULT TEXT!"
 horizontal_alignment = 1
 script = ExtResource("6_0vasn")
 
-[node name="GridContainer" type="GridContainer" parent="Lobby"]
-layout_mode = 0
-offset_left = -7.0
-offset_top = 52.0
-offset_right = 33.0
-offset_bottom = 92.0
+[node name="Team1" type="VFlowContainer" parent="Lobby"]
+modulate = Color(0.145098, 1, 1, 1)
+layout_mode = 2
+offset_left = 224.0
+offset_top = 121.0
+offset_right = 566.0
+offset_bottom = 576.0
+
+[node name="T1" type="Label" parent="Lobby/Team1"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "TEAM [1]"
+
+[node name="T1_P1" type="Label" parent="Lobby/Team1"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "< SLOT >"
+horizontal_alignment = 1
+
+[node name="T1_P2" type="Label" parent="Lobby/Team1"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "< SLOT >"
+horizontal_alignment = 1
+
+[node name="T1_P3" type="Label" parent="Lobby/Team1"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "< SLOT >"
+horizontal_alignment = 1
+
+[node name="T1_P4" type="Label" parent="Lobby/Team1"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "< SLOT >"
+horizontal_alignment = 1
+
+[node name="Team2" type="VFlowContainer" parent="Lobby"]
+modulate = Color(1, 0.141176, 1, 1)
+offset_left = 748.0
+offset_top = 115.0
+offset_right = 1090.0
+offset_bottom = 570.0
+
+[node name="T2" type="Label" parent="Lobby/Team2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "TEAM [2]"
+
+[node name="T2_P1" type="Label" parent="Lobby/Team2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "< SLOT >"
+horizontal_alignment = 1
+
+[node name="T2_P2" type="Label" parent="Lobby/Team2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "< SLOT >"
+horizontal_alignment = 1
+
+[node name="T3_P3" type="Label" parent="Lobby/Team2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "< SLOT >"
+horizontal_alignment = 1
+
+[node name="T4_P4" type="Label" parent="Lobby/Team2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "< SLOT >"
+horizontal_alignment = 1
 
 [connection signal="start" from="." to="TimerBar" method="_on_world_start"]
 [connection signal="start" from="." to="GameLogic" method="_on_world_start"]

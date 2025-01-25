@@ -11,6 +11,7 @@ func _ready() -> void:
 	start_game()
 
 func start_lobby() -> void:
+	
 	pass 
 	
 func _on_tap(pos: Vector2i, player_id: String) -> void:
@@ -22,7 +23,7 @@ func _on_tap(pos: Vector2i, player_id: String) -> void:
 	
 func _on_player_join(player_id: String) -> void:
 	%Players.player_join(player_id)
-	if state == State.LOBBY && %Players.is_full():
+	if state == State.LOBBY && %Players.check_full():
 		start_game()
 
 func _on_player_leave(player_id: String) -> void:
@@ -37,6 +38,22 @@ func start_game() -> void:
 	%GameLogic.state_setter = set_state
 	send_gamestate()
 	start.emit()
+	var teams = {}
+	var team_names = []
+	for p in %Players.get_children():
+		if p.team.id not in teams:
+			team_names.append(p.team.id)
+			teams[p.team.id] = []
+	for p in %Players.get_children():
+		teams[p.team.id].append(p)
+	
+	var team_1 = teams.values()	[0]
+	var team_2 = teams.values()	[1]
+	%T1_P1.text = team_1[0].display_name
+	%T2_P1.text = team_2[0].display_name
+	
+	%T1.text = str(team_names[0])
+	%T2.text = str(team_names[1])
 
 func send_gamestate() -> void:
 	if bubbles != null:

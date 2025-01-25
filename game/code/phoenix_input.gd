@@ -9,6 +9,9 @@ var channel : PhoenixChannel
 var presence : PhoenixPresence
 
 func _ready() -> void:
+	
+	player_join.emit("Bob")
+	player_join.emit("Alice")
 	if Config.is_local():
 		queue_free()
 		return
