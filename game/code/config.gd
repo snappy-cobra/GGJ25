@@ -10,15 +10,15 @@ func _ready() -> void:
 			if entry.size() == 2 && entry[0].length() > 0 && entry[0][0] != "#":
 				dotenv[entry[0]] = entry[1]
 
-func read_env(key: String) -> String:
+func read_env(key: String, default: String = "") -> String:
 	if OS.has_environment(key):
 		return OS.get_environment(key)
 	else:
-		return dotenv.get(key, "")
+		return dotenv.get(key, default)
 
 
 func server_url() -> String:
-	return read_env("SNAPPY_SERVER")
+	return read_env("SNAPPY_SERVER", "wss://bubbleserver.fly.dev/socket")
 
 func server_password() -> String:
 	return read_env("SNAPPY_PASSWORD")
