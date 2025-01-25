@@ -17,7 +17,7 @@ defmodule BubbleserverWeb.RoomChannel do
     # socket = assign(socket, :player_id, my_player_id)
     send(self(), :after_join)
     # send(self(), :after_join)
-    {:ok, socket}
+    {:ok, socket.assigns.player_id, socket}
     # else
     #   {:error, %{reason: "unauthorized"}}
     # end

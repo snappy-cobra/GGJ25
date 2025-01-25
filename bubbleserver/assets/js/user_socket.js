@@ -84,12 +84,19 @@ var WIDTH = 50;
 var HEIGHT = 25;
 
 var state = null;
+var my_player_id = null;
+var my_team = null;
 
 // connect to the websocket:
 socket.connect()
 let channel = socket.channel("godot", {})
 channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
+  .receive("ok", player_id => { 
+    console.log("Joined successfully, player_id set:", player_id) 
+    my_player_id = player_id;
+    my_team = player_id % 2;
+    displayTeam();
+  })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
 channel.on("game_state", resp => {
@@ -252,6 +259,11 @@ function buildBoard(state) {
   //         i++;
   //     }
   // }
+}
+
+function displayTeam() {
+  let teambar = document.getElementById("teambar")
+  teambar.dataset.team = my_team;
 }
 
 buildBoard(state)

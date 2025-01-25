@@ -7,6 +7,8 @@
 html, body {
     margin: 0 !important;
     padding: 0 !important;
+
+    font-family: sans-serif;
 }
 
 #canvas {
@@ -120,4 +122,34 @@ html, body {
 
 .bubble:active {
     animation: growAndScaleBack 0.1s ease-in;
+}
+
+#teambar {
+    display: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10vw;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 5vw;
+    line-height: 10vw;
+    color: rgba(0,0,0,0.5);
+}
+
+#teambar[data-team="0"] {
+    background-color: cyan;
+}
+
+#teambar[data-team="0"]::before {
+    content: "Team Cyan"
+}
+
+#teambar[data-team="1"] {
+    background-color: magenta;
+}
+
+#teambar[data-team="1"]::before {
+    content: "Team Magenta"
 }
