@@ -84,6 +84,8 @@ html, body {
     font-size: 10vw;
     font-family: sans-serif;
     color: rgba(0,0,0,0.5);
+
+    transition-duration: 0.1s;
 }
 
 .cell[data-bubble-pic="0"] {
@@ -91,6 +93,18 @@ html, body {
 }
 .cell[data-bubble-pic="1"] {
     background-image: url("/images/bubble2.png");
+}
+
+.cell[data-taps-left="3"] {
+    color: rgba(0,0,0,0.3);
+}
+
+.cell[data-taps-left="2"] {
+    color: rgba(0,0,0,0.2);
+}
+
+.cell[data-taps-left="1"] {
+    color: rgba(0,0,0,0.01);
 }
 
 .cell.popped {
