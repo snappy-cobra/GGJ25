@@ -4,7 +4,7 @@
 #
 
 app = 'bubbleserver'
-primary_region = 'arn'
+primary_region = 'ams'
 kill_signal = 'SIGTERM'
 
 [build]
