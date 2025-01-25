@@ -10,7 +10,7 @@ var teams: Array[Player.Team] = [
 	Player.Team.new("BLUE", Color(0, 0, 1))
 ]
 var next_team: int = 0
-var players: Array[Player] = [] 
+#var players: Array[Player] = [] 
 
 
 func _ready() -> void:
@@ -23,17 +23,17 @@ func player_join(id: String) -> String:
 	var player: Player = Player.create(id, id, teams.pick_random()) #, teams[next_team]) assign teams when game starts
 	# next_team = (next_team + 1) % teams.size()
 	add_child(player)
-	players.append(player)
-	if check_full():
-		assign_teams(2)
-		print("Enough players!")
-		enough_players_joined.emit(players)
-		#World.start.emit(all_players())
-		# different return value?
+	#players.append(player)
+	#if check_full():
+		#assign_teams(2)
+		#print("Enough players!")
+		#enough_players_joined.emit(players)
+		##World.start.emit(all_players())
+		## different return value?
 	return ""
 
 func check_full() -> bool:
-	return players.size() >= 2
+	return get_child_count() >= 2
 	
 func player_leave(id: String) -> String:
 	if !has_node(id):
@@ -51,6 +51,6 @@ func get_player(id) -> Player:
 	
 func assign_teams(preferredTeamsNumber: int = 2) -> void:
 	var i: int = 0
-	for p in players:
+	for p in get_children():
 		p.team = teams[i % teams.size()]
 		i += 1
