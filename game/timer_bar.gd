@@ -14,6 +14,7 @@ var tween:Tween
 func _ready() -> void:
 	window_size = get_viewport_rect().size
 	rect.set_size(Vector2(window_size.x, 50))
+	rotation = 0;
 	var tween = create_tween()
 	
 	pass # Replace with function body.
@@ -52,5 +53,6 @@ func _process(delta: float) -> void:
 func _on_world_start() -> void:
 	print("Restarted timer")
 	set_process(true)
+	rotation = 0
 	round_time = 0
 	pass # Replace with function body.

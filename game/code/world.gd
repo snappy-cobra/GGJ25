@@ -7,9 +7,23 @@ var state: State = State.LOBBY
 var bubbles: Bubbles
 
 func _ready() -> void:
-	#start_lobby()
+	#reset_lobby()
 	start_game()
 
+func reset_lobby() -> void:
+	%T1_P1.text = "<PLAYER SLOT>"
+	%T1_P2.text = "<PLAYER SLOT>"
+	#%T1_P3.text = "<PLAYER SLOT>"
+	#%T1_P4.text = "<PLAYER SLOT>"
+	
+	%T2_P1.text = "<PLAYER SLOT>"
+	#%T2_P2.text = "<PLAYER SLOT>"
+	#%T2_P3.text = "<PLAYER SLOT>"
+	#%T2_P4.text = "<PLAYER SLOT>"
+	
+	%ScoreView.text = "No games haven't been played yet..."
+
+		
 func start_lobby() -> void:
 	var teams = {}
 	var team_names = []
@@ -40,7 +54,20 @@ func _on_player_join(player_id: String) -> void:
 	%Players.player_join(player_id)
 	if state == State.LOBBY && %Players.check_full():
 		start_game()
+	update_team_labels()
 
+func update_team_labels():
+	var n1: int = 0
+	var n2: int = 0
+	for p in %Players.get_children():
+		if p.team.id == 0:
+			n1 = n1 +1
+		else:
+			n2 = n2 +1 
+			
+	%T1_P.text = "Player count: " + str(n1)
+	%T2_P.text = "Player count: " + str(n2)
+	
 func _on_player_leave(player_id: String) -> void:
 	%Players.player_leave(player_id)
 
