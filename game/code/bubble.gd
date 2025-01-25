@@ -9,6 +9,7 @@ var taps_max: int
 var popped_by: Player.Team
 
 const bubble_scene = preload("res://scenes/bubble.tscn")
+# @onready var logic: GameLogic = get_node("World/GameLogic")
 
 static func create(pos: Vector2i, taps_required: int) -> Bubble:
 	var bubble: Bubble = bubble_scene.instantiate()
@@ -25,8 +26,7 @@ func setup(taps_required: int):
 	value = taps_required
 	
 func tapped(player: Player) -> void:
-	emit_signal("tapped", self, player) 
-	
+	get_node("../../GameLogic").tapped(self as Bubble, player, pop)
 	
 func pop(player: Player) -> void:
 	$Unpopped.hide()

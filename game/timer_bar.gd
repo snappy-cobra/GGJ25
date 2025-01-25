@@ -5,7 +5,7 @@ extends Control
 signal game_over()
 
 var round_time: float = 0 
-var round_limit: float = 60 
+var round_limit: float = 10 
 var window_size = DisplayServer.window_get_size()
 var is_tweening = false
 var tween:Tween
@@ -32,7 +32,9 @@ func _process(delta: float) -> void:
 	
 	round_time += delta * 2
 	if round_time >= round_limit:
+		print("GAME OVER!")
 		game_over.emit()
+		set_process(false)
 		return
 	var factor_remaining:float = (round_limit-round_time) / 100
 	
@@ -44,5 +46,4 @@ func _process(delta: float) -> void:
 	# ends in the center
 	var x = floor((window_size.x - rect.get_size().x)/2)
 	rect.set_position(Vector2(x, 0))
-	
 	pass

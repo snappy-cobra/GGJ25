@@ -5,16 +5,16 @@ extends Node
 signal enough_players_joined(players: Array[Player])
 
 var teams: Array[Player.Team] = [
-	Player.Team.new("RED", Color(1, 0, 0)),
+	Player.Team.new("debug", Color(1, 0, 0)),
 	Player.Team.new("GREEN", Color(0, 1, 0)),
-	Player.Team.new("BLUE", Color(0, 0, 1))
+	# Player.Team.new("BLUE", Color(0, 0, 1))
 ]
 var next_team: int = 0
 #var players: Array[Player] = [] 
 
 
 func _ready() -> void:
-	player_join("1")
+	player_join(debug_player.id)
 	player_join("2")
 
 func player_join(id: String) -> String:

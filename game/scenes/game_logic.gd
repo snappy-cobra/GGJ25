@@ -1,9 +1,7 @@
 extends Node
 class_name GameLogic
 
-signal tapped(bubble: Bubble, player: Player)
 signal game_started(value_grid: Array)
-signal game_over()
 
 enum GameState { Lobby, Active } # game result is to be displayed on top in lobby UI 
 
@@ -26,7 +24,8 @@ func _on_world_start(players: Array[Player], grid_width: int, grid_height: int) 
 	print("GameLogic:: Game started!")
 	scores = {}
 	for p in players:
-		scores[p] = 0
+		print("Score init for team " + p.team.id)
+		scores[p.team.id] = 0
 		
 	state = GameState.Active
 	
@@ -41,20 +40,19 @@ func _on_world_start(players: Array[Player], grid_width: int, grid_height: int) 
 	game_started.emit(value_grid) # to json?
 	pass
 
-func _on_timer_bar_game_over() -> void:
-	state = GameState.Lobby
-	print("GameLogic:: Game finished!")
-	
-func check_tap_popped(bubble: Bubble, player: Player) -> void:
+var pop: Callable
+func tapped(bubble: Bubble, player: Player, bubCallback: Callable) -> void:
+	pop = bubCallback
 	var popped = bubble_tapped(bubble, player)
 	if (popped):
 		popped(bubble.value, player)
 		
 func bubble_tapped(bubble: Bubble, player: Player) -> bool:
-	if bubble.popped:
+	if bubble.popped_by != null:
 		# punish the player who tapped too late?
 		# respond with corresponding sound/animation 
 		return false
+	print( str(bubble.pos.x)+ ":"+ str(bubble.pos.y) +" tapped!")
 	bubble.taps += 1
 	player_tapped(player)
 	if bubble.taps >= bubble.taps_max:
@@ -62,11 +60,13 @@ func bubble_tapped(bubble: Bubble, player: Player) -> bool:
 	return false
 
 func player_tapped(player: Player) -> void:
-	inactive[player] = 0
-	
+	#inactive[player] = 0
+	pass
 	
 func popped(value: int, player: Player) -> void:
 	add_score(get_score_for(value), player.team.id)
+	# TODO - bubble.pop()
+	pop.call(player)
 	pass
 	
 func get_score_for(base_taps: int) -> int:
@@ -99,3 +99,8 @@ func punish(player: Player, score_to_subtract: int ):
 
 func calc_punish_inactive(inactive_time: float, delta: float) -> int:
 	return delta *(min(6, inactive_time) - 1) # grows very fast after 1 second of inactivity, up 5 per second 
+
+
+func _on_timer_bar_game_over() -> void:
+	state = GameState.Lobby
+	print("GameLogic:: Game finished!")
