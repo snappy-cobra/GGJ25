@@ -53,9 +53,9 @@ func popped(value: int, player: Player) -> void:
 func get_score_for(base_taps: int) -> int:
 	return base_taps * base_taps
 		
-func add_score(value: int, teamId: String) -> void:
+func add_score(value: int, teamId: int) -> void:
 	scores[teamId] = scores.get(teamId, 0) + value
-	print("Added score for team " + teamId + "; new score = " + str(scores[teamId]))
+	print("Added score for team " + str(teamId) + "; new score = " + str(scores[teamId]))
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
