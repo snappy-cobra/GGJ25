@@ -105,17 +105,10 @@ channel.on("game_state", resp => {
     } else {
         for (let i in bubbles) {
             let bubble = bubbles[i];
-            let oldState = state[i];
-            if (!(bubble[0] === oldState[0] && bubble[1] === oldState[1])) {
+            let oldBubble = state[i];
+            if (!(bubble[0] === oldBubble[0] && bubble[1] === oldBubble[1])) {
                 let cell = document.getElementById("cell-"+i);
-                // if (!cell) { continue; }
-                if (bubble[0]) {
-                  cell.classList.add("unpopped")
-                  cell.classList.remove("popped")
-                } else {
-                  cell.classList.remove("unpopped")
-                  cell.classList.add("popped")
-                }
+                redrawBubble(cell, bubble)
             }
         }
     }
@@ -128,6 +121,25 @@ var fibonacciHash = function(int) {
    return (int * a) % max32bit
 }
 
+var redrawBubble = function(cell, bubbleState) {
+  if(bubbleState[1] <= 1) {
+    // Don't show a number for counts of 1 and 0
+    // Instead, use a non-breaking space
+    // to not mess with the wonky CSS
+    cell.innerText = "\u00A0"
+  } else {
+    cell.innerText = bubbleState[1]
+  }
+  // if (!cell) { continue; }
+  if (bubbleState[0]) {
+    cell.classList.add("unpopped")
+    cell.classList.remove("popped")
+  } else {
+    cell.classList.remove("unpopped")
+    cell.classList.add("popped")
+    cell.innerText = "\u00A0"
+  }
+}
 
 var bubblePopFunction = function() {
     
@@ -193,6 +205,7 @@ function buildCell(row, col) {
   cell.dataset.col = col;
   cell.dataset.bubblePic = fibonacciHash(index) >> 15;
   // cell.innerHTML = svgString
+  redrawBubble(cell, [1, 1])
   cell.addEventListener('click', bubblePopFunction, false)
   return cell
 }
