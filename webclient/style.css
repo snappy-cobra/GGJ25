@@ -29,12 +29,12 @@ html, body {
 }
 
 .screen .board {
-    width: 400vw;
+    width: calc(400vw + 12.5vw);
     height: 150vw;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */ 
-    display: grid;
-    grid-template-columns: repeat(16, 25vw);
+    /* display: grid;
+    grid-template-columns: repeat(16, 25vw); */
 }
 
 @keyframes growAndScaleBack {
@@ -49,10 +49,23 @@ html, body {
     }
   }
 
+
+.row:first-child {
+    margin-top: 0px;
+}
+.row {
+    margin-top: -50px;
+}
+
+.row:nth-child(2n) {
+    margin-left: 12.5vw;
+}
+
 .cell {
     width: 25vw;
     height: 25vw;
     position: relative;
+    display: inline-block;
 }
 
 .cell > svg {
