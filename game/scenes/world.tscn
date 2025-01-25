@@ -45,8 +45,8 @@ autostart = true
 
 [node name="QR" type="Sprite2D" parent="."]
 self_modulate = Color(1, 0.117647, 0.14902, 1)
-position = Vector2(544.449, 580.605)
-scale = Vector2(0.423026, 0.423026)
+position = Vector2(525.333, 600)
+scale = Vector2(0.311239, 0.311239)
 texture = ExtResource("6_2p6ge")
 
 [node name="Lobby" type="Control" parent="."]
