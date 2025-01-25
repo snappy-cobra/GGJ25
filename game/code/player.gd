@@ -2,9 +2,9 @@ class_name Player
 extends Node
 
 class Team:
-	var id: String
+	var id: int
 	var color: Color
-	func _init(id: String, color: Color):
+	func _init(id: int, color: Color):
 		self.id = id
 		self.color = color
 	func view_json() -> Dictionary:
