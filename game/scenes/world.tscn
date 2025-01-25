@@ -31,4 +31,5 @@ script = ExtResource("5_7s8de")
 [connection signal="player_leave" from="PhoenixInput" to="." method="_on_player_leave"]
 [connection signal="tap" from="PhoenixInput" to="." method="_on_tap"]
 [connection signal="enough_players_joined" from="Players" to="." method="_on_players_enough_players_joined"]
+[connection signal="game_over" from="TimerBar" to="GameLogic" method="_on_timer_bar_game_over"]
 [connection signal="game_started" from="GameLogic" to="Bubbles" method="_on_game_logic_game_started"]
