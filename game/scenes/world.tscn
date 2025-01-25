@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=7 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
@@ -6,14 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://clcyvn2gf0kae" path="res://scenes/timer_bar.tscn" id="4_j3cyd"]
 [ext_resource type="Script" path="res://scenes/game_logic.gd" id="5_7s8de"]
 [ext_resource type="Script" path="res://code/score_text.gd" id="6_0vasn"]
-
-[sub_resource type="Gradient" id="Gradient_fh1bs"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_661np"]
-gradient = SubResource("Gradient_fh1bs")
-width = 16
-height = 16
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_le5jl")
@@ -40,11 +32,6 @@ one_shot = true
 
 [node name="Heartbeat" type="Timer" parent="."]
 autostart = true
-
-[node name="Popped" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(8, 8)
-texture = SubResource("GradientTexture2D_661np")
 
 [node name="Lobby" type="Control" parent="."]
 layout_mode = 3

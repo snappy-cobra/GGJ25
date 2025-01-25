@@ -45,10 +45,10 @@ func _ready() -> void:
 
 func send_game_state(state: Dictionary) -> void:
 	#print(state)
-	print("sending game state")
+	#print("sending game state")
 	var res = channel.push("game_state", state)
-	print("after push")
-	print(res)
+	#print("after push")
+	#print(res)
 
 #
 # Socket events
@@ -72,7 +72,7 @@ func _on_Socket_connecting(is_connecting):
 #
 
 func _on_Channel_event(event: String, payload, status):
-	print("_on_Channel_event:  ", event, ", ", status)
+	#print("_on_Channel_event:  ", event, ", ", status)
 	if payload.has("player_id"):
 		var player_id: String = payload.player_id
 		#if !%Players.has_player(player_id):
