@@ -94,8 +94,10 @@ html, body {
 }
 
 .cell.popped {
-    background-color: blue;
+    background-image: url("/images/poppedbubble1.png");
+    opacity: 0.2;
 }
+
 
 .cell > svg {
     width: 100%;
