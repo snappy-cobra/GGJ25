@@ -40,4 +40,8 @@ func _on_debug_input_input_event(viewport: Node, event: InputEvent, shape_idx: i
 		get_tree().get_root().get_node("World")._on_tap(pos, "debug_player_"+str(event.button_index))
 
 func view_json() -> Dictionary:
-	return {"taps": taps, "taps_max": taps_max, "popped_by": popped_by.id}
+	var view: Dictionary = {"taps": taps, "taps_max": taps_max}
+	if popped_by != null:
+		view["popped_by"] = popped_by.id
+	return view
+	

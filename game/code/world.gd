@@ -43,4 +43,4 @@ func _on_players_enough_players_joined(players: Array[Player]) -> void:
 
 func _on_heartbeat_timeout() -> void:
 	if bubbles != null:
-		$PhoenixInput.send_game_state(bubbles.view_json)
+		$PhoenixInput.send_game_state(bubbles.view_json())

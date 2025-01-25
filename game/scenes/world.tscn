@@ -23,6 +23,7 @@ modulate = Color(0.43038, 0.739638, 3.85046e-07, 1)
 script = ExtResource("5_7s8de")
 
 [node name="Heartbeat" type="Timer" parent="."]
+autostart = true
 
 [connection signal="start" from="." to="GameLogic" method="_on_world_start"]
 [connection signal="player_join" from="PhoenixInput" to="." method="_on_player_join"]
