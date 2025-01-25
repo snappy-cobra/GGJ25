@@ -12,3 +12,17 @@ func game_start(players: Array[Player]) -> void:
 	var height: int = 8
 	emit_signal("game_started", players, width, height)
 	
+
+
+func _on_tap(pos: Vector2i, player_id: String) -> void:
+	if !%Players.has_player(player_id):
+		%Players.player_join(player_id)
+	var player = %Players.get_player(player_id)
+	%Bubbles.pop(pos, player)
+
+func _on_player_join(player_id: String) -> void:
+	%Players.player_join(player_id)
+
+
+func _on_player_leave(player_id: String) -> void:
+	%Players.player_leave(player_id)

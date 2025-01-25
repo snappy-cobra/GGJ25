@@ -18,10 +18,13 @@ unique_name_in_owner = true
 script = ExtResource("2_qriy4")
 
 [node name="Bubbles" type="Node2D" parent="."]
-unique_name_in_owner = true
 script = ExtResource("4_sei7x")
 
 [node name="TimerBar" parent="." instance=ExtResource("4_j3cyd")]
 
 [node name="GameLogic" type="Node" parent="."]
 script = ExtResource("5_7s8de")
+
+[connection signal="player_join" from="PhoenixInput" to="." method="_on_player_join"]
+[connection signal="player_leave" from="PhoenixInput" to="." method="_on_player_leave"]
+[connection signal="tap" from="PhoenixInput" to="." method="_on_tap"]
