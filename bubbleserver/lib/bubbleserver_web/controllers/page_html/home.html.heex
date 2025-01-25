@@ -11,6 +11,12 @@
 </div>
 
 <style>
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overscroll-behavior: contain; /* prevent accidental page refresh by scrolling on phones */
+}
+
 button {
   border-radius: 100%;
   border: 1px solid cyan;
@@ -19,10 +25,6 @@ button {
   height: 50px;
   padding: 10px;
   margin: 10px;
-}
-html, body {
-    margin: 0 !important;
-    padding: 0 !important;
 }
 
 #canvas {
