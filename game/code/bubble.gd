@@ -6,6 +6,7 @@ var pos: Vector2i
 var value: int
 var taps: int
 var taps_max: int
+var popped_by: Player.Team
 
 const bubble_scene = preload("res://scenes/bubble.tscn")
 
@@ -35,3 +36,6 @@ func pop(player: Player) -> void:
 func _on_debug_input_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		pop(get_node("../../Players").debug_player)
+
+func view_json() -> Dictionary:
+	return {"taps": taps, "taps_max": taps_max, "popped_by": popped_by.id}
