@@ -40,7 +40,18 @@ func add_score(value: int, teamId: int) -> void:
 func _on_timer_bar_game_over() -> void:
 	state_setter.call(true)
 	print("GameLogic:: Game finished!")
-	%ScoreText.text = "Hi!" # + scores.values()[0]
+	var scores_text: String = ""
+	var winner = null
+	var largest = 0
+	for team in scores.keys:
+		if scores[team] > largest:
+			winner = team
+			largest = scores[team]
+		scores_text = scores_text + "Team <" + team + ">:"+ scores[team]+"\n"
+		
+	var final_score_text = "Last WINNER: " + winner + "! Scores: \n" + scores_text
+	
+	%ScoreText.text = final_score_text
 	# TODO  if debug
 	%Timer.start()
 
