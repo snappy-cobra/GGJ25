@@ -11,13 +11,14 @@ func setup_grid(size: Vector2i) -> void:
 	for x in size.x:
 		for y in size.y:
 			var pos := Vector2i(x, y)
-			var bubble := Bubble.create(pos)
+			var bubble := Bubble.create(pos, 1)
 			bubbles[pos] = bubble
 			add_child(bubble)
 	
 func _on_game_logic_game_started(grid: Array) -> void:
-	width = grid[0].size()
-	height = grid.size()
+	var width = grid[0].size()
+	var height = grid.size()
+	size = Vector2i(width, height)
 	for x in width:
 		for y in height:
 			var pos := Vector2(x, y)
