@@ -22,7 +22,8 @@ func setup_grid(size: Vector2i) -> void:
 			var weight: int = 1
 			if randf() < 0.1:
 				weight = randi_range(3, 8)
-			var bubble := Bubble.create(pos, weight)
+			var bubble_picture_idx = fibonacci_hash(y * size.y + x) >> 15
+			var bubble := Bubble.create(pos, weight, bubble_picture_idx)
 			bubbles[pos] = bubble
 			add_child(bubble)
 	
@@ -39,3 +40,8 @@ func view_json() -> Dictionary:
 			var bubble: Bubble = bubbles[Vector2i(x, y)]
 			bubble_data.append(bubble.view_json())
 	return {"size": [size.x, size.y], "bubbles": bubble_data}
+
+func fibonacci_hash(num: int) -> int:
+	const a = 40503
+	const max32bit = 65536
+	return (num * a) % max32bit
