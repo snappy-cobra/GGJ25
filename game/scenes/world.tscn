@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=10 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://clcyvn2gf0kae" path="res://scenes/timer_bar.tscn" id="4_j3cyd"]
 [ext_resource type="Script" path="res://scenes/game_logic.gd" id="5_7s8de"]
 [ext_resource type="Script" path="res://code/score_text.gd" id="6_0vasn"]
+[ext_resource type="Script" path="res://code/dev_helper.gd" id="7_m4s82"]
 
 [sub_resource type="Gradient" id="Gradient_fh1bs"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -102,6 +103,9 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "PLAYER COUNT:"
 horizontal_alignment = 1
+
+[node name="DevHelper" type="Node" parent="."]
+script = ExtResource("7_m4s82")
 
 [connection signal="start" from="." to="TimerBar" method="_on_world_start"]
 [connection signal="start" from="." to="GameLogic" method="_on_world_start"]
