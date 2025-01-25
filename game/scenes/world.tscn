@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=8 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
 [ext_resource type="Script" path="res://code/phoenix_input.gd" id="3_6kcq6"]
 [ext_resource type="PackedScene" uid="uid://clcyvn2gf0kae" path="res://scenes/timer_bar.tscn" id="4_j3cyd"]
 [ext_resource type="Script" path="res://scenes/game_logic.gd" id="5_7s8de"]
+
+[sub_resource type="Gradient" id="Gradient_fh1bs"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_661np"]
+gradient = SubResource("Gradient_fh1bs")
+width = 16
+height = 16
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_le5jl")
@@ -25,12 +33,23 @@ metadata/_edit_use_anchors_ = true
 unique_name_in_owner = true
 script = ExtResource("5_7s8de")
 
+[node name="Timer" type="Timer" parent="GameLogic"]
+unique_name_in_owner = true
+one_shot = true
+
 [node name="Heartbeat" type="Timer" parent="."]
 autostart = true
 
+[node name="Popped" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, 8)
+texture = SubResource("GradientTexture2D_661np")
+
+[connection signal="start" from="." to="TimerBar" method="_on_world_start"]
 [connection signal="start" from="." to="GameLogic" method="_on_world_start"]
 [connection signal="player_join" from="PhoenixInput" to="." method="_on_player_join"]
 [connection signal="player_leave" from="PhoenixInput" to="." method="_on_player_leave"]
 [connection signal="tap" from="PhoenixInput" to="." method="_on_tap"]
-[connection signal="enough_players_joined" from="Players" to="." method="_on_players_enough_players_joined"]
+[connection signal="game_over" from="TimerBar" to="GameLogic" method="_on_timer_bar_game_over"]
+[connection signal="timeout" from="GameLogic/Timer" to="GameLogic" method="_on_timer_timeout"]
 [connection signal="timeout" from="Heartbeat" to="." method="_on_heartbeat_timeout"]

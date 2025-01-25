@@ -2,7 +2,7 @@ class_name Players
 extends Node
 
 
-signal enough_players_joined(players: Array[Player])
+# signal enough_players_joined(players: Array[Player])
 
 var teams: Array[Player.Team] = [
 	Player.Team.new(0, Color(1, 0, 0)),
@@ -16,16 +16,8 @@ func player_join(id: String) -> String:
 	if has_node(id):
 		return "Player %s already exists" % id
 	var player_id_num = int(id)
-	var player: Player = Player.create(id, id, teams[player_id_num % teams.size()]) #, teams[next_team]) assign teams when game starts
-	# next_team = (next_team + 1) % teams.size()
+	var player: Player = Player.create(id, id, teams[player_id_num % teams.size()]) 
 	add_child(player)
-	%GameLogic.player_added(id)
-	#if check_full():
-		#assign_teams(2)
-		#print("Enough players!")
-		#enough_players_joined.emit(players)
-		##World.start.emit(all_players())
-		## different return value?
 	return ""
 
 func check_full() -> bool:

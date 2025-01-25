@@ -12,14 +12,13 @@ var popped_by: Player.Team
 var picture: Array[Texture2D]
 
 const bubble_scene = preload("res://scenes/bubble.tscn")
-# @onready var logic: GameLogic = get_node("World/GameLogic")
 
 static func create(pos: Vector2i, taps_required: int) -> Bubble:
 	var bubble: Bubble = bubble_scene.instantiate()
 	
 	bubble.pos = pos
 	bubble.position = pos * size
-	
+
 	
 	if (pos.y % 2 == 1):
 		bubble.position.x += 0.5 * size;

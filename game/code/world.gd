@@ -1,6 +1,6 @@
 extends Node2D
 
-signal start(players: Array[Player], w: int, h: int)
+signal start()
 
 enum State {LOBBY, RUNNING}
 var state: State = State.LOBBY
@@ -23,24 +23,26 @@ func _on_player_join(player_id: String) -> void:
 	if state == State.LOBBY && %Players.is_full():
 		start_game()
 
-
 func _on_player_leave(player_id: String) -> void:
 	%Players.player_leave(player_id)
 
 func start_game() -> void:
+	print("Starting the game...")
 	%Players.assign_teams()
 	bubbles = Bubbles.create()
 	add_child(bubbles)
 	state = State.RUNNING
+	%GameLogic.state_setter = set_state
+	start.emit()
 
-
-func _on_players_enough_players_joined(players: Array[Player]) -> void:
-	
-	print("Starting the game...")
-	var width: int = 110
-	var height: int = 60
-	start.emit(players, width, height)
-	pass 
+func set_state(is_lobby: bool):
+	if is_lobby:
+		state = State.LOBBY
+		bubbles.hide()
+	else:
+		state = State.RUNNING
+		start_game()
+		bubbles.show()
 
 func game_state_json() -> Dictionary:
 	if state == State.LOBBY:
