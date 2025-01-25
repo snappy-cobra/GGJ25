@@ -83,7 +83,7 @@ socket.connect()
 var WIDTH = 50;
 var HEIGHT = 25;
 
-var state = []
+var state = null;
 
 // connect to the websocket:
 socket.connect()
@@ -98,19 +98,26 @@ channel.on("game_state", resp => {
     // WIDTH = resp.bubbles.size[0]
     // HEIGHT = resp.bubbles.size[1]
     let bubbles = resp.bubbles.bubbles;
-    for (let i in bubbles) {
-        let bubble = bubbles[i];
-        let oldState = state[i];
-        if (!(bubble[0] === oldState[0] && bubble[1] === oldState[1])) {
-            let cell = document.getElementById("cell-"+i);
-            // if (!cell) { continue; }
-            if (bubble[0]) {
-                cell.innerHTML = svgString;
-            } else {
-                cell.innerHTML = svgStarString;
+    if (state === null || WIDTH !== resp.bubbles.size[0] || HEIGHT  !== resp.bubbles.size[1] || resp.reset) {
+        WIDTH = resp.bubbles.size[0];
+        HEIGHT = resp.bubbles.size[1];
+        buildBoard(bubbles);
+    } else {
+        for (let i in bubbles) {
+            let bubble = bubbles[i];
+            let oldState = state[i];
+            if (!(bubble[0] === oldState[0] && bubble[1] === oldState[1])) {
+                let cell = document.getElementById("cell-"+i);
+                // if (!cell) { continue; }
+                if (bubble[0]) {
+                    cell.innerHTML = svgString;
+                } else {
+                    cell.innerHTML = svgStarString;
+                }
             }
         }
     }
+    state = bubbles
 })
 
 
