@@ -1,12 +1,15 @@
 class_name Bubble
 extends Node2D
-const size = 16
+const size = 20
 
 var pos: Vector2i
 var value: int
 var taps: int
 var taps_max: int
 var popped_by: Player.Team
+
+@export
+var picture: Array[Texture2D]
 
 const bubble_scene = preload("res://scenes/bubble.tscn")
 # @onready var logic: GameLogic = get_node("World/GameLogic")
@@ -18,8 +21,12 @@ static func create(pos: Vector2i, taps_required: int) -> Bubble:
 	
 	if (pos.y % 2 == 1):
 		bubble.position.x += 0.5 * size;
+	
+	bubble.get_node("Unpopped").texture = bubble.picture.pick_random()
+		
 	bubble.setup(taps_required)	
 	return bubble
+
 	
 func setup(taps_required: int):
 	taps_max = taps_required
