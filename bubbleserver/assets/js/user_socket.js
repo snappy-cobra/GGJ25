@@ -61,8 +61,15 @@ channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
+channel.on("game_state", function(state) {
+  console.log("Received game state:", state)
+})
+
 window.pop = function (y, x) {
   console.log("POP")
+  if(typeof window.navigator.vibrate === 'function') {
+    window.navigator.vibrate(50);
+  }
   channel.push("pop", {x: x, y: y});
 }
 
