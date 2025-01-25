@@ -1,6 +1,6 @@
 class_name Bubble
 extends Node2D
-const size = 16
+const size = 31
 
 var pos: Vector2i
 var value: int
@@ -27,10 +27,10 @@ func setup(taps_required: int):
 	
 
 func pop(player: Player) -> void:
-	$Unpopped.hide()
-	$Popped.modulate = player.team.color
+	$Unpopped2.hide()
+	$Popped2.modulate = player.team.color
 	taps = taps_max
-	$Popped.show()
+	$Popped2.show()
 	
 func score() -> int:
 	return taps_max
