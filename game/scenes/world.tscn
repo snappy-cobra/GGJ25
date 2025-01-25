@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://clcyvn2gf0kae" path="res://scenes/timer_bar.tscn" id="4_j3cyd"]
 [ext_resource type="Script" path="res://scenes/game_logic.gd" id="5_7s8de"]
 [ext_resource type="Script" path="res://code/score_text.gd" id="6_0vasn"]
+[ext_resource type="Texture2D" uid="uid://c6b5nd2rsllh5" path="res://img/QR_.png" id="6_2p6ge"]
 [ext_resource type="Texture2D" uid="uid://dplhcm3ytv2yl" path="res://img/orb endurance.png" id="6_eve1c"]
 [ext_resource type="Texture2D" uid="uid://blbbnsgu1s16g" path="res://img/Screenshot 2025-01-25 225121.png" id="6_npd85"]
-[ext_resource type="Texture2D" uid="uid://lknuindfpgkg" path="res://img/QR.jpg" id="6_td3ae"]
 [ext_resource type="Texture2D" uid="uid://d3maxc8fxgb70" path="res://img/Screenshot 2025-01-25 224948.png" id="7_4qsxy"]
 [ext_resource type="Script" path="res://code/dev_helper.gd" id="7_m4s82"]
 [ext_resource type="FontFile" uid="uid://cmc58dr5cmjgp" path="res://fonts/Candy_Pop!-demo-font.ttf" id="8_c5qqb"]
@@ -43,12 +43,11 @@ one_shot = true
 [node name="Heartbeat" type="Timer" parent="."]
 autostart = true
 
-[node name="prt" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.8)
+[node name="QR" type="Sprite2D" parent="."]
 self_modulate = Color(1, 0.117647, 0.14902, 1)
-position = Vector2(565, 601.457)
-scale = Vector2(0.54321, 0.54321)
-texture = ExtResource("6_td3ae")
+position = Vector2(544.449, 580.605)
+scale = Vector2(0.423026, 0.423026)
+texture = ExtResource("6_2p6ge")
 
 [node name="Lobby" type="Control" parent="."]
 unique_name_in_owner = true
