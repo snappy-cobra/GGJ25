@@ -13,6 +13,9 @@ static func create(pos: Vector2i) -> Bubble:
 	var bubble: Bubble = bubble_scene.instantiate()
 	bubble.pos = pos
 	bubble.position = pos * size
+	
+	if (pos.y % 2 == 0):
+		bubble.position.x += 0.5 * size;
 	return bubble
 
 func setup(taps_required: int):
