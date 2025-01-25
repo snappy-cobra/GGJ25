@@ -67,6 +67,7 @@ func _on_Channel_event(event: String, payload, status):
 	assert(player != null)
 	if event == "pop":
 		%Bubbles.pop(Vector2i(payload.x, payload.y), player)
+		channel.push("game_state", {})
 
 func _on_Channel_join_result(status, result):
 	print("_on_Channel_join_result:  ", status, result)

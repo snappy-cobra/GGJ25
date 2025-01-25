@@ -40,6 +40,11 @@ defmodule BubbleserverWeb.RoomChannel do
     {:reply, {:ok, "Popped!"}, socket}
   end
 
+  def handle_in("game_state", state, socket) do
+    broadcast!(socket, "game_state", state)
+    {:noreply, socket}
+  end
+
   # # Channels can be used in a request/response fashion
   # # by sending replies to requests from the client
   # @impl true
