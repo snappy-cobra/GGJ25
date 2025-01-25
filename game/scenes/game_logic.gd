@@ -48,7 +48,7 @@ func _on_timer_bar_game_over() -> void:
 			winner = str(team)
 			largest = scores[team]
 		scores_text = scores_text + "Team <" + str(team) + ">:"+ str(scores[team])+"\n"
-		
+	scores = {}	
 	var final_score_text = "";
 	if winner == null:
 		final_score_text = "YOU'RE ALL LLOSERS.... "
