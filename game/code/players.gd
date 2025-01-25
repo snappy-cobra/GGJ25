@@ -1,6 +1,17 @@
-extends Node2D
+class_name Players
+extends Node
 
-const player_scene = preload("res://scenes/player.tscn")
+
+
+
+var teams: Array[Player.Team] = [
+	Player.Team.new("RED", Color(1, 0, 0)),
+	Player.Team.new("GREEN", Color(0, 1, 0)),
+	Player.Team.new("BLUE", Color(0, 0, 1))
+]
+var next_team: int = 0
+var debug_player: Player = Player.create("debug", "debug", Player.Team.new("debug", Color(1, 0, 1)))
+
 
 class EmptyResult:
 	var is_err: bool
@@ -18,10 +29,8 @@ class EmptyResult:
 func player_join(id: String, name: String) -> EmptyResult:
 	if has_node(id):
 		return EmptyResult.err("Player %s already exists" % id)
-	var player: Player = player_scene.instantiate()
-	player.id = id
-	player.name = id
-	player.display_name = name
+	var player: Player = Player.create(id, name, teams[next_team])
+	next_team = (next_team + 1) % teams.size()
 	add_child(player)
 	return EmptyResult.ok()
 

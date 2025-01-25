@@ -60,7 +60,13 @@ func _on_Socket_connecting(is_connecting):
 
 func _on_Channel_event(event: String, payload, status):
 	print("_on_Channel_event:  ", event, ", ", status, ", ", payload)
-	%Bubbles.pop(Vector2i(payload.x, payload.y), null)
+	var player_id: String = payload.player_id
+	if !%Players.has_player(player_id):
+		%Players.player_join(player_id, player_id)
+	var player: Player = %Players.get_player(player_id)
+	assert(player != null)
+	if event == "pop":
+		%Bubbles.pop(Vector2i(payload.x, payload.y), player)
 
 func _on_Channel_join_result(status, result):
 	print("_on_Channel_join_result:  ", status, result)

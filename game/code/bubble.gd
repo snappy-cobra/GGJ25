@@ -12,11 +12,12 @@ static func create(pos: Vector2i) -> Bubble:
 	bubble.position = pos * size
 	return bubble
 
-func pop() -> void:
+func pop(player: Player) -> void:
 	$Unpopped.hide()
+	$Popped.modulate = player.team.color
 	$Popped.show()
 
 
 func _on_debug_input_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
-		pop()
+		pop(get_node("../../Players").debug_player)
