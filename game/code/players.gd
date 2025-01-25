@@ -2,7 +2,7 @@ class_name Players
 extends Node
 
 
-
+signal enough_players_joined(players: Array[Player])
 
 var teams: Array[Player.Team] = [
 	Player.Team.new("RED", Color(1, 0, 0)),
@@ -11,7 +11,7 @@ var teams: Array[Player.Team] = [
 ]
 var next_team: int = 0
 var debug_player: Player = Player.create("debug", "debug", Player.Team.new("debug", Color(1, 0, 1)))
-
+var players: Array[Player] = [] 
 
 class EmptyResult:
 	var is_err: bool
@@ -25,21 +25,29 @@ class EmptyResult:
 		res.is_err = true
 		res.err_msg = msg
 		return res
-
+func _ready() -> void:
+	# TESTING
+	player_join("1", "1")
+	player_join("2", "2")
+	
 func player_join(id: String, name: String) -> EmptyResult:
+	
 	if has_node(id):
 		return EmptyResult.err("Player %s already exists" % id)
 	var player: Player = Player.create(id, name) #, teams[next_team]) assign teams when game starts
 	# next_team = (next_team + 1) % teams.size()
 	add_child(player)
+	players.append(player)
 	if check_full():
 		assign_teams(2)
-		emit_signal("start", all_players())
+		print("Enough players!")
+		enough_players_joined.emit(players)
+		#World.start.emit(all_players())
 		# different return value?
 	return EmptyResult.ok()
 
 func check_full() -> bool:
-	return all_players().size() >= 2
+	return players.size() >= 2
 	
 func player_leave(id: String) -> EmptyResult:
 	if !has_node(id):
@@ -54,11 +62,9 @@ func has_player(id) -> bool:
 func get_player(id) -> Player:
 	return get_node(id)
 	
-func all_players() -> Array[Player]:
-	return get_children() as Array[Player]
 	
 func assign_teams(preferredTeamsNumber: int = 2) -> void:
-	var size = teams.size
-	for p in all_players():
+	var size = teams.size()
+	for p in players:
 		p.team = teams[size % preferredTeamsNumber]
 	

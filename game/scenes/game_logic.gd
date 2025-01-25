@@ -2,7 +2,7 @@ extends Node
 class_name GameLogic
 
 signal tapped(bubble: Bubble, player: Player)
-signal game_started()
+signal game_started(value_grid: Array)
 signal game_over()
 
 enum GameState { Lobby, Active } # game result is to be displayed on top in lobby UI 
@@ -15,19 +15,22 @@ var value_grid
 var rand: RandomNumberGenerator = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	connect("tapped", check_tap_popped)
-	connect("game_started", started)
 	connect("game_over", finished)
 	# started([], 4, 3) testing
 	pass # Replace with function body.
 
-func started(players: Array[Player], grid_width: int, grid_height: int) -> void:
+
+func _on_world_start(players: Array[Player], grid_width: int, grid_height: int) -> void:
 	print("GameLogic:: Game started!")
 	scores = {}
 	for p in players:
 		scores[p] = 0
 		
 	state = GameState.Active
+	
+	# BUBBLE VALUES
 	value_grid =  []
 	for i in grid_height:
 		value_grid.append([])
@@ -35,7 +38,7 @@ func started(players: Array[Player], grid_width: int, grid_height: int) -> void:
 			value_grid[i].append(rand.randi_range(3, 8))   
 	
 	# send it to the server
-	emit_signal("game_setup", value_grid) # to json?
+	game_started.emit(value_grid) # to json?
 	pass
 
 func bubbleValue(base_taps: int) -> int:
