@@ -10,8 +10,6 @@ var presence : PhoenixPresence
 
 func _ready() -> void:
 	
-	player_join.emit("Bob")
-	player_join.emit("Alice")
 	if Config.is_local():
 		queue_free()
 		return
@@ -43,7 +41,6 @@ func _ready() -> void:
 
 	# Connect!
 	socket.connect_socket()
-
 
 
 func send_game_state(state: Dictionary) -> void:
