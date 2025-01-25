@@ -54,7 +54,7 @@ html, body {
     margin-top: 0px;
 }
 .row {
-    margin-top: -50px;
+    margin-top: -5vw;
 }
 
 .row:nth-child(2n) {
