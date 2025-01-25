@@ -83,7 +83,7 @@ socket.connect()
 var WIDTH = 50;
 var HEIGHT = 25;
 
-var state = []
+var state = null;
 
 // connect to the websocket:
 socket.connect()
@@ -98,19 +98,28 @@ channel.on("game_state", resp => {
     // WIDTH = resp.bubbles.size[0]
     // HEIGHT = resp.bubbles.size[1]
     let bubbles = resp.bubbles.bubbles;
-    for (let i in bubbles) {
-        let bubble = bubbles[i];
-        let oldState = state[i];
-        if (!(bubble[0] === oldState[0] && bubble[1] === oldState[1])) {
-            let cell = document.getElementById("cell-"+i);
-            // if (!cell) { continue; }
-            if (bubble[0]) {
-                cell.innerHTML = svgString;
-            } else {
-                cell.innerHTML = svgStarString;
+    if (state === null || WIDTH !== resp.bubbles.size[0] || HEIGHT  !== resp.bubbles.size[1] || resp.reset) {
+        WIDTH = resp.bubbles.size[0];
+        HEIGHT = resp.bubbles.size[1];
+        buildBoard(bubbles);
+    } else {
+        for (let i in bubbles) {
+            let bubble = bubbles[i];
+            let oldState = state[i];
+            if (!(bubble[0] === oldState[0] && bubble[1] === oldState[1])) {
+                let cell = document.getElementById("cell-"+i);
+                // if (!cell) { continue; }
+                if (bubble[0]) {
+                  cell.classList.add("unpopped")
+                  cell.classList.remove("popped")
+                } else {
+                  cell.classList.remove("unpopped")
+                  cell.classList.add("popped")
+                }
             }
         }
     }
+    state = bubbles
 })
 
 
@@ -130,19 +139,22 @@ var bubblePopFunction = function() {
     sound.play();
 
     // get the XY of this div
-    var index = this.getAttribute("index");
-    var index_x = index % WIDTH;
-    var index_y = Math.floor(index / WIDTH);
+    const index_y = +this.dataset.row
+    const index_x = +this.dataset.col
+    // var index = this.getAttribute("index");
+    // var index_x = index % WIDTH;
+    // var index_y = Math.floor(index / WIDTH);
 
-    console.log("POP " + index + " ("+index_x+","+index_y+")")
+    //console.log("POP " + index + " ("+index_x+","+index_y+")")
+    console.log("POP", index_x, index_y)
     channel.push("pop", {x: index_x, y: index_y});
 
     // Vibrate
     if (typeof navigator.vibrate === 'function') {
-        navigator.vibrate(200);
+        navigator.vibrate(50);
     }
     if (typeof navigator.mozVibrate === 'function') {
-        navigator.mozVibrate(200);
+        navigator.mozVibrate(50);
     }
 };
 
@@ -172,7 +184,9 @@ function buildCell(row, col) {
   cell.className = 'cell'
   cell.id = "cell-" + index
   cell.setAttribute('index', index);
-  cell.innerHTML = svgString
+  cell.dataset.row = row;
+  cell.dataset.col = col;
+  // cell.innerHTML = svgString
   cell.addEventListener('click', bubblePopFunction, false)
   return cell
 }
@@ -184,7 +198,6 @@ function buildBoard(state) {
     rowElem.className = "row"
 
     for(var col=0; col < WIDTH; ++col) {
-      state[row * WIDTH + col] = [1, 1]
       const cell = buildCell(row, col)
       rowElem.appendChild(cell)
     }
