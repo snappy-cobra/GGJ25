@@ -44,3 +44,13 @@ run `fly launch` from the `bubbleserver` subdirectory.)
 
 - To deploy, run `fly deploy`
 - To view the live logs, run `fly logs`
+
+## Running the Elixir app inside Docker
+
+If you have trouble installing Elixir or some of the app's dependencies on your host OS
+(Some Windows installs have this), you can alternatively use Docker.
+
+1. Be sure Docker is installed and the Docker daemon is running
+2. Go to the `bubbleserver` directory
+3. Run `docker build -t bubbleserver -f Dockerfile.dev .` to build a dev-version of the app image
+4. 4. Run `docker run -p 4000:4000 bubbleserver` to start the app image. It should be reachable at localhost:4000 just like normal.
