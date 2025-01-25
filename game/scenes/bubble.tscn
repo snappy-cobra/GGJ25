@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://l5go2111f05g"]
+[gd_scene load_steps=8 format=3 uid="uid://l5go2111f05g"]
 
 [ext_resource type="Script" path="res://code/bubble.gd" id="1_8xifa"]
 [ext_resource type="Texture2D" uid="uid://rygl6mf85v4r" path="res://scenes/orb 64.png" id="2_bruxq"]
@@ -7,7 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://pnhjnqhe8nv" path="res://scenes/orb morale border.png" id="3_1r0ol"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qxbci"]
-radius = 29.1509
+radius = 32.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_6p2hi"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
 
 [node name="Bubble" type="Node2D"]
 scale = Vector2(0.5, 0.5)
@@ -17,7 +21,7 @@ picture = Array[Texture2D]([ExtResource("2_vut83"), ExtResource("2_umgci")])
 [node name="DebugInput" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DebugInput"]
-position = Vector2(8.12, 11.965)
+position = Vector2(8, 8)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_qxbci")
 
@@ -25,6 +29,14 @@ shape = SubResource("CircleShape2D_qxbci")
 position = Vector2(8, 8)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_bruxq")
+
+[node name="PopLabel" type="Label" parent="Unpopped2"]
+unique_name_in_owner = true
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 10.0
+label_settings = SubResource("LabelSettings_6p2hi")
 
 [node name="Popped2" type="Sprite2D" parent="."]
 visible = false

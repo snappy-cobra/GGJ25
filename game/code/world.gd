@@ -47,7 +47,8 @@ func _on_tap(pos: Vector2i, player_id: String) -> void:
 		_on_player_join(player_id)
 	if state == State.RUNNING:
 		var player = %Players.get_player(player_id)
-		%GameLogic.tapped(bubbles.bubbles[pos], player, bubbles.bubbles[pos].pop)
+		bubbles.tap(pos, player)
+		#%GameLogic.tapped(bubbles.bubbles[pos], player, bubbles.bubbles[pos].pop)
 	
 func _on_player_join(player_id: String) -> void:
 	%Players.player_join(player_id)

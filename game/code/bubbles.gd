@@ -26,11 +26,11 @@ func setup_grid(size: Vector2i) -> void:
 			var bubble := Bubble.create(pos, weight, bubble_picture_idx)
 			bubbles[pos] = bubble
 			add_child(bubble)
-	
-func pop(pos: Vector2i, player: Player) -> void:
-	prints("pop", pop, player)
+
+func tap(pos: Vector2i, player: Player) -> void:
+	prints("pop", pos, player)
 	if bubbles.has(pos):
-		bubbles[pos].pop(player)
+		bubbles[pos].tap(player)
 
 
 func view_json() -> Dictionary:
