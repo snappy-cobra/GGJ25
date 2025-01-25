@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 	
 	round_time += delta * 2
 	if round_time >= round_limit:
-		# signal round end
+		emit_signal("game_over")
 		return
 	var factor_remaining:float = (round_limit-round_time) / 100
 	
@@ -42,4 +42,5 @@ func _process(delta: float) -> void:
 	# ends in the center
 	var x = floor((window_size.x - rect.get_size().x)/2)
 	rect.set_position(Vector2(x, 0))
+	
 	pass

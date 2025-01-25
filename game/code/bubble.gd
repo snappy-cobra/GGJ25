@@ -6,8 +6,10 @@ var pos: Vector2i
 var value: int
 var taps: int
 var taps_max: int
+var popped_by: Player.Team
 
 const bubble_scene = preload("res://scenes/bubble.tscn")
+@onready var logic: GameLogic = $GameLogic
 
 static func create(pos: Vector2i) -> Bubble:
 	var bubble: Bubble = bubble_scene.instantiate()
@@ -17,7 +19,11 @@ static func create(pos: Vector2i) -> Bubble:
 	if (pos.y % 2 == 0):
 		bubble.position.x += 0.5 * size;
 	return bubble
-
+	
+func _ready() -> void:
+	#var taps_required = logic.value_grid[pos.x][pos.y]
+	#setup(taps_required)	
+	pass
 func setup(taps_required: int):
 	taps_max = taps_required
 	value = taps_required
@@ -35,3 +41,6 @@ func pop(player: Player) -> void:
 func _on_debug_input_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		pop(get_node("../../Players").debug_player)
+
+func view_json() -> Dictionary:
+	return {"taps": taps, "taps_max": taps_max, "popped_by": popped_by.id}

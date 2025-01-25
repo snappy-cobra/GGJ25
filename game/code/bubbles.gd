@@ -17,3 +17,12 @@ func pop(pos: Vector2i, player: Player) -> void:
 	prints("pop", pop, player)
 	if bubbles.has(pos):
 		bubbles[pos].pop(player)
+
+
+func view_json() -> Dictionary:
+	var bubble_data: Array[Bubble] = []
+	for y in height:
+		for x in width:
+			var bubble: Bubble = bubbles[Vector2i(x, y)]
+			bubble_data.append(bubble.view_json())
+	return {"size": [width, height], "bubbles": bubble_data}

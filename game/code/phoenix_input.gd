@@ -37,6 +37,12 @@ func _ready() -> void:
 	# Connect!
 	socket.connect_socket()
 
+
+
+func send_game_state() -> void:
+	channel.push(%Bubbles.view_json())
+		
+
 #
 # Socket events
 #
