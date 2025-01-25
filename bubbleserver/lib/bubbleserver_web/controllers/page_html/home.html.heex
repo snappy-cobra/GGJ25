@@ -1,15 +1,11 @@
 <h1>Hello!</h1>
-<button onclick="pop(0,0)">Pop</button>
-<button onclick="pop(0,1)">Pop</button>
-<button onclick="pop(0,2)">Pop</button>
-<br/>
-<button onclick="pop(1,0)">Pop</button>
-<button onclick="pop(1,1)">Pop</button>
-<button onclick="pop(1,2)">Pop</button>
-<br/>
-<button onclick="pop(2,0)">Pop</button>
-<button onclick="pop(2,1)">Pop</button>
-<button onclick="pop(2,2)">Pop</button>
+<%= for row <- 1..100 do %>
+  <%= for col <- 1..20 do %>
+    <% handler = "pop(#{row},#{col})" %>
+    <button onclick={handler} ></button>
+  <% end %>
+  <br/>
+<% end %>
 
 <style>
 button {
