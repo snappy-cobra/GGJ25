@@ -18,7 +18,6 @@ unique_name_in_owner = true
 script = ExtResource("2_qriy4")
 
 [node name="Bubbles" type="Node2D" parent="."]
-unique_name_in_owner = true
 script = ExtResource("4_sei7x")
 
 [node name="TimerBar" parent="." instance=ExtResource("4_j3cyd")]
@@ -26,3 +25,10 @@ modulate = Color(0.43038, 0.739638, 3.85046e-07, 1)
 
 [node name="GameLogic" type="Node" parent="."]
 script = ExtResource("5_7s8de")
+
+[connection signal="start" from="." to="GameLogic" method="_on_world_start"]
+[connection signal="player_join" from="PhoenixInput" to="." method="_on_player_join"]
+[connection signal="player_leave" from="PhoenixInput" to="." method="_on_player_leave"]
+[connection signal="tap" from="PhoenixInput" to="." method="_on_tap"]
+[connection signal="enough_players_joined" from="Players" to="." method="_on_players_enough_players_joined"]
+[connection signal="game_started" from="GameLogic" to="Bubbles" method="_on_game_logic_game_started"]

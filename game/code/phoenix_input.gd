@@ -1,5 +1,9 @@
 extends Node
 
+signal tap(pos: Vector2i, player_id: String)
+signal player_join(player_id: String)
+signal player_leave(player_id: String)
+
 var socket : PhoenixSocket
 var channel : PhoenixChannel
 var presence : PhoenixPresence
@@ -68,13 +72,14 @@ func _on_Channel_event(event: String, payload, status):
 	print("_on_Channel_event:  ", event, ", ", status, ", ", payload)
 	if payload.has("player_id"):
 		var player_id: String = payload.player_id
-		if !%Players.has_player(player_id):
-			%Players.player_join(player_id, player_id)
-		var player: Player = %Players.get_player(player_id)
-		assert(player != null)
+		#if !%Players.has_player(player_id):
+			#%Players.player_join(player_id, player_id)
+		#var player: Player = %Players.get_player(player_id)
+		#assert(player != null)
 		if event == "pop":
-			%Bubbles.pop(Vector2i(payload.x, payload.y), player)
-			channel.push("game_state", {})
+			tap.emit(Vector2i(payload.x, payload.y), player_id)
+			#%Bubbles.pop(Vector2i(payload.x, payload.y), player)
+			#channel.push("game_state", {})
 
 func _on_Channel_join_result(status, result):
 	print("_on_Channel_join_result:  ", status, result)
@@ -91,10 +96,12 @@ func _on_Channel_close(closed):
 
 func _on_Presence_join(joins):
 	for join in joins:
-		%Players.player_join(join.key, join.key)
+		player_join.emit(join.key)
+		#%Players.player_join(join.key, join.key)
 	print("_on_Presence_join: " + str(joins))
 
 func _on_Presence_leave(leaves):
 	for leave in leaves:
-		%Players.player_leave(leave.key)
+		player_leave.emit(leave.key)
+		#%Players.player_leave(leave.key)
 	print("_on_Presence_leave: " + str(leaves))
