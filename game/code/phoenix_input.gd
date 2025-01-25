@@ -15,26 +15,26 @@ func _ready() -> void:
 	socket = PhoenixSocket.new(Config.server_url(), {params = {"host": "godot"}})
 
 	# Subscribe to Socket events
-	socket.connect("on_open", _on_Socket_open)
-	socket.connect("on_close", _on_Socket_close)
-	socket.connect("on_error", _on_Socket_error)
-	socket.connect("on_connecting", _on_Socket_connecting)
+	socket.on_open.connect(_on_Socket_open)
+	socket.on_close.connect(_on_Socket_close)
+	socket.on_error.connect(_on_Socket_error)
+	socket.on_connecting.connect(_on_Socket_connecting)
 
 	# If you want to track Presence
 	presence = PhoenixPresence.new()
 
 	# Subscribe to Presence events (sync_diff and sync_state are also implemented)
-	presence.connect("on_join", _on_Presence_join)
-	presence.connect("on_leave", _on_Presence_leave)
+	presence.on_join.connect(_on_Presence_join)
+	presence.on_leave.connect(_on_Presence_leave)
 
 	# Create a Channel
 	channel = socket.channel("godot", {"host": "godot"}, presence)
 
 	# Subscribe to Channel events
-	channel.connect("on_event", _on_Channel_event)
-	channel.connect("on_join_result", _on_Channel_join_result)
-	channel.connect("on_error", _on_Channel_error)
-	channel.connect("on_close", _on_Channel_close)
+	channel.on_event.connect(_on_Channel_event)
+	channel.on_join_result.connect(_on_Channel_join_result)
+	channel.on_error.connect(_on_Channel_error)
+	channel.on_close.connect(_on_Channel_close)
 
 	call_deferred("add_child", socket, true)
 

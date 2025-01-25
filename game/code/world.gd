@@ -27,6 +27,7 @@ func _on_player_leave(player_id: String) -> void:
 	%Players.player_leave(player_id)
 
 func start_game() -> void:
+	%Players.assign_teams()
 	bubbles = Bubbles.create()
 	add_child(bubbles)
 	state = State.RUNNING
