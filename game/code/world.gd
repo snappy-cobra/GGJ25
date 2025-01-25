@@ -7,9 +7,11 @@ var state: State = State.LOBBY
 var bubbles: Bubbles
 
 func _ready() -> void:
-	# debug only; don't want to wait for players
+	start_lobby()
 	start_game()
 
+func start_lobby() -> void:
+	pass 
 	
 func _on_tap(pos: Vector2i, player_id: String) -> void:
 	if !%Players.has_player(player_id):
