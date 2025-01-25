@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://l5go2111f05g"]
+[gd_scene load_steps=13 format=3 uid="uid://l5go2111f05g"]
 
 [ext_resource type="Script" path="res://code/bubble.gd" id="1_8xifa"]
 [ext_resource type="Texture2D" uid="uid://rygl6mf85v4r" path="res://scenes/orb 64.png" id="2_bruxq"]
@@ -27,6 +27,19 @@ inherit_velocity_ratio = 0.554
 spread = 180.0
 gravity = Vector3(0, 0, 0)
 anim_speed_max = 5.74
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2mysl"]
+blend_mode = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8q0kd"]
+lifetime_randomness = 0.31
+particle_flag_disable_z = true
+spread = 163.436
+initial_velocity_min = 312.7
+initial_velocity_max = 312.7
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.3
 
 [node name="Bubble" type="Node2D"]
 scale = Vector2(0.5, 0.5)
@@ -62,6 +75,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_1r0ol")
 
 [node name="Explosion" type="GPUParticles2D" parent="."]
+z_index = 100
 material = SubResource("CanvasItemMaterial_o1nmh")
 position = Vector2(8, 8)
 emitting = false
@@ -70,5 +84,14 @@ texture = ExtResource("6_cvn6h")
 one_shot = true
 explosiveness = 0.87
 trail_section_subdivisions = 5
+
+[node name="SmallPopParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_2mysl")
+position = Vector2(8, 8)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_8q0kd")
+texture = ExtResource("2_bruxq")
+lifetime = 0.1
+one_shot = true
 
 [connection signal="input_event" from="DebugInput" to="." method="_on_debug_input_input_event"]
