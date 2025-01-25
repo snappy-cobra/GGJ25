@@ -191,7 +191,6 @@ function buildBoard(state) {
     rowElem.className = "row"
 
     for(var col=0; col < WIDTH; ++col) {
-      state[row * WIDTH + col] = [1, 1]
       const cell = buildCell(row, col)
       rowElem.appendChild(cell)
     }
