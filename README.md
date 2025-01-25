@@ -25,7 +25,7 @@ Separately, open the folder `game`. This is a Godot project.
 To make Godot know where the Elixir app is running: 
 - copy the file `.env.example` to `.env` (this `.env` file is intentionally not tracked by git)
   - To connect to the locally-running Elixir server, fill in `ws://localhost:4000/socket`
-  - To connect to the remotely-running Elixir server, fill in `ws://bubbleserver.fly.dev/socket` (or e.g. `ws://yourdomain.com/socket`)
+  - To connect to the remotely-running Elixir server, fill in `wss://bubbleserver.fly.dev/socket` (or e.g. `wss://yourdomain.com/socket`) (Note the `wss://` with the extra s!)
 
 ### Any other run
 
