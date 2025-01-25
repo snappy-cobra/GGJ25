@@ -110,9 +110,11 @@ channel.on("game_state", resp => {
                 let cell = document.getElementById("cell-"+i);
                 // if (!cell) { continue; }
                 if (bubble[0]) {
-                    cell.innerHTML = svgString;
+                  cell.classList.add("unpopped")
+                  cell.classList.remove("popped")
                 } else {
-                    cell.innerHTML = svgStarString;
+                  cell.classList.remove("unpopped")
+                  cell.classList.add("popped")
                 }
             }
         }
@@ -137,19 +139,22 @@ var bubblePopFunction = function() {
     sound.play();
 
     // get the XY of this div
-    var index = this.getAttribute("index");
-    var index_x = index % WIDTH;
-    var index_y = Math.floor(index / WIDTH);
+    const index_y = +this.dataset.row
+    const index_x = +this.dataset.col
+    // var index = this.getAttribute("index");
+    // var index_x = index % WIDTH;
+    // var index_y = Math.floor(index / WIDTH);
 
-    console.log("POP " + index + " ("+index_x+","+index_y+")")
+    //console.log("POP " + index + " ("+index_x+","+index_y+")")
+    console.log("POP", index_x, index_y)
     channel.push("pop", {x: index_x, y: index_y});
 
     // Vibrate
     if (typeof navigator.vibrate === 'function') {
-        navigator.vibrate(200);
+        navigator.vibrate(50);
     }
     if (typeof navigator.mozVibrate === 'function') {
-        navigator.mozVibrate(200);
+        navigator.mozVibrate(50);
     }
 };
 
@@ -179,7 +184,9 @@ function buildCell(row, col) {
   cell.className = 'cell'
   cell.id = "cell-" + index
   cell.setAttribute('index', index);
-  cell.innerHTML = svgString
+  cell.dataset.row = row;
+  cell.dataset.col = col;
+  // cell.innerHTML = svgString
   cell.addEventListener('click', bubblePopFunction, false)
   return cell
 }

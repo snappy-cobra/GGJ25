@@ -35,8 +35,8 @@ html, body {
 }
 
 .screen .board {
-    width: calc(25vw * 50 + 12.5vw);
-    height: calc((25vw - 5vw) * 25);
+    width: calc(20vw * 50 + 12.5vw);
+    height: calc((20vw - 5vw) * 25);
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */ 
     /* display: grid;
@@ -68,10 +68,19 @@ html, body {
 }
 
 .cell {
-    width: 25vw;
-    height: 25vw;
+    width: 20vw;
+    height: 20vw;
     position: relative;
     display: inline-block;
+
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("/images/bubble1.png")
+}
+
+.cell.popped {
+    background-image: url("/images/bubble2.png")
 }
 
 .cell > svg {
