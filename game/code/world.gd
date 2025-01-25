@@ -1,16 +1,9 @@
 extends Node2D
 
-signal start(players: Array[Player])
+signal start(players: Array[Player], w: int, h: int)
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	connect("start", game_start)
-	
+func _ready() -> void:	
 	pass # Replace with function body.
-	
-func game_start(players: Array[Player]) -> void:
-	var width: int = 14
-	var height: int = 8
-	emit_signal("game_started", players, width, height)
 	
 
 
@@ -26,3 +19,15 @@ func _on_player_join(player_id: String) -> void:
 
 func _on_player_leave(player_id: String) -> void:
 	%Players.player_leave(player_id)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func _on_players_enough_players_joined(players: Array[Player]) -> void:
+	
+	print("Starting the game...")
+	var width: int = 14
+	var height: int = 8
+	start.emit(players, width, height)
+	pass 

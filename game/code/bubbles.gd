@@ -1,6 +1,5 @@
 extends Node2D
 
-
 var bubbles: Dictionary = {}
 var size: Vector2i
 
@@ -13,6 +12,16 @@ func setup_grid(size: Vector2i) -> void:
 		for y in size.y:
 			var pos := Vector2i(x, y)
 			var bubble := Bubble.create(pos)
+			bubbles[pos] = bubble
+			add_child(bubble)
+	
+func _on_game_logic_game_started(grid: Array) -> void:
+	width = grid[0].size()
+	height = grid.size()
+	for x in width:
+		for y in height:
+			var pos := Vector2(x, y)
+			var bubble := Bubble.create(pos, grid[y][x])
 			bubbles[pos] = bubble
 			add_child(bubble)
 	
