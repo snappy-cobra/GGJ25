@@ -21,6 +21,7 @@ modulate = Color(0.43038, 0.739638, 3.85046e-07, 1)
 z_index = 2
 
 [node name="GameLogic" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("5_7s8de")
 
 [node name="Heartbeat" type="Timer" parent="."]

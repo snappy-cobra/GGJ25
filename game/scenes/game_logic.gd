@@ -1,16 +1,13 @@
 extends Node
 class_name GameLogic
 
-signal game_started(value_grid: Array)
-
-enum GameState { Lobby, Active } # game result is to be displayed on top in lobby UI 
-
 var scores: Dictionary = {}
 var inactive: Dictionary = {}
 var punishments: Dictionary = {}
-var state = GameState.Lobby
 var value_grid
 var rand: RandomNumberGenerator = RandomNumberGenerator.new()
+var pop: Callable
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass 
@@ -20,27 +17,12 @@ func _on_bubble_tapped(bubble: Bubble, player: Player) -> void:
 	if (popped):
 		popped(bubble.value, player)
 
-func _on_world_start(players: Array[Player], grid_width: int, grid_height: int) -> void:
-	print("GameLogic:: Game started!")
-	scores = {}
-	for p in players:
-		print("Score init for team " + p.team.id)
-		scores[p.team.id] = 0
+func player_added(id: String) -> void:
+	
+	print("Score init for team " + id)
+	scores[id] = 0
 		
-	state = GameState.Active
-	
-	# BUBBLE VALUES
-	value_grid =  []
-	for i in grid_height:
-		value_grid.append([])
-		for j in grid_width: 
-			value_grid[i].append(rand.randi_range(3, 8))   
-	
-	# send it to the server
-	game_started.emit(value_grid) # to json?
-	pass
 
-var pop: Callable
 func tapped(bubble: Bubble, player: Player, bubCallback: Callable) -> void:
 	pop = bubCallback
 	var popped = bubble_tapped(bubble, player)
@@ -65,7 +47,6 @@ func player_tapped(player: Player) -> void:
 	
 func popped(value: int, player: Player) -> void:
 	add_score(get_score_for(value), player.team.id)
-	# TODO - bubble.pop()
 	pop.call(player)
 	pass
 	
@@ -102,5 +83,5 @@ func calc_punish_inactive(inactive_time: float, delta: float) -> int:
 
 
 func _on_timer_bar_game_over() -> void:
-	state = GameState.Lobby
+	# state = State.R
 	print("GameLogic:: Game finished!")

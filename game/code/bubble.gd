@@ -25,8 +25,6 @@ func setup(taps_required: int):
 	taps_max = taps_required
 	value = taps_required
 	
-func tapped(player: Player) -> void:
-	get_node("../../GameLogic").tapped(self as Bubble, player, pop)
 	
 func pop(player: Player) -> void:
 	$Unpopped.hide()

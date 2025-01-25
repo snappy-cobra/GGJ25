@@ -10,7 +10,6 @@ var teams: Array[Player.Team] = [
 	Player.Team.new("BLUE", Color(0, 0, 1))
 ]
 var next_team: int = 0
-#var players: Array[Player] = [] 
 
 
 #func _ready() -> void:
@@ -23,7 +22,7 @@ func player_join(id: String) -> String:
 	var player: Player = Player.create(id, id, teams.pick_random()) #, teams[next_team]) assign teams when game starts
 	# next_team = (next_team + 1) % teams.size()
 	add_child(player)
-	#players.append(player)
+	%GameLogic.player_added(id)
 	#if check_full():
 		#assign_teams(2)
 		#print("Enough players!")
