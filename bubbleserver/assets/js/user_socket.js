@@ -63,6 +63,9 @@ channel.join()
 
 window.pop = function (y, x) {
   console.log("POP")
+  if(typeof window.navigator.vibrate === 'function') {
+    window.navigator.vibrate(50);
+  }
   channel.push("pop", {x: x, y: y});
 }
 
