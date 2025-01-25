@@ -7,12 +7,26 @@ var state: State = State.LOBBY
 var bubbles: Bubbles
 
 func _ready() -> void:
-	start_lobby()
+	#start_lobby()
 	start_game()
 
 func start_lobby() -> void:
+	var teams = {}
+	var team_names = []
+	for p in %Players.get_children():
+		if p.team.id not in teams:
+			team_names.append(p.team.id)
+			teams[p.team.id] = []
+	for p in %Players.get_children():
+		teams[p.team.id].append(p)
 	
-	pass 
+	var team_1 = teams.values()	[0]
+	var team_2 = teams.values()	[1]
+	%T1_P1.text = team_1[0].display_name
+	%T2_P1.text = team_2[0].display_name
+	
+	%T1.text = str(team_names[0])
+	%T2.text = str(team_names[1])
 	
 func _on_tap(pos: Vector2i, player_id: String) -> void:
 	if !%Players.has_player(player_id):
@@ -38,22 +52,8 @@ func start_game() -> void:
 	%GameLogic.state_setter = set_state
 	send_gamestate()
 	start.emit()
-	var teams = {}
-	var team_names = []
-	for p in %Players.get_children():
-		if p.team.id not in teams:
-			team_names.append(p.team.id)
-			teams[p.team.id] = []
-	for p in %Players.get_children():
-		teams[p.team.id].append(p)
 	
-	var team_1 = teams.values()	[0]
-	var team_2 = teams.values()	[1]
-	%T1_P1.text = team_1[0].display_name
-	%T2_P1.text = team_2[0].display_name
 	
-	%T1.text = str(team_names[0])
-	%T2.text = str(team_names[1])
 
 func send_gamestate() -> void:
 	if bubbles != null:

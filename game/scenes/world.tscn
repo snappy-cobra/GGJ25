@@ -104,6 +104,7 @@ horizontal_alignment = 1
 
 [node name="Team2" type="VFlowContainer" parent="Lobby"]
 modulate = Color(1, 0.141176, 1, 1)
+layout_mode = 0
 offset_left = 748.0
 offset_top = 115.0
 offset_right = 1090.0
