@@ -87,7 +87,6 @@ html, body {
 }
 
 .cell.popped {
-    background-image: url("/images/bubble2.png");
     background-color: blue;
 }
 
