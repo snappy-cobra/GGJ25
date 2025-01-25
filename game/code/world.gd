@@ -64,6 +64,8 @@ func _on_player_leave(player_id: String) -> void:
 func start_game() -> void:
 	print("Starting the game...")
 	%Players.assign_teams()
+	if bubbles != null:
+		bubbles.queue_free() # DO NOT REMOVE THIS LINE 
 	bubbles = Bubbles.create()
 	add_child(bubbles)
 	state = State.RUNNING
