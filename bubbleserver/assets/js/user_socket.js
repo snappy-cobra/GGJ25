@@ -98,6 +98,7 @@ var bubblePopFunction = function() {
     var sound = new Howl({
         src: ['/sounds/pop.mp3']
     });
+    sound.seek(0.21);
       
     sound.play();
 
