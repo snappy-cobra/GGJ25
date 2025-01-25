@@ -10,7 +10,6 @@ var teams: Array[Player.Team] = [
 	Player.Team.new("BLUE", Color(0, 0, 1))
 ]
 var next_team: int = 0
-var debug_player: Player = Player.create("debug", "debug", Player.Team.new("debug", Color(1, 0, 1)))
 var players: Array[Player] = [] 
 
 class EmptyResult:
@@ -30,7 +29,7 @@ class EmptyResult:
 func player_join(id: String) -> EmptyResult:
 	if has_node(id):
 		return EmptyResult.err("Player %s already exists" % id)
-	var player: Player = Player.create(id, id) #, teams[next_team]) assign teams when game starts
+	var player: Player = Player.create(id, id, teams.pick_random()) #, teams[next_team]) assign teams when game starts
 	# next_team = (next_team + 1) % teams.size()
 	add_child(player)
 	players.append(player)

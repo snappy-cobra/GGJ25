@@ -1,17 +1,24 @@
+class_name Bubbles
 extends Node2D
 
 var bubbles: Dictionary = {}
 var size: Vector2i
+const bubbles_scene = preload("res://scenes/bubbles.tscn")
 
-func _ready() -> void:
-	setup_grid(Vector2i(100,50))
+static func create() -> Bubbles:
+	var bubbles: Bubbles = bubbles_scene.instantiate()
+	bubbles.setup_grid(Vector2i(100, 50))
+	return bubbles
 
 func setup_grid(size: Vector2i) -> void:
 	self.size = size
 	for x in size.x:
 		for y in size.y:
 			var pos := Vector2i(x, y)
-			var bubble := Bubble.create(pos, 1)
+			var weight: int = 1
+			if randf() < 0.1:
+				weight = randi_range(3, 8)
+			var bubble := Bubble.create(pos, weight)
 			bubbles[pos] = bubble
 			add_child(bubble)
 	

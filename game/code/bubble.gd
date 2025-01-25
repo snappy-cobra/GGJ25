@@ -36,8 +36,8 @@ func pop(player: Player) -> void:
 	
 
 func _on_debug_input_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton:
-		pop(get_node("../../Players").debug_player)
+	if event is InputEventMouseButton and event.pressed:
+		get_tree().get_root().get_node("World")._on_tap(pos, "debug_player_"+str(event.button_index))
 
 func view_json() -> Dictionary:
 	return {"taps": taps, "taps_max": taps_max, "popped_by": popped_by.id}

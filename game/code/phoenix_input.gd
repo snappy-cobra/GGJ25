@@ -43,9 +43,8 @@ func _ready() -> void:
 
 
 
-func send_game_state() -> void:
-	channel.push(%Bubbles.view_json())
-		
+func send_game_state(state: Dictionary) -> void:
+	channel.push("game_state", state)
 
 #
 # Socket events
