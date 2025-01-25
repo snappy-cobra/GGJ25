@@ -16,12 +16,14 @@ const bubble_scene = preload("res://scenes/bubble.tscn")
 
 static func create(pos: Vector2i, taps_required: int) -> Bubble:
 	var bubble: Bubble = bubble_scene.instantiate()
+	
 	bubble.pos = pos
 	bubble.position = pos * size
 	
+	
 	if (pos.y % 2 == 1):
 		bubble.position.x += 0.5 * size;
-	
+		
 	bubble.get_node("Unpopped").texture = bubble.picture.pick_random()
 		
 	bubble.setup(taps_required)	
@@ -34,10 +36,11 @@ func setup(taps_required: int):
 	
 
 func pop(player: Player) -> void:
-	$Unpopped.hide()
-	$Popped.modulate = player.team.color
+	# $Unpopped.hide()
+	# $Popped.modulate = player.team.color
+	$Unpopped.modulate = player.team.color
 	taps = taps_max
-	$Popped.show()
+	# $Popped.show()
 	
 func score() -> int:
 	return taps_max

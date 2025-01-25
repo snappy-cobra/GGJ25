@@ -11,6 +11,10 @@ static func create() -> Bubbles:
 	return bubbles
 
 func setup_grid(size: Vector2i) -> void:
+	var screen_middle = get_viewport_rect().size / 2
+	
+	self.position = Vector2i(screen_middle) + Vector2i(80, 50)
+	
 	self.size = size
 	for x in size.x:
 		for y in size.y:

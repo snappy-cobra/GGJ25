@@ -12,6 +12,7 @@ var tween:Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	window_size = get_viewport_rect().size
 	rect.set_size(Vector2(window_size.x, 50))
 	var tween = create_tween()
 	
