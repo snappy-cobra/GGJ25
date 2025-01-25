@@ -1,3 +1,4 @@
+"use strict";
 // NOTE: The contents of this file will only be executed if
 // you uncomment its entry in "assets/js/app.js".
 
@@ -78,19 +79,40 @@ socket.connect()
 // token for authentication. Read below how it should be used.
 // let socket = new window.Phoenix.Socket("http://localhost:4000/socket", {params: {token: "player:"+Math.random()*99999}})
 
+
+var WIDTH = 50;
+var HEIGHT = 25;
+
+var state = []
+
 // connect to the websocket:
 socket.connect()
 let channel = socket.channel("godot", {})
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
-  .receive("godot", resp => { console.log("godot", resp) })
-  .receive("game_state", resp => { console.log("gamestate", resp) })
 
-channel.on("game_state", resp => {console.log("state", resp)}) 
+channel.on("game_state", resp => {
+    console.log("local state", resp);
+    if (resp.state != "running") { return; }
+    // WIDTH = resp.bubbles.size[0]
+    // HEIGHT = resp.bubbles.size[1]
+    let bubbles = resp.bubbles.bubbles;
+    for (let i in bubbles) {
+        let bubble = bubbles[i];
+        let oldState = state[i];
+        if (!(bubble[0] === oldState[0] && bubble[1] === oldState[1])) {
+            let cell = document.getElementById("cell-"+i);
+            // if (!cell) { continue; }
+            if (bubble[0]) {
+                cell.innerHTML = svgString;
+            } else {
+                cell.innerHTML = svgStarString;
+            }
+        }
+    }
+})
 
-var WIDTH = 50; 
-var HEIGHT = 25;
 
 
 var bubblePopFunction = function() {
@@ -104,7 +126,7 @@ var bubblePopFunction = function() {
     sound.play();
 
     // get the XY of this div
-    var index = this.getAttribute("id");
+    var index = this.getAttribute("index");
     var index_x = index % WIDTH;
     var index_y = Math.floor(index / WIDTH);
 
@@ -131,17 +153,20 @@ const svgString = `
 
 const svgStarString = `
 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-<polygon 
-    points="100,10 120,70 180,70 130,110 150,170 100,130 50,170 70,110 20,70 80,70" 
-    fill="gold" 
-    stroke="orange" 
+<polygon
+    points="100,10 120,70 180,70 130,110 150,170 100,130 50,170 70,110 20,70 80,70"
+    fill="gold"
+    stroke="orange"
     stroke-width="3"
 />
 </svg>
 `;
 
 
-for (var y = 0; y < HEIGHT; y++) {
+
+
+let i = 0
+for (var y=0; y < HEIGHT; y++) {
     const row = document.createElement('div');
     row.className = "row";
     board.appendChild(row);
@@ -149,17 +174,16 @@ for (var y = 0; y < HEIGHT; y++) {
     for (var x = 0; x < WIDTH; x++) {
         const cell = document.createElement('div');
         cell.className = "cell";
-        cell.setAttribute('id', y * WIDTH + x);
+        cell.id = "cell-"+i;
+        cell.setAttribute('index', y * WIDTH + x);
+        state[i] = [1, 1]
 
         row.appendChild(cell);
 
-        if (x % 20 == 7) {
-            cell.innerHTML = svgStarString;
-        } else {
-            cell.innerHTML = svgString;
-        }
+        cell.innerHTML = svgString;
 
         cell.addEventListener('click', bubblePopFunction, false);
+        i++;
     }
 }
 

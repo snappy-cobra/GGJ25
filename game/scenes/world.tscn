@@ -19,6 +19,7 @@ script = ExtResource("2_qriy4")
 [node name="TimerBar" parent="." instance=ExtResource("4_j3cyd")]
 modulate = Color(0.43038, 0.739638, 3.85046e-07, 1)
 z_index = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="GameLogic" type="Node" parent="."]
 unique_name_in_owner = true

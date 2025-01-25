@@ -11,9 +11,13 @@ static func create() -> Bubbles:
 	return bubbles
 
 func setup_grid(size: Vector2i) -> void:
+	var screen_middle = get_viewport_rect().size / 2
+	
+	self.position = Vector2i(screen_middle) + Vector2i(80, 50)
+	
 	self.size = size
-	for x in size.x:
-		for y in size.y:
+	for y in size.y:
+		for x in size.x:
 			var pos := Vector2i(x, y)
 			var weight: int = 1
 			if randf() < 0.1:
@@ -30,8 +34,8 @@ func pop(pos: Vector2i, player: Player) -> void:
 
 func view_json() -> Dictionary:
 	var bubble_data: Array[Array] = []
-	for x in size.x:
-		for y in size.y:
+	for y in size.y:
+		for x in size.x:
 			var bubble: Bubble = bubbles[Vector2i(x, y)]
 			bubble_data.append(bubble.view_json())
 	return {"size": [size.x, size.y], "bubbles": bubble_data}

@@ -1,6 +1,6 @@
 class_name Bubble
 extends Node2D
-const size = 16
+const size = 20
 
 var pos: Vector2i
 var value: int
@@ -8,18 +8,27 @@ var taps: int
 var taps_max: int
 var popped_by: Player.Team
 
+@export
+var picture: Array[Texture2D]
+
 const bubble_scene = preload("res://scenes/bubble.tscn")
 # @onready var logic: GameLogic = get_node("World/GameLogic")
 
 static func create(pos: Vector2i, taps_required: int) -> Bubble:
 	var bubble: Bubble = bubble_scene.instantiate()
+	
 	bubble.pos = pos
 	bubble.position = pos * size
 	
+	
 	if (pos.y % 2 == 1):
 		bubble.position.x += 0.5 * size;
+		
+	bubble.get_node("Unpopped2").texture = bubble.picture.pick_random()
+		
 	bubble.setup(taps_required)	
 	return bubble
+
 	
 func setup(taps_required: int):
 	taps_max = taps_required
@@ -27,10 +36,10 @@ func setup(taps_required: int):
 	
 
 func pop(player: Player) -> void:
-	$Unpopped.hide()
-	$Popped.modulate = player.team.color
+	$Unpopped2.hide()
+	$Popped2.modulate = player.team.color
 	taps = taps_max
-	$Popped.show()
+	$Popped2.show()
 	
 func score() -> int:
 	return taps_max
