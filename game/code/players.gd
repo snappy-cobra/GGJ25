@@ -50,7 +50,7 @@ func get_player(id) -> Player:
 	
 	
 func assign_teams(preferredTeamsNumber: int = 2) -> void:
-	var size = teams.size()
+	var i: int = 0
 	for p in players:
-		p.team = teams[size % preferredTeamsNumber]
-	
+		p.team = teams[i % teams.size()]
+		i += 1
