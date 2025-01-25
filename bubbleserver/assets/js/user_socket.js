@@ -122,6 +122,11 @@ channel.on("game_state", resp => {
     state = bubbles
 })
 
+var fibonacciHash = function(int) {
+  const a = 40503
+  const max32bit = 65536
+   return (int * a) % max32bit
+}
 
 
 var bubblePopFunction = function() {
@@ -186,6 +191,7 @@ function buildCell(row, col) {
   cell.setAttribute('index', index);
   cell.dataset.row = row;
   cell.dataset.col = col;
+  cell.dataset.bubblePic = fibonacciHash(index) >> 15;
   // cell.innerHTML = svgString
   cell.addEventListener('click', bubblePopFunction, false)
   return cell
@@ -228,6 +234,7 @@ function buildBoard(state) {
 }
 
 buildBoard(state)
+
 
 
 

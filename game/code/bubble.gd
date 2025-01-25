@@ -13,7 +13,7 @@ var picture: Array[Texture2D]
 
 const bubble_scene = preload("res://scenes/bubble.tscn")
 
-static func create(pos: Vector2i, taps_required: int) -> Bubble:
+static func create(pos: Vector2i, taps_required: int, img_idx: int) -> Bubble:
 	var bubble: Bubble = bubble_scene.instantiate()
 	
 	bubble.pos = pos
@@ -23,7 +23,8 @@ static func create(pos: Vector2i, taps_required: int) -> Bubble:
 	if (pos.y % 2 == 1):
 		bubble.position.x += 0.5 * size;
 		
-	bubble.get_node("Unpopped2").texture = bubble.picture.pick_random()
+		
+	bubble.get_node("Unpopped2").texture = bubble.picture[img_idx]
 		
 	bubble.setup(taps_required)	
 	return bubble
@@ -57,4 +58,9 @@ func view_json() -> Array[int]:
 		return [0, popped_by.id]
 	else:
 		return [taps_left(), score()]
-	
+	#
+#var fibonacciHash = function(int) {
+  #const a = 2654435769 
+  #const max32bit = 2147483647
+   #return (int * a) % max32bit
+#}
