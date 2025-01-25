@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=15 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
@@ -6,7 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://clcyvn2gf0kae" path="res://scenes/timer_bar.tscn" id="4_j3cyd"]
 [ext_resource type="Script" path="res://scenes/game_logic.gd" id="5_7s8de"]
 [ext_resource type="Script" path="res://code/score_text.gd" id="6_0vasn"]
+[ext_resource type="Texture2D" uid="uid://dplhcm3ytv2yl" path="res://img/orb endurance.png" id="6_eve1c"]
+[ext_resource type="Texture2D" uid="uid://blbbnsgu1s16g" path="res://img/Screenshot 2025-01-25 225121.png" id="6_npd85"]
+[ext_resource type="Texture2D" uid="uid://d3maxc8fxgb70" path="res://img/Screenshot 2025-01-25 224948.png" id="7_4qsxy"]
 [ext_resource type="Script" path="res://code/dev_helper.gd" id="7_m4s82"]
+[ext_resource type="FontFile" uid="uid://cmc58dr5cmjgp" path="res://fonts/Candy_Pop!-demo-font.ttf" id="8_c5qqb"]
+[ext_resource type="Texture2D" uid="uid://ce1nest7fcc8y" path="res://img/INK BLOTCH.png" id="8_o5gr0"]
+[ext_resource type="FontFile" uid="uid://cqtsp2p2bxoaf" path="res://fonts/Dracula.ttf" id="9_6nak5"]
+[ext_resource type="FontFile" uid="uid://cufkrtysb5or2" path="res://fonts/POWER_UP.otf" id="9_07ng1"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_le5jl")
@@ -34,9 +41,77 @@ one_shot = true
 [node name="Heartbeat" type="Timer" parent="."]
 autostart = true
 
+[node name="orb" type="Sprite2D" parent="."]
+position = Vector2(297.889, 137.78)
+rotation = 0.972148
+scale = Vector2(2.3771, 2.80652)
+texture = ExtResource("6_eve1c")
+
+[node name="Blotch4" type="Sprite2D" parent="."]
+position = Vector2(966.273, 561.114)
+rotation = -0.144862
+scale = Vector2(0.766707, 0.296989)
+skew = -0.0838647
+texture = ExtResource("8_o5gr0")
+
+[node name="Blotch5" type="Sprite2D" parent="."]
+position = Vector2(166.74, 555.45)
+rotation = -0.144862
+scale = Vector2(0.790312, 0.421344)
+skew = -0.867118
+texture = ExtResource("8_o5gr0")
+
+[node name="prt" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.8)
+position = Vector2(975, 394)
+rotation = 0.140251
+scale = Vector2(0.269466, 0.397675)
+skew = 0.0838647
+texture = ExtResource("6_npd85")
+
+[node name="prt2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(179.173, 264.454)
+rotation = 0.462512
+scale = Vector2(0.507309, 0.594652)
+texture = ExtResource("7_4qsxy")
+
+[node name="Blotch" type="Sprite2D" parent="."]
+position = Vector2(585, 293)
+rotation = 1.5708
+scale = Vector2(1, 1.66625)
+skew = -0.0645772
+texture = ExtResource("8_o5gr0")
+
 [node name="Lobby" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+
+[node name="LOGO 1" type="Label" parent="Lobby"]
+offset_left = 438.0
+offset_top = 158.0
+offset_right = 760.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(0.301961, 0, 0.580392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_6nak5")
+theme_override_font_sizes/font_size = 76
+text = "† Bubblevania †"
+
+[node name="LOGO 2" type="Label" parent="Lobby"]
+offset_left = 212.0
+offset_top = 234.0
+offset_right = 964.0
+offset_bottom = 337.0
+theme_override_colors/font_color = Color(0.678431, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_c5qqb")
+theme_override_font_sizes/font_size = 65
+text = "•>•>•>  Frenzy <•<•<•"
+horizontal_alignment = 1
 
 [node name="ScoreView" type="Control" parent="Lobby"]
 layout_mode = 3
@@ -46,48 +121,51 @@ anchors_preset = 0
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 383.0
-offset_top = 2.0
+offset_top = 15.0
 offset_right = 873.0
-offset_bottom = 79.0
-text = "DEFAULT TEXT!"
+offset_bottom = 92.0
 horizontal_alignment = 1
 script = ExtResource("6_0vasn")
 
 [node name="Team1" type="VFlowContainer" parent="Lobby"]
-modulate = Color(0.145098, 1, 1, 1)
+modulate = Color(0.757098, 0, 0.221396, 1)
 layout_mode = 2
-offset_left = 224.0
-offset_top = 121.0
-offset_right = 566.0
-offset_bottom = 576.0
+offset_left = 27.0
+offset_top = 517.0
+offset_right = 369.0
+offset_bottom = 972.0
 
 [node name="T1" type="Label" parent="Lobby/Team1"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("8_c5qqb")
+theme_override_font_sizes/font_size = 45
 text = "TEAM [1]"
 
 [node name="T1_P" type="Label" parent="Lobby/Team1"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("9_07ng1")
 text = "PLAYER COUNT:"
 horizontal_alignment = 1
 
 [node name="Team2" type="VFlowContainer" parent="Lobby"]
-modulate = Color(1, 0.141176, 1, 1)
-layout_mode = 0
-offset_left = 748.0
-offset_top = 115.0
-offset_right = 1090.0
-offset_bottom = 570.0
+modulate = Color(0.538702, 0.0187286, 0.883022, 1)
+offset_left = 833.0
+offset_top = 526.0
+offset_right = 1175.0
+offset_bottom = 981.0
 
 [node name="T2" type="Label" parent="Lobby/Team2"]
-unique_name_in_owner = true
 layout_mode = 2
-text = "TEAM [2]"
+theme_override_fonts/font = ExtResource("8_c5qqb")
+theme_override_font_sizes/font_size = 45
+text = "TEAM [1]"
 
 [node name="T2_P" type="Label" parent="Lobby/Team2"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("9_07ng1")
 text = "PLAYER COUNT:"
 horizontal_alignment = 1
 

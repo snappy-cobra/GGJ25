@@ -11,17 +11,7 @@ func _ready() -> void:
 	start_game()
 
 func reset_lobby() -> void:
-	%T1_P1.text = "<PLAYER SLOT>"
-	%T1_P2.text = "<PLAYER SLOT>"
-	#%T1_P3.text = "<PLAYER SLOT>"
-	#%T1_P4.text = "<PLAYER SLOT>"
-	
-	%T2_P1.text = "<PLAYER SLOT>"
-	#%T2_P2.text = "<PLAYER SLOT>"
-	#%T2_P3.text = "<PLAYER SLOT>"
-	#%T2_P4.text = "<PLAYER SLOT>"
-	
-	%ScoreView.text = "No games haven't been played yet..."
+	%ScoreView.text = "No games have been played yet..."
 
 		
 func start_lobby() -> void:
