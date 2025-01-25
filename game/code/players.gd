@@ -29,11 +29,18 @@ class EmptyResult:
 func player_join(id: String, name: String) -> EmptyResult:
 	if has_node(id):
 		return EmptyResult.err("Player %s already exists" % id)
-	var player: Player = Player.create(id, name, teams[next_team])
-	next_team = (next_team + 1) % teams.size()
+	var player: Player = Player.create(id, name) #, teams[next_team]) assign teams when game starts
+	# next_team = (next_team + 1) % teams.size()
 	add_child(player)
+	if check_full():
+		assign_teams(2)
+		emit_signal("start", all_players())
+		# different return value?
 	return EmptyResult.ok()
 
+func check_full() -> bool:
+	return all_players().size() >= 2
+	
 func player_leave(id: String) -> EmptyResult:
 	if !has_node(id):
 		return EmptyResult.err("unknown player %s" % id)
@@ -46,3 +53,12 @@ func has_player(id) -> bool:
 
 func get_player(id) -> Player:
 	return get_node(id)
+	
+func all_players() -> Array[Player]:
+	return get_children() as Array[Player]
+	
+func assign_teams(preferredTeamsNumber: int = 2) -> void:
+	var size = teams.size
+	for p in all_players():
+		p.team = teams[size % preferredTeamsNumber]
+	

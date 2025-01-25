@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=7 format=3 uid="uid://cswy8e8u3047b"]
 
+[ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
 [ext_resource type="Script" path="res://code/phoenix_input.gd" id="3_6kcq6"]
 [ext_resource type="PackedScene" uid="uid://clcyvn2gf0kae" path="res://scenes/timer_bar.tscn" id="4_j3cyd"]
@@ -7,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/game_logic.gd" id="5_7s8de"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_le5jl")
 
 [node name="PhoenixInput" type="Node" parent="."]
 script = ExtResource("3_6kcq6")
