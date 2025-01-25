@@ -2,12 +2,15 @@ extends Node2D
 
 
 var bubbles: Dictionary = {}
-@export var width = 64
-@export var height = 64
+var size: Vector2i
 
 func _ready() -> void:
-	for x in width:
-		for y in height:
+	setup_grid(Vector2i(100,50))
+
+func setup_grid(size: Vector2i) -> void:
+	self.size = size
+	for x in size.x:
+		for y in size.y:
 			var pos := Vector2i(x, y)
 			var bubble := Bubble.create(pos)
 			bubbles[pos] = bubble
@@ -21,8 +24,8 @@ func pop(pos: Vector2i, player: Player) -> void:
 
 func view_json() -> Dictionary:
 	var bubble_data: Array[Bubble] = []
-	for y in height:
-		for x in width:
+	for y in size.x:
+		for x in size.y:
 			var bubble: Bubble = bubbles[Vector2i(x, y)]
 			bubble_data.append(bubble.view_json())
-	return {"size": [width, height], "bubbles": bubble_data}
+	return {"size": [size.x, size.y], "bubbles": bubble_data}

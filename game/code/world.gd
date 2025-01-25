@@ -12,7 +12,3 @@ func game_start(players: Array[Player]) -> void:
 	var height: int = 8
 	emit_signal("game_started", players, width, height)
 	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
