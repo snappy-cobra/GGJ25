@@ -16,7 +16,7 @@ html, body {
     top:0;
     width:100%;
     height:100%;
-    background-color: rgb(160, 185, 192);
+    background-color: #24252ad1;
 }
 
 .screen {
@@ -35,7 +35,7 @@ html, body {
 }
 
 .screen .board {
-    width: calc(20vw * 50 + 12.5vw);
+    width: calc(20vw * 50 + 10vw);
     height: calc((20vw - 5vw) * 25);
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */ 
@@ -64,7 +64,7 @@ html, body {
 }
 
 .row:nth-child(2n) {
-    margin-left: 12.5vw;
+    margin-left: 10vw;
 }
 
 .cell {
