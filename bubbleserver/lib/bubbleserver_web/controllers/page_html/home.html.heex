@@ -1,11 +1,14 @@
-<h1>Hello!</h1>
-<%= for row <- 1..100 do %>
-  <%= for col <- 1..20 do %>
-    <% handler = "pop(#{row},#{col})" %>
-    <button onclick={handler} ></button>
+<canvas id="canvas"></canvas>
+<div class="screen">
+  <div class="board" id="board">
+  <%= for row <- 0..99 do %>
+    <%= for col <- 0..19 do %>
+      <% handler = "pop(#{row},#{col})" %>
+      <button onclick={handler} ></button>
+    <% end %>
   <% end %>
-  <br/>
-<% end %>
+  </div>
+</div>
 
 <style>
 button {
@@ -16,4 +19,49 @@ button {
   padding: 10px;
   margin: 10px;
 }
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#canvas {
+    position:fixed;
+    z-index: -1;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color: orange;
+}
+
+.screen {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    height: 100%; 
+    margin: 0;
+    padding: 0; 
+    overflow: auto;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.screen::-webkit-scrollbar {
+    display: none;
+}
+
+.board {
+  padding: 50px;
+  margin: 50px;
+}
+
+.screen .board {
+    width: 400vw;
+    height: 150vw;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */ 
+    display: grid;
+    grid-template-columns: repeat(20, 25vw);
+}
+
+
 </style>
