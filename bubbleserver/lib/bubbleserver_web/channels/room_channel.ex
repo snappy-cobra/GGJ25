@@ -1,6 +1,7 @@
 defmodule BubbleserverWeb.RoomChannel do
   use BubbleserverWeb, :channel
   alias BubbleserverWeb.Presence
+  require Logger
 
   @impl true
   def join("godot", %{"host" => "godot"}, socket) do
@@ -9,8 +10,8 @@ defmodule BubbleserverWeb.RoomChannel do
   end
 
   def join("godot", payload, socket) do
-    IO.inspect("Another player is joining")
-    IO.inspect(payload)
+    Logger.debug("Another player is joining")
+    Logger.debug(inspect(payload))
     # if authorized?(payload) do
     # my_player_id = GameState.player_join()
     # socket = assign(socket, :player_id, my_player_id)
@@ -30,20 +31,31 @@ defmodule BubbleserverWeb.RoomChannel do
 
     presence_state = Presence.list(socket)
     push(socket, "presence_state", presence_state)
-    IO.inspect(presence_state)
+    Logger.debug(inspect(presence_state))
     {:noreply, socket}
   end
 
   @impl true
-  def handle_in("pop", %{"x" => x, "y" => y}, socket) do
-    broadcast!(socket, "pop", %{player_id: socket.assigns.player_id, x: x, y: y})
-    {:reply, {:ok, "Popped!"}, socket}
-  end
-
-  def handle_in("game_state", state, socket) do
-    broadcast!(socket, "game_state", state)
+  def handle_in(event, data, socket) do
+    Logger.debug("Handling event #{inspect(event)} with data #{inspect(data)}")
+    if Map.has_key?(socket.assigns, :player_id) do
+      data = Map.put(data, :player_id, socket.assigns.player_id)
+      Logger.debug(inspect(data))
+      broadcast!(socket, event, data)
+    else
+      broadcast!(socket, event, data)
+    end
     {:noreply, socket}
   end
+  # def handle_in("pop", %{"x" => x, "y" => y}, socket) do
+  #   broadcast!(socket, "pop", %{player_id: socket.assigns.player_id, x: x, y: y})
+  #   {:reply, {:ok, "Popped!"}, socket}
+  # end
+
+  # def handle_in("game_state", state, socket) do
+  #   broadcast!(socket, "game_state", state)
+  #   {:reply, {:ok, "aaa"}, socket}
+  # end
 
   # # Channels can be used in a request/response fashion
   # # by sending replies to requests from the client

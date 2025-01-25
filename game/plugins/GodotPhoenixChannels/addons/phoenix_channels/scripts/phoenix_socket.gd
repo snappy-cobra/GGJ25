@@ -189,9 +189,12 @@ func compose_message(event : String, payload := {}, topic := TOPIC_PHOENIX, ref 
 	
 func push(message : PhoenixMessage):
 	var dict = message.to_dictionary()
+	var str = JSON.new().stringify(dict)
+	# print(str)
 	
 	if can_push(dict.event):	
-		var _error = _socket.send_text(JSON.new().stringify(dict))		
+		var _error = _socket.send_text(str)		
+		print(_error)
 		
 func make_ref() -> String:
 	_ref = _ref + 1
