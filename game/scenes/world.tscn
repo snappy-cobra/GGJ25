@@ -22,6 +22,7 @@ unique_name_in_owner = true
 script = ExtResource("4_sei7x")
 
 [node name="TimerBar" parent="." instance=ExtResource("4_j3cyd")]
+modulate = Color(0.43038, 0.739638, 3.85046e-07, 1)
 
 [node name="GameLogic" type="Node" parent="."]
 script = ExtResource("5_7s8de")
