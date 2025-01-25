@@ -1,7 +1,8 @@
 # Bubbleserver
 
-To start your Phoenix server:
+To start the Elixir+Phoenix server program:
 
+  * Be sure you have Elixir installed, see https://elixir-lang.org/install.html for instructions
   * Run `mix setup` to install and setup dependencies
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 

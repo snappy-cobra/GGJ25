@@ -10,6 +10,7 @@ kill_signal = 'SIGTERM'
 [build]
 
 [env]
+  PHX_SERVER = true
   PHX_HOST = 'bubbleserver.fly.dev'
   PORT = '8080'
 
