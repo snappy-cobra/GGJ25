@@ -2,6 +2,8 @@ extends Control
 
 @onready var rect: ColorRect = $ColorRect
 
+signal game_over()
+
 var round_time: float = 0 
 var round_limit: float = 60 
 var window_size = DisplayServer.window_get_size()
@@ -30,7 +32,7 @@ func _process(delta: float) -> void:
 	
 	round_time += delta * 2
 	if round_time >= round_limit:
-		emit_signal("game_over")
+		game_over.emit()
 		return
 	var factor_remaining:float = (round_limit-round_time) / 100
 	

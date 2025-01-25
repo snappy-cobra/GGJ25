@@ -15,9 +15,7 @@ var value_grid
 var rand: RandomNumberGenerator = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	# started([], 4, 3) testing
-	pass # Replace with function body.
+	pass 
 
 func _on_bubble_tapped(bubble: Bubble, player: Player) -> void:
 	var popped = bubble_tapped(bubble, player)
@@ -42,6 +40,10 @@ func _on_world_start(players: Array[Player], grid_width: int, grid_height: int) 
 	# send it to the server
 	game_started.emit(value_grid) # to json?
 	pass
+
+func _on_timer_bar_game_over() -> void:
+	state = GameState.Lobby
+	print("GameLogic:: Game finished!")
 	
 func check_tap_popped(bubble: Bubble, player: Player) -> void:
 	var popped = bubble_tapped(bubble, player)
@@ -72,13 +74,8 @@ func get_score_for(base_taps: int) -> int:
 		
 func add_score(value: int, teamId: String) -> void:
 	scores[teamId] = scores[teamId] + value
+	print("Added score for team " + teamId + "; new score = " + str(scores[teamId]))
 	
-func finished() -> void:
-	# update lobby UI with scores
-	state = GameState.Lobby
-	print("GameLogic:: Game finished!")
-	pass
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -102,7 +99,3 @@ func punish(player: Player, score_to_subtract: int ):
 
 func calc_punish_inactive(inactive_time: float, delta: float) -> int:
 	return delta *(min(6, inactive_time) - 1) # grows very fast after 1 second of inactivity, up 5 per second 
-
-
-func _on_timer_bar_game_over() -> void:
-	pass # Replace with function body.

@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 func _on_players_enough_players_joined(players: Array[Player]) -> void:
 	
 	print("Starting the game...")
-	var width: int = 14
-	var height: int = 8
+	var width: int = 110
+	var height: int = 60
 	start.emit(players, width, height)
 	pass 

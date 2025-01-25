@@ -3,9 +3,6 @@ extends Node2D
 var bubbles: Dictionary = {}
 var size: Vector2i
 
-func _ready() -> void:
-	setup_grid(Vector2i(100,50))
-
 func setup_grid(size: Vector2i) -> void:
 	self.size = size
 	for x in size.x:
