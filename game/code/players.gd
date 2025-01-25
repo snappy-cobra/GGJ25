@@ -12,26 +12,14 @@ var teams: Array[Player.Team] = [
 var next_team: int = 0
 var players: Array[Player] = [] 
 
-class EmptyResult:
-	var is_err: bool
-	var err_msg: String
-	static func ok() -> EmptyResult:
-		var res := EmptyResult.new()
-		res.is_err = false
-		return res
-	static func err(msg: String) -> EmptyResult:
-		var res := EmptyResult.new()
-		res.is_err = true
-		res.err_msg = msg
-		return res
 
 func _ready() -> void:
 	player_join("1")
 	player_join("2")
 
-func player_join(id: String) -> EmptyResult:
+func player_join(id: String) -> String:
 	if has_node(id):
-		return EmptyResult.err("Player %s already exists" % id)
+		return "Player %s already exists" % id
 	var player: Player = Player.create(id, id, teams.pick_random()) #, teams[next_team]) assign teams when game starts
 	# next_team = (next_team + 1) % teams.size()
 	add_child(player)
@@ -42,17 +30,17 @@ func player_join(id: String) -> EmptyResult:
 		enough_players_joined.emit(players)
 		#World.start.emit(all_players())
 		# different return value?
-	return EmptyResult.ok()
+	return ""
 
 func check_full() -> bool:
 	return players.size() >= 2
 	
-func player_leave(id: String) -> EmptyResult:
+func player_leave(id: String) -> String:
 	if !has_node(id):
-		return EmptyResult.err("unknown player %s" % id)
+		return "unknown player %s" % id
 	var player: Player = get_node(id)
 	player.queue_free()
-	return EmptyResult.ok()
+	return ""
 
 func has_player(id) -> bool:
 	return has_node(id)

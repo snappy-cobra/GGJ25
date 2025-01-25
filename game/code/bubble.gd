@@ -9,7 +9,6 @@ var taps_max: int
 var popped_by: Player.Team
 
 const bubble_scene = preload("res://scenes/bubble.tscn")
-@onready var logic: GameLogic = $GameLogic
 
 static func create(pos: Vector2i, taps_required: int) -> Bubble:
 	var bubble: Bubble = bubble_scene.instantiate()

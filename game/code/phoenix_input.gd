@@ -44,6 +44,7 @@ func _ready() -> void:
 
 
 func send_game_state(state: Dictionary) -> void:
+	print(state)
 	channel.push("game_state", state)
 
 #

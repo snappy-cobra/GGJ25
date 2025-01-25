@@ -40,7 +40,7 @@ func pop(pos: Vector2i, player: Player) -> void:
 
 
 func view_json() -> Dictionary:
-	var bubble_data: Array[Bubble] = []
+	var bubble_data: Array[Dictionary] = []
 	for x in size.x:
 		for y in size.y:
 			var bubble: Bubble = bubbles[Vector2i(x, y)]

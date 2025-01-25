@@ -40,7 +40,19 @@ func _on_players_enough_players_joined(players: Array[Player]) -> void:
 	start.emit(players, width, height)
 	pass 
 
+func game_state_json() -> Dictionary:
+	if state == State.LOBBY:
+		return {"state": "lobby"}
+	elif state == State.RUNNING:
+		return {
+			"state": "running",
+			"bubbles": bubbles.view_json(),
+			 "teams": $Players.teams.map(func(team): return team.view_json())
+		}
+	else:
+		assert(false)
+		return {}
 
 func _on_heartbeat_timeout() -> void:
 	if bubbles != null:
-		$PhoenixInput.send_game_state(bubbles.view_json())
+		$PhoenixInput.send_game_state(game_state_json())
