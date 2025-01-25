@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=16 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://code/score_text.gd" id="6_0vasn"]
 [ext_resource type="Texture2D" uid="uid://dplhcm3ytv2yl" path="res://img/orb endurance.png" id="6_eve1c"]
 [ext_resource type="Texture2D" uid="uid://blbbnsgu1s16g" path="res://img/Screenshot 2025-01-25 225121.png" id="6_npd85"]
+[ext_resource type="Texture2D" uid="uid://lknuindfpgkg" path="res://img/QR.jpg" id="6_td3ae"]
 [ext_resource type="Texture2D" uid="uid://d3maxc8fxgb70" path="res://img/Screenshot 2025-01-25 224948.png" id="7_4qsxy"]
 [ext_resource type="Script" path="res://code/dev_helper.gd" id="7_m4s82"]
 [ext_resource type="FontFile" uid="uid://cmc58dr5cmjgp" path="res://fonts/Candy_Pop!-demo-font.ttf" id="8_c5qqb"]
@@ -36,32 +37,46 @@ script = ExtResource("5_7s8de")
 
 [node name="Timer" type="Timer" parent="GameLogic"]
 unique_name_in_owner = true
+wait_time = 2.33
 one_shot = true
 
 [node name="Heartbeat" type="Timer" parent="."]
 autostart = true
 
-[node name="orb" type="Sprite2D" parent="."]
+[node name="prt" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.8)
+self_modulate = Color(1, 0.117647, 0.14902, 1)
+position = Vector2(565, 601.457)
+scale = Vector2(0.54321, 0.54321)
+texture = ExtResource("6_td3ae")
+
+[node name="Lobby" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+
+[node name="orb" type="Sprite2D" parent="Lobby"]
 position = Vector2(297.889, 137.78)
 rotation = 0.972148
 scale = Vector2(2.3771, 2.80652)
 texture = ExtResource("6_eve1c")
 
-[node name="Blotch4" type="Sprite2D" parent="."]
+[node name="Blotch4" type="Sprite2D" parent="Lobby"]
 position = Vector2(966.273, 561.114)
 rotation = -0.144862
 scale = Vector2(0.766707, 0.296989)
 skew = -0.0838647
 texture = ExtResource("8_o5gr0")
 
-[node name="Blotch5" type="Sprite2D" parent="."]
+[node name="Blotch5" type="Sprite2D" parent="Lobby"]
 position = Vector2(166.74, 555.45)
 rotation = -0.144862
 scale = Vector2(0.790312, 0.421344)
 skew = -0.867118
 texture = ExtResource("8_o5gr0")
 
-[node name="prt" type="Sprite2D" parent="."]
+[node name="prt" type="Sprite2D" parent="Lobby"]
 visible = false
 modulate = Color(1, 1, 1, 0.8)
 position = Vector2(975, 394)
@@ -70,23 +85,19 @@ scale = Vector2(0.269466, 0.397675)
 skew = 0.0838647
 texture = ExtResource("6_npd85")
 
-[node name="prt2" type="Sprite2D" parent="."]
+[node name="prt2" type="Sprite2D" parent="Lobby"]
 visible = false
 position = Vector2(179.173, 264.454)
 rotation = 0.462512
 scale = Vector2(0.507309, 0.594652)
 texture = ExtResource("7_4qsxy")
 
-[node name="Blotch" type="Sprite2D" parent="."]
+[node name="Blotch" type="Sprite2D" parent="Lobby"]
 position = Vector2(585, 293)
 rotation = 1.5708
 scale = Vector2(1, 1.66625)
 skew = -0.0645772
 texture = ExtResource("8_o5gr0")
-
-[node name="Lobby" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
 
 [node name="LOGO 1" type="Label" parent="Lobby"]
 layout_mode = 0

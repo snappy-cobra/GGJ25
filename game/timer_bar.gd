@@ -35,6 +35,7 @@ func _process(delta: float) -> void:
 	if round_time >= round_limit:
 		print("GAME OVER!")
 		game_over.emit()
+		%Lobby.show()
 		set_process(false)
 		return
 	var factor_remaining:float = (round_limit-round_time) / 100
@@ -52,6 +53,7 @@ func _process(delta: float) -> void:
 
 func _on_world_start() -> void:
 	print("Restarted timer")
+	%Lobby.hide()
 	set_process(true)
 	rotation = 0
 	round_time = 0
