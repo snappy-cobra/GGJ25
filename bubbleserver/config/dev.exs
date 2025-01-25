@@ -46,7 +46,7 @@ config :bubbleserver, BubbleserverWeb.Endpoint,
 config :bubbleserver, BubbleserverWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg|mp3)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/bubbleserver_web/(controllers|live|components)/.*(ex|heex)$"
     ]
