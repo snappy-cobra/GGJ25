@@ -22,9 +22,11 @@ func _process(delta: float) -> void:
 		return
 	var percentage_remaining:float = (round_limit-round_time)/100
 	# ends with 0 width
-	rect.set_size(Vector2(window_size.x * percentage_remaining, 50))
+	rect.set_size(Vector2(floor(window_size.x * percentage_remaining), 50))
+	
 	# ends in the center
 	# This does some JITTER now! 
 	var x = (window_size.x - rect.get_size().x)/2
+	x = floor(x)
 	rect.set_position(Vector2(x, 0))
 	pass
