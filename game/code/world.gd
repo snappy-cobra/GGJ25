@@ -35,6 +35,7 @@ func start_game() -> void:
 	add_child(bubbles)
 	state = State.RUNNING
 	%GameLogic.state_setter = set_state
+	send_gamestate()
 	start.emit()
 
 func send_gamestate() -> void:
