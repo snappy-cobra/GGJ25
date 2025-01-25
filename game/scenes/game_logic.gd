@@ -11,19 +11,31 @@ var scores: Dictionary = {}
 var inactive: Dictionary = {}
 var punishments: Dictionary = {}
 var state = GameState.Lobby
+var value_grid
+var rand: RandomNumberGenerator = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	connect("tapped", check_tap_popped)
 	connect("game_started", started)
 	connect("game_over", finished)
+	# started([], 4, 3) testing
 	pass # Replace with function body.
 
-func started(players: Array, teams: Array) -> void:
-	
+func started(players: Array[Player], grid_width: int, grid_height: int) -> void:
+	print("GameLogic:: Game started!")
+	scores = {}
+	for p in players:
+		scores[p] = 0
+		
 	state = GameState.Active
-	# fill the scores map with teams 
-	# setup the board with actual values - generate some Rand()
+	value_grid =  []
+	for i in grid_height:
+		value_grid.append([])
+		for j in grid_width: 
+			value_grid[i].append(rand.randi_range(3, 8))   
 	
+	# send it to the server
+	emit_signal("game_setup", value_grid) # to json?
 	pass
 
 func bubbleValue(base_taps: int) -> int:
@@ -50,24 +62,30 @@ func player_tapped(player: Player) -> void:
 	
 	
 func popped(value: int, player: Player) -> void:
-	add_score(get_score_for(value), player.team)
+	add_score(get_score_for(value), player.team.id)
 	pass
 	
 func get_score_for(value: int) -> int:
 	return value
 	
-func add_score(value: int, team: Player.Team) -> void:
-	scores[team] = scores[team] + value
+func add_score(value: int, teamId: String) -> void:
+	scores[teamId] = scores[teamId] + value
 	
 func finished() -> void:
 	# update lobby UI with scores
 	state = GameState.Lobby
+	print("GameLogic:: Game finished!")
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# punish non-tapping players
+	# inactive_punish(delta)
+	
+	pass
+
+func inactive_punish(delta: float):
 	for player in inactive.keys():
 		inactive[player] = inactive[player] + delta
 		var punishment: int = calc_punish_inactive(inactive[player], delta)
@@ -75,8 +93,7 @@ func _process(delta: float) -> void:
 		var score_to_subtract = floor(punishments[player])
 		if score_to_subtract >= 1:
 			punish(player, score_to_subtract)
-	pass
-
+	
 func punish(player: Player, score_to_subtract: int ):
 	#scores[]
 	return 

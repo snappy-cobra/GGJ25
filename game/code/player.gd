@@ -13,7 +13,7 @@ var id: String
 var display_name: String
 var team: Team
 
-static func create(id: String, display_name: String, team: Team) -> Player:
+static func create(id: String, display_name: String, team: Team = null) -> Player:
 	var player = player_scene.instantiate()
 	player.id = id
 	player.name = id
