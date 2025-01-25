@@ -51,6 +51,14 @@ func get_player(id) -> Player:
 
 func assign_teams(preferredTeamsNumber: int = 2) -> void:
 	var i: int = 0
-	for p in get_children():
+	var players = get_children()
+	players.shuffle()
+	for p in players:
 		p.team = teams[i % teams.size()]
 		i += 1
+
+func view_json() -> Dictionary:
+	var players = {}
+	for player in get_children():
+		players[player.id] = {"team": player.team.id}
+	return players
