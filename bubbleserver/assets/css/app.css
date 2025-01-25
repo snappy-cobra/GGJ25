@@ -111,7 +111,35 @@ html, body {
 
 .cell.popped {
     background-image: url("/images/poppedbubble1.png");
-    opacity: 0.2;
+}
+
+.cell.popped::before {
+  content: "x";
+  background-color: auto;
+  /* width: 10vw;
+  height: 5vh; */
+
+  left: 1vw;
+  right: 1vw;
+  top: 1vw;
+  bottom: 1vw;
+
+  border-radius: 100%;
+  box-shadow: 0px 0px 10px 10px auto;
+  display: block;
+  position: absolute;
+  margin: 5vw;
+  z-index: -1;
+}
+
+.cell.popped[data-team="0"]::before {
+  background-color: cyan;
+  box-shadow: 0px 0px 10px 10px cyan;
+}
+
+.cell.popped[data-team="1"]::before {
+  background-color: magenta;
+  box-shadow: 0px 0px 10px 10px magenta;
 }
 
 

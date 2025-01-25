@@ -129,12 +129,12 @@ var fibonacciHash = function(int) {
 }
 
 var redrawBubble = function(cell, bubbleState) {
-  if(bubbleState[0] == 0) {
-    // Don't show a number for counts of 1 and 0
-    // Instead, use a non-breaking space
-    // to not mess with the wonky CSS
-    // cell.innerText = "\u00A0"
-  } else {
+  // if(bubbleState[0] == 0) {
+  //   // Don't show a number for counts of 1 and 0
+  //   // Instead, use a non-breaking space
+  //   // to not mess with the wonky CSS
+  //   // cell.innerText = "\u00A0"
+  // } else {
     if(bubbleState[0] > 0) {
       // If greater than zero, that is the remaining count
       // and index 1 is something else (score popping this gives you?)
@@ -142,9 +142,9 @@ var redrawBubble = function(cell, bubbleState) {
       cell.dataset.tapsLeft = bubbleState[1]
     } else {
       // Index 1 is the team
-      cell.dataset.team = bubblestate[1]
+      cell.dataset.team = bubbleState[1]
     }
-  }
+  // }
   // if (!cell) { continue; }
   if (bubbleState[0]) {
     cell.classList.add("unpopped")
