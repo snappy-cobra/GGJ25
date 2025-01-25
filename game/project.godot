@@ -23,6 +23,10 @@ Config="*res://code/config.gd"
 
 window/size/mode=2
 
+[dotnet]
+
+project/assembly_name="GGJ25"
+
 [input]
 
 join_0={
