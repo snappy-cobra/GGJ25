@@ -25,6 +25,9 @@ class EmptyResult:
 		res.err_msg = msg
 		return res
 
+func _ready() -> void:
+	player_join("1")
+	player_join("2")
 
 func player_join(id: String) -> EmptyResult:
 	if has_node(id):

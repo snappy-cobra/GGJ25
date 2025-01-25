@@ -15,12 +15,12 @@ var value_grid
 var rand: RandomNumberGenerator = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	connect("tapped", check_tap_popped)
-	connect("game_over", finished)
-	# started([], 4, 3) testing
-	pass # Replace with function body.
+	pass 
 
+func _on_bubble_tapped(bubble: Bubble, player: Player) -> void:
+	var popped = bubble_tapped(bubble, player)
+	if (popped):
+		popped(bubble.value, player)
 
 func _on_world_start(players: Array[Player], grid_width: int, grid_height: int) -> void:
 	print("GameLogic:: Game started!")
@@ -41,8 +41,9 @@ func _on_world_start(players: Array[Player], grid_width: int, grid_height: int) 
 	game_started.emit(value_grid) # to json?
 	pass
 
-func bubbleValue(base_taps: int) -> int:
-	return base_taps * base_taps
+func _on_timer_bar_game_over() -> void:
+	state = GameState.Lobby
+	print("GameLogic:: Game finished!")
 	
 func check_tap_popped(bubble: Bubble, player: Player) -> void:
 	var popped = bubble_tapped(bubble, player)
@@ -68,18 +69,13 @@ func popped(value: int, player: Player) -> void:
 	add_score(get_score_for(value), player.team.id)
 	pass
 	
-func get_score_for(value: int) -> int:
-	return value
-	
+func get_score_for(base_taps: int) -> int:
+	return base_taps * base_taps
+		
 func add_score(value: int, teamId: String) -> void:
 	scores[teamId] = scores[teamId] + value
+	print("Added score for team " + teamId + "; new score = " + str(scores[teamId]))
 	
-func finished() -> void:
-	# update lobby UI with scores
-	state = GameState.Lobby
-	print("GameLogic:: Game finished!")
-	pass
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

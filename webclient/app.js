@@ -56,18 +56,25 @@ const svgStarString = `
 </svg>
 `;
 
-for (var i = 0; i < 100; i++) {
-    const cell = document.createElement('div');
-    cell.className = "cell";
-    cell.setAttribute('id', i);
 
-    board.appendChild(cell);
+for (var i = 0; i < 16; i++) {
+    const row = document.createElement('div');
+    row.className = "row";
+    board.appendChild(row);
 
-    if (i % 20 == 1) {
-        cell.innerHTML = svgStarString;
-    } else {
-        cell.innerHTML = svgString;
+    for (var j = 0; j < 16; j++) {
+        const cell = document.createElement('div');
+        cell.className = "cell";
+        cell.setAttribute('id', i * 20 + j);
+
+        row.appendChild(cell);
+
+        if (j % 20 == 7) {
+            cell.innerHTML = svgStarString;
+        } else {
+            cell.innerHTML = svgString;
+        }
+
+        cell.addEventListener('click', bubblePopFunction, false);
     }
-
-    cell.addEventListener('click', bubblePopFunction, false);
 }
