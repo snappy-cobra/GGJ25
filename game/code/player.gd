@@ -7,6 +7,8 @@ class Team:
 	func _init(id: String, color: Color):
 		self.id = id
 		self.color = color
+	func view_json() -> Dictionary:
+		return {"id": id, "color": color.to_html(false), "score": 0}
 
 const player_scene = preload("res://scenes/player.tscn")
 var id: String
