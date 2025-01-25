@@ -54,7 +54,7 @@ func get_score_for(base_taps: int) -> int:
 	return base_taps * base_taps
 		
 func add_score(value: int, teamId: String) -> void:
-	scores[teamId] = scores[teamId] + value
+	scores[teamId] = scores.get(teamId, 0) + value
 	print("Added score for team " + teamId + "; new score = " + str(scores[teamId]))
 	
 
