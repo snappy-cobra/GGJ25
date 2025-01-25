@@ -35,8 +35,8 @@ html, body {
 }
 
 .screen .board {
-    width: calc(25vw * 100 + 12.5vw);
-    height: calc((25vw - 5vw) * 50);
+    width: calc(25vw * 50 + 12.5vw);
+    height: calc((25vw - 5vw) * 25);
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */ 
     /* display: grid;

@@ -89,7 +89,8 @@ channel.join()
 
 channel.on("game_state", resp => {console.log("state", resp)}) 
 
-var SIZE = 100; 
+var WIDTH = 50; 
+var HEIGHT = 25;
 
 
 var bubblePopFunction = function() {
@@ -104,8 +105,8 @@ var bubblePopFunction = function() {
 
     // get the XY of this div
     var index = this.getAttribute("id");
-    var index_x = index % SIZE;
-    var index_y = Math.floor(index / SIZE);
+    var index_x = index % WIDTH;
+    var index_y = Math.floor(index / WIDTH);
 
     console.log("POP " + index + " ("+index_x+","+index_y+")")
     channel.push("pop", {x: index_x, y: index_y});
@@ -140,15 +141,15 @@ const svgStarString = `
 `;
 
 
-for (var y = 0; y < 50; y++) {
+for (var y = 0; y < HEIGHT; y++) {
     const row = document.createElement('div');
     row.className = "row";
     board.appendChild(row);
 
-    for (var x = 0; x < SIZE; x++) {
+    for (var x = 0; x < WIDTH; x++) {
         const cell = document.createElement('div');
         cell.className = "cell";
-        cell.setAttribute('id', y * SIZE + x);
+        cell.setAttribute('id', y * WIDTH + x);
 
         row.appendChild(cell);
 

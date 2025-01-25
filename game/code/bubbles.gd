@@ -7,7 +7,7 @@ const bubbles_scene = preload("res://scenes/bubbles.tscn")
 
 static func create() -> Bubbles:
 	var bubbles: Bubbles = bubbles_scene.instantiate()
-	bubbles.setup_grid(Vector2i(100, 50))
+	bubbles.setup_grid(Vector2i(50, 25))
 	return bubbles
 
 func setup_grid(size: Vector2i) -> void:
