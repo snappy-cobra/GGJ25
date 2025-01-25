@@ -45,10 +45,10 @@ func _ready() -> void:
 
 func send_game_state(state: Dictionary) -> void:
 	#print(state)
-	print("sending game state", state)
+	print("sending game state")
 	var res = channel.push("game_state", state)
-	#print("after push")
-	#print(res)
+	print("after push")
+	print(res)
 
 #
 # Socket events
