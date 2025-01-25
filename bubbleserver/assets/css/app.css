@@ -121,7 +121,7 @@ html, body {
 }
 
 .cell.popped::before {
-  content: "x";
+  content: "";
   background-color: auto;
   /* width: 10vw;
   height: 5vh; */

@@ -85,7 +85,7 @@ func _process(_delta):
 			_last_close_reason = {
 				message = "WebSocket closed with code: %d, reason %s. Clean: %s" % [code, reason, code != -1]
 			}
-			print(_last_close_reason)
+			# print(_last_close_reason)
 
 			_on_socket_closed()
 			is_connected = false
@@ -194,7 +194,7 @@ func push(message : PhoenixMessage):
 	
 	if can_push(dict.event):	
 		var _error = _socket.send_text(str)		
-		print(_error)
+		# print(_error)
 		
 func make_ref() -> String:
 	_ref = _ref + 1

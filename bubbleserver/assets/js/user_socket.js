@@ -94,8 +94,8 @@ channel.join()
   .receive("ok", player_id => { 
     console.log("Joined successfully, player_id set:", player_id) 
     my_player_id = player_id;
-    my_team = player_id % 2;
-    displayTeam();
+    // my_team = null;//player_id % 2;
+    // displayTeam();
   })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
@@ -105,6 +105,10 @@ channel.on("game_state", resp => {
     // WIDTH = resp.bubbles.size[0]
     // HEIGHT = resp.bubbles.size[1]
     let bubbles = resp.bubbles.bubbles;
+    if (resp.players[my_player_id].team !== my_team) {
+        my_team = resp.players[my_player_id].team;
+        displayTeam();
+    }
     if (state === null || WIDTH !== resp.bubbles.size[0] || HEIGHT  !== resp.bubbles.size[1] || resp.reset) {
         WIDTH = resp.bubbles.size[0];
         HEIGHT = resp.bubbles.size[1];
@@ -139,7 +143,7 @@ var redrawBubble = function(cell, bubbleState) {
       // If greater than zero, that is the remaining count
       // and index 1 is something else (score popping this gives you?)
       cell.innerText = bubbleState[0]
-      cell.dataset.tapsLeft = bubbleState[1]
+      cell.dataset.tapsLeft = bubbleState[0]
     } else {
       // Index 1 is the team
       cell.dataset.team = bubbleState[1]
@@ -166,10 +170,10 @@ var bubblePopFunction = function() {
     }
 
     if(+this.dataset.tapsLeft > 1) {
-      // Play tap sound
+      console.log(this.dataset.tapsLeft)
+      playTabSound(); // Play tap sound
     } else {
-      // Play pop sound
-      playPopSound();
+      playPopSound(); // Play pop sound
     }
 
     // get the XY of this div
@@ -192,9 +196,17 @@ var bubblePopFunction = function() {
     }
 };
 
+var playTabSound = function() {
+    sounds = ['/sounds/tap1loud.mp3', '/sounds/tap2loud.mp3', '/sounds/tap3loud.mp3', '/sounds/tap4loud.mp3', '/sounds/tap5loud.mp3']
+    playRandomSound(sounds)
+}
+
 var playPopSound = function() {
-    // Sound
     sounds = ['/sounds/pop.mp3', '/sounds/pop1.mp3', '/sounds/pop2.mp3', '/sounds/pop3.mp3']
+    playRandomSound(sounds)
+}
+
+var playRandomSound = function(sounds) {
     const random = Math.floor(Math.random() * sounds.length);
 
     var sound = new Howl({
@@ -278,8 +290,9 @@ function buildBoard(state) {
 }
 
 function displayTeam() {
-  let teambar = document.getElementById("teambar")
-  teambar.dataset.team = my_team;
+    let teambar = document.getElementById("teambar")
+    teambar.dataset.team = my_team;
+    console.log("setting team", my_team)
 }
 
 buildBoard(state)

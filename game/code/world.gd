@@ -93,7 +93,8 @@ func game_state_json() -> Dictionary:
 		return {
 			"state": "running",
 			"bubbles": bubbles.view_json(),
-			 "teams": $Players.teams.map(func(team): return team.view_json())
+			"teams": $Players.teams.map(func(team): return team.view_json()),
+			"players": $Players.view_json()
 		}
 	else:
 		assert(false)
