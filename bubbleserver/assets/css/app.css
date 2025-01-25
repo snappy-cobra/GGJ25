@@ -77,6 +77,13 @@ html, body {
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("/images/bubble1.png");
+
+    text-align: center;
+    vertical-align: bottom;
+    line-height: 20vw;
+    font-size: 10vw;
+    font-family: sans-serif;
+    color: rgba(0,0,0,0.5);
 }
 
 .cell[data-bubble-pic="0"] {
