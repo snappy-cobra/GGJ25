@@ -94,8 +94,8 @@ channel.join()
   .receive("ok", player_id => { 
     console.log("Joined successfully, player_id set:", player_id) 
     my_player_id = player_id;
-    my_team = player_id % 2;
-    displayTeam();
+    // my_team = null;//player_id % 2;
+    // displayTeam();
   })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
@@ -105,6 +105,10 @@ channel.on("game_state", resp => {
     // WIDTH = resp.bubbles.size[0]
     // HEIGHT = resp.bubbles.size[1]
     let bubbles = resp.bubbles.bubbles;
+    if (resp.players[my_player_id].team !== my_team) {
+        my_team = resp.players[my_player_id].team;
+        displayTeam();
+    }
     if (state === null || WIDTH !== resp.bubbles.size[0] || HEIGHT  !== resp.bubbles.size[1] || resp.reset) {
         WIDTH = resp.bubbles.size[0];
         HEIGHT = resp.bubbles.size[1];
@@ -286,8 +290,9 @@ function buildBoard(state) {
 }
 
 function displayTeam() {
-  let teambar = document.getElementById("teambar")
-  teambar.dataset.team = my_team;
+    let teambar = document.getElementById("teambar")
+    teambar.dataset.team = my_team;
+    console.log("setting team", my_team)
 }
 
 buildBoard(state)
