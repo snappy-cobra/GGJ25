@@ -10,8 +10,8 @@
 radius = 32.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_6p2hi"]
-font_size = 30
-font_color = Color(0, 0, 0, 1)
+font_size = 36
+font_color = Color(0, 0, 0, 0.627451)
 
 [node name="Bubble" type="Node2D"]
 scale = Vector2(0.5, 0.5)
@@ -32,11 +32,13 @@ texture = ExtResource("2_bruxq")
 
 [node name="PopLabel" type="Label" parent="Unpopped2"]
 unique_name_in_owner = true
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 24.0
-offset_bottom = 10.0
+offset_left = -20.0
+offset_top = -24.0
+offset_right = 20.0
+offset_bottom = 18.0
 label_settings = SubResource("LabelSettings_6p2hi")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Popped2" type="Sprite2D" parent="."]
 visible = false
