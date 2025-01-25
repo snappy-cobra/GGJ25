@@ -78,28 +78,10 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "TEAM [1]"
 
-[node name="T1_P1" type="Label" parent="Lobby/Team1"]
+[node name="T1_P" type="Label" parent="Lobby/Team1"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "< SLOT >"
-horizontal_alignment = 1
-
-[node name="T1_P2" type="Label" parent="Lobby/Team1"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "< SLOT >"
-horizontal_alignment = 1
-
-[node name="T1_P3" type="Label" parent="Lobby/Team1"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "< SLOT >"
-horizontal_alignment = 1
-
-[node name="T1_P4" type="Label" parent="Lobby/Team1"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "< SLOT >"
+text = "PLAYER COUNT:"
 horizontal_alignment = 1
 
 [node name="Team2" type="VFlowContainer" parent="Lobby"]
@@ -115,28 +97,10 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "TEAM [2]"
 
-[node name="T2_P1" type="Label" parent="Lobby/Team2"]
+[node name="T2_P" type="Label" parent="Lobby/Team2"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "< SLOT >"
-horizontal_alignment = 1
-
-[node name="T2_P2" type="Label" parent="Lobby/Team2"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "< SLOT >"
-horizontal_alignment = 1
-
-[node name="T3_P3" type="Label" parent="Lobby/Team2"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "< SLOT >"
-horizontal_alignment = 1
-
-[node name="T4_P4" type="Label" parent="Lobby/Team2"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "< SLOT >"
+text = "PLAYER COUNT:"
 horizontal_alignment = 1
 
 [connection signal="start" from="." to="TimerBar" method="_on_world_start"]
