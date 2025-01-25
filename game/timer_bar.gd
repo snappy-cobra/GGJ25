@@ -5,7 +5,7 @@ extends Control
 signal game_over()
 
 var round_time: float = 0 
-var round_limit: float = 10 
+var round_limit: float = 4 
 var window_size = DisplayServer.window_get_size()
 var is_tweening = false
 var tween:Tween
@@ -28,7 +28,6 @@ func _tween(factor: float) -> void:
 	else:
 		tween.set_speed_scale((factor - 0.7) * 80.0)
 		
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
 	round_time += delta * 2
@@ -48,3 +47,10 @@ func _process(delta: float) -> void:
 	var x = floor((window_size.x - rect.get_size().x)/2)
 	rect.set_position(Vector2(x, 0))
 	pass
+
+
+func _on_world_start() -> void:
+	print("Restarted timer")
+	set_process(true)
+	round_time = 0
+	pass # Replace with function body.

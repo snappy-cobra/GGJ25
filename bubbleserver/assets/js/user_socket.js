@@ -125,10 +125,14 @@ channel.on("game_state", resp => {
 var bubblePopFunction = function() {
     
     // Sound
+    sounds = ['/sounds/pop.mp3', '/sounds/pop1.mp3', '/sounds/pop2.mp3', '/sounds/pop3.mp3']
+    const random = Math.floor(Math.random() * sounds.length);
+
     var sound = new Howl({
-        src: ['/sounds/pop.mp3']
+        src: sounds[random]
     });
-    sound.seek(0.21);
+    sound.rate = 1 + (Math.random() - 0.5)
+    sound.volume(Math.random() * 0.4 + 0.6)
       
     sound.play();
 
