@@ -7,9 +7,12 @@ let channel = socket.channel("godot", {})
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
-  .receive("gamestate", resp => { console.log("gamestate", resp) })
+  .receive("godot", resp => { console.log("godot", resp) })
+  .receive("game_state", resp => { console.log("gamestate", resp) })
 
-var SIZE = 16; 
+channel.on("game_state", resp => {console.log("state", resp)}) 
+
+var SIZE = 100; 
 
 
 var bubblePopFunction = function() {
@@ -64,10 +67,10 @@ for (var y = 0; y < 50; y++) {
     row.className = "row";
     board.appendChild(row);
 
-    for (var x = 0; x < 100; x++) {
+    for (var x = 0; x < SIZE; x++) {
         const cell = document.createElement('div');
         cell.className = "cell";
-        cell.setAttribute('id', y * 100 + x);
+        cell.setAttribute('id', y * SIZE + x);
 
         row.appendChild(cell);
 
