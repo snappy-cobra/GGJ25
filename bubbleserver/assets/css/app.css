@@ -86,6 +86,13 @@ html, body {
     color: rgba(0,0,0,0.5);
 
     transition-duration: 0.1s;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .cell[data-bubble-pic="0"] {
