@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://clcyvn2gf0kae"]
+[gd_scene load_steps=4 format=3 uid="uid://clcyvn2gf0kae"]
 
 [ext_resource type="Script" path="res://timer_bar.gd" id="1_g56el"]
 [ext_resource type="Script" path="res://scenes/color_rect.gd" id="2_xupyw"]
+[ext_resource type="Texture2D" uid="uid://bjoy37i4c25he" path="res://img/BAR.png" id="3_2bqyv"]
 
 [node name="TimerBar" type="Control"]
 layout_mode = 3
@@ -13,7 +14,17 @@ grow_vertical = 2
 script = ExtResource("1_g56el")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_xupyw")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -99.0
+offset_right = 109.0
+offset_bottom = 53.0
+scale = Vector2(5, 0.7)
+texture_progress = ExtResource("3_2bqyv")

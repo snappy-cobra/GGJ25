@@ -5,7 +5,7 @@ extends Control
 signal game_over()
 
 var round_time: float = 0 
-var round_limit: float = 60
+var round_limit: float = 6
 var window_size = DisplayServer.window_get_size()
 var is_tweening = false
 var tween:Tween
@@ -13,7 +13,7 @@ var tween:Tween
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	window_size = get_viewport_rect().size
-	rect.set_size(Vector2(window_size.x, 50))
+	# rect.set_size(Vector2(window_size.x, 50)) replaced
 	rotation = 0;
 	var tween = create_tween()
 	
@@ -39,16 +39,22 @@ func _process(delta: float) -> void:
 		%BG2.hide()
 		set_process(false)
 		return
-	var factor_remaining:float = (round_limit-round_time) / 100
+	var factor_remaining:float =  1-round_time/round_limit
 	
 	_tween(lerp(1, 0, factor_remaining))
 	
 	# ends with 0 width
-	rect.set_size(Vector2(floor(window_size.x * factor_remaining), 50))
-	
+	rect.set_size(Vector2(floor(window_size.x * factor_remaining), 30))
+	var r = lerp(1, 0, factor_remaining*factor_remaining)
+	%TextureProgressBar.value =  factor_remaining*100
+	rect.color.r = r
+	rect.color.b = lerp(0, 1, factor_remaining*factor_remaining)
+	rect.color.g = lerp(0.3, 0.1, factor_remaining*factor_remaining)
+	%TextureProgressBar.tint_progress = rect.color
 	# ends in the center
 	var x = floor((window_size.x - rect.get_size().x)/2)
 	rect.set_position(Vector2(x, 0))
+	%TextureProgressBar.set_position(Vector2(x, 0))
 	pass
 
 
