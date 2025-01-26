@@ -31,6 +31,8 @@ static func create(pos: Vector2i, taps_required: int, img_idx: int) -> Bubble:
 
 	
 func setup(taps_required: int):
+	%plastic.flip_h = rand.randf() > 0.5
+	%plastic.flip_v = rand.randf() > 0.5
 	taps_max = taps_required
 	value = taps_required
 	update_taps()
@@ -45,16 +47,23 @@ func tap(player: Player) -> void:
 			get_tree().get_root().get_node("World").send_gamestate()
 		update_taps()
 	
+var rand = RandomNumberGenerator.new()
 
 func pop(player: Player) -> void:
 	popped_by = player.team
 	$Unpopped2.hide()
 	$Popped2.modulate = player.team.color
+	print($Popped2.skew)
+	$Popped2.skew = rand.randi_range(0, 0.5)
 	taps = taps_max
 	$Popped2.show()
 	
 	if score() > 1:
 		$Explosion.emitting = true
+		$Explosion.explosiveness =  (10 - score())/2
+		var s = sqrt(score())/2
+		$Explosion.process_material.scale.x = s
+		$Explosion.process_material.scale.y = s
 	else:
 		$SmallPopParticles.emitting = true
 	
@@ -63,6 +72,9 @@ func pop(player: Player) -> void:
 	
 func score() -> int:
 	return taps_max
+
+func is_bomb() -> bool:
+	return score() > 1
 
 func taps_left() -> int:
 	return max(taps_max - taps, 0)

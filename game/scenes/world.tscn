@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=21 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
@@ -10,11 +10,19 @@
 [ext_resource type="Texture2D" uid="uid://dplhcm3ytv2yl" path="res://img/orb endurance.png" id="6_eve1c"]
 [ext_resource type="Texture2D" uid="uid://blbbnsgu1s16g" path="res://img/Screenshot 2025-01-25 225121.png" id="6_npd85"]
 [ext_resource type="Texture2D" uid="uid://d3maxc8fxgb70" path="res://img/Screenshot 2025-01-25 224948.png" id="7_4qsxy"]
+[ext_resource type="Texture2D" uid="uid://bnbk1dimnd7s4" path="res://img/haunted-horror-castle-black-scary-palace-witch-s-house-red-crimson-skies-castle-halloween-cliff-hand-drawn-haunted-159376301.webp" id="7_lxpql"]
 [ext_resource type="Script" path="res://code/dev_helper.gd" id="7_m4s82"]
 [ext_resource type="FontFile" uid="uid://cmc58dr5cmjgp" path="res://fonts/Candy_Pop!-demo-font.ttf" id="8_c5qqb"]
 [ext_resource type="Texture2D" uid="uid://ce1nest7fcc8y" path="res://img/INK BLOTCH.png" id="8_o5gr0"]
 [ext_resource type="FontFile" uid="uid://cqtsp2p2bxoaf" path="res://fonts/Dracula.ttf" id="9_6nak5"]
 [ext_resource type="FontFile" uid="uid://cufkrtysb5or2" path="res://fonts/POWER_UP.otf" id="9_07ng1"]
+[ext_resource type="Texture2D" path="res://img/texture.png" id="16_aapw6"]
+[ext_resource type="Texture2D" uid="uid://chexk62bjkxgn" path="res://img/istockphoto-1248542684-612x612.jpg" id="17_yy340"]
+
+[sub_resource type="Environment" id="Environment_2gik5"]
+background_mode = 3
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o430l"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_le5jl")
@@ -27,7 +35,6 @@ unique_name_in_owner = true
 script = ExtResource("2_qriy4")
 
 [node name="TimerBar" parent="." instance=ExtResource("4_j3cyd")]
-modulate = Color(0.43038, 0.739638, 3.85046e-07, 1)
 z_index = 2
 metadata/_edit_use_anchors_ = true
 
@@ -37,17 +44,11 @@ script = ExtResource("5_7s8de")
 
 [node name="Timer" type="Timer" parent="GameLogic"]
 unique_name_in_owner = true
-wait_time = 2.33
+wait_time = 2.683
 one_shot = true
 
 [node name="Heartbeat" type="Timer" parent="."]
 autostart = true
-
-[node name="QR" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0.117647, 0.14902, 1)
-position = Vector2(525.333, 600)
-scale = Vector2(0.311239, 0.311239)
-texture = ExtResource("6_2p6ge")
 
 [node name="Lobby" type="Control" parent="."]
 unique_name_in_owner = true
@@ -55,17 +56,23 @@ visible = false
 layout_mode = 3
 anchors_preset = 0
 
+[node name="BG" type="Sprite2D" parent="Lobby"]
+position = Vector2(565.5, 402.5)
+scale = Vector2(1.91652, 0.878889)
+texture = ExtResource("7_lxpql")
+
 [node name="orb" type="Sprite2D" parent="Lobby"]
+visible = false
 position = Vector2(297.889, 137.78)
 rotation = 0.972148
 scale = Vector2(2.3771, 2.80652)
 texture = ExtResource("6_eve1c")
 
 [node name="Blotch4" type="Sprite2D" parent="Lobby"]
-position = Vector2(966.273, 561.114)
-rotation = -0.144862
-scale = Vector2(0.766707, 0.296989)
-skew = -0.0838647
+position = Vector2(956.104, 560.601)
+rotation = -0.020944
+scale = Vector2(0.848084, 0.296989)
+skew = -0.514872
 texture = ExtResource("8_o5gr0")
 
 [node name="Blotch5" type="Sprite2D" parent="Lobby"]
@@ -92,18 +99,18 @@ scale = Vector2(0.507309, 0.594652)
 texture = ExtResource("7_4qsxy")
 
 [node name="Blotch" type="Sprite2D" parent="Lobby"]
-position = Vector2(585, 293)
+position = Vector2(578, 361)
 rotation = 1.5708
-scale = Vector2(1, 1.66625)
+scale = Vector2(0.740333, 1.66625)
 skew = -0.0645772
 texture = ExtResource("8_o5gr0")
 
 [node name="LOGO 1" type="Label" parent="Lobby"]
 layout_mode = 0
-offset_left = 438.0
-offset_top = 158.0
-offset_right = 760.0
-offset_bottom = 232.0
+offset_left = 443.0
+offset_top = 81.0
+offset_right = 765.0
+offset_bottom = 184.0
 theme_override_colors/font_color = Color(0.301961, 0, 0.580392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -113,16 +120,16 @@ text = "† Bubblevania †"
 
 [node name="LOGO 2" type="Label" parent="Lobby"]
 layout_mode = 0
-offset_left = 212.0
-offset_top = 234.0
-offset_right = 964.0
-offset_bottom = 337.0
+offset_left = 214.0
+offset_top = 277.0
+offset_right = 983.0
+offset_bottom = 380.0
 theme_override_colors/font_color = Color(0.678431, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("8_c5qqb")
 theme_override_font_sizes/font_size = 65
-text = "•>•>•>  Frenzy <•<•<•"
+text = "•>•>•>  Popfest <•<•<•"
 horizontal_alignment = 1
 
 [node name="ScoreView" type="Control" parent="Lobby"]
@@ -182,8 +189,44 @@ theme_override_fonts/font = ExtResource("9_07ng1")
 text = "PLAYER COUNT:"
 horizontal_alignment = 1
 
+[node name="QR" type="Sprite2D" parent="Lobby"]
+self_modulate = Color(1, 0.117647, 0.14902, 1)
+position = Vector2(579, 596)
+scale = Vector2(0.311239, 0.311239)
+texture = ExtResource("6_2p6ge")
+
 [node name="DevHelper" type="Node" parent="."]
 script = ExtResource("7_m4s82")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2gik5")
+
+[node name="BG2" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.517647)
+position = Vector2(691.277, 244.5)
+scale = Vector2(2.25073, 1.99265)
+texture = ExtResource("17_yy340")
+
+[node name="QR" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.117647, 0.14902, 1)
+position = Vector2(536, 596)
+scale = Vector2(0.311239, 0.311239)
+texture = ExtResource("6_2p6ge")
+
+[node name="texture_bg" type="TextureRect" parent="."]
+visible = false
+texture_repeat = 2
+material = SubResource("CanvasItemMaterial_o430l")
+offset_left = 366.0
+offset_top = 164.0
+offset_right = 933.0
+offset_bottom = 730.0
+scale = Vector2(0.473498, 0.473498)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 9.0
+texture = ExtResource("16_aapw6")
 
 [connection signal="start" from="." to="TimerBar" method="_on_world_start"]
 [connection signal="start" from="." to="GameLogic" method="_on_world_start"]
