@@ -57,8 +57,8 @@ void fragment() {
 	
 	index += noise(UV * 2.0 + vec2(time * 0.2));
 	
-	vec3 color_a = LOOKUP[(int(index)) % SIZE];
-	vec3 color_b = LOOKUP[(int(index + 1.0)) % SIZE];
+	vec3 color_a = LOOKUP[(int)(mod(index, (float)SIZE))];
+	vec3 color_b = LOOKUP[(int)(mod((index + 1.0), (float)SIZE))];
 	
 	float mixing_value = fract(index);
 	COLOR = vec4(mix(color_a, color_b, mixing_value), 1);	
