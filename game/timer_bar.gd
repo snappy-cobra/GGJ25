@@ -4,8 +4,8 @@ extends Control
 
 signal game_over()
 
-var round_time: float = 0 
-var round_limit: float = 60
+var round_time: float = 0
+var round_limit: float = 143 # Length of the hall of the mountain king song, 2:33
 var window_size = DisplayServer.window_get_size()
 var is_tweening = false
 var tween:Tween
@@ -16,6 +16,7 @@ func _ready() -> void:
 	# rect.set_size(Vector2(window_size.x, 50)) replaced
 	rotation = 0;
 	var tween = create_tween()
+	
 	
 	pass # Replace with function body.
 
