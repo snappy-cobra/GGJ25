@@ -9,8 +9,8 @@ func get_score_for(base_taps: int) -> int:
 	return base_taps * base_taps
 		
 func add_score(value: int, teamId: int) -> void:
-	scores[teamId] = scores.get(teamId, 0) + value
-	#print("Added score for team " + str(teamId) + "; new score = " + str(scores[teamId]))
+	scores[teamId] = scores.get(teamId, 0) + round(get_score_for(value)*0.5)
+	print("Added score for team " + str(teamId) + "; new score = " + str(scores[teamId]))
 
 func _on_timer_bar_game_over() -> void:
 	state_setter.call(true)
