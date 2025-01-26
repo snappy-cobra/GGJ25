@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=24 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ce1nest7fcc8y" path="res://img/INK BLOTCH.png" id="8_o5gr0"]
 [ext_resource type="FontFile" uid="uid://cqtsp2p2bxoaf" path="res://fonts/Dracula.ttf" id="9_6nak5"]
 [ext_resource type="FontFile" uid="uid://cufkrtysb5or2" path="res://fonts/POWER_UP.otf" id="9_07ng1"]
-[ext_resource type="Texture2D" uid="uid://dimuym4vfb4t7" path="res://img/Gothic Text Effect Featuring Bubblevania With Colorful Bubbles.png" id="10_wkvxb"]
+[ext_resource type="Texture2D" uid="uid://4ji887toumt6" path="res://img/bubblevania.png" id="17_xnd0v"]
 [ext_resource type="Texture2D" uid="uid://chexk62bjkxgn" path="res://img/istockphoto-1248542684-612x612.jpg" id="17_yy340"]
 [ext_resource type="PackedScene" uid="uid://dniwv5fqicbgc" path="res://scenes/shader_test.tscn" id="19_8yu73"]
 [ext_resource type="Script" path="res://code/audio.gd" id="19_ljb4u"]
@@ -25,13 +25,16 @@
 [sub_resource type="Environment" id="Environment_2gik5"]
 background_mode = 3
 
+[sub_resource type="LabelSettings" id="LabelSettings_4fvg5"]
+font_size = 70
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_le5jl")
 
 [node name="PhoenixInput" type="Node" parent="."]
 script = ExtResource("3_6kcq6")
 
-[node name="Players" type="Node" parent="."]
+[node name="Players" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_qriy4")
 
@@ -59,6 +62,7 @@ environment = SubResource("Environment_2gik5")
 
 [node name="BG2" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 modulate = Color(1, 1, 1, 0.517647)
 position = Vector2(1276, 51)
 scale = Vector2(0.143678, 0.161459)
@@ -75,6 +79,15 @@ position = Vector2(20, -49)
 position = Vector2(1097, 57)
 scale = Vector2(0.309942, 0.311239)
 texture = ExtResource("6_2p6ge")
+
+[node name="Label" type="Label" parent="QR"]
+offset_left = -880.81
+offset_top = -96.3889
+offset_right = -122.81
+offset_bottom = 116.611
+text = "                       JOIN US:
+bubbleserver.fly.dev"
+label_settings = SubResource("LabelSettings_4fvg5")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 462.0
@@ -133,11 +146,13 @@ scale = Vector2(0.507309, 0.594652)
 texture = ExtResource("7_4qsxy")
 
 [node name="BG3" type="Sprite2D" parent="Lobby"]
-position = Vector2(566, 205)
-scale = Vector2(0.785484, 0.765951)
-texture = ExtResource("10_wkvxb")
+z_index = 300
+position = Vector2(601, 179)
+scale = Vector2(0.456219, 0.435059)
+texture = ExtResource("17_xnd0v")
 
 [node name="Blotch" type="Sprite2D" parent="Lobby"]
+visible = false
 position = Vector2(555, 429)
 rotation = 1.43117
 scale = Vector2(0.740333, 1.66625)
@@ -145,6 +160,7 @@ skew = -0.0645772
 texture = ExtResource("8_o5gr0")
 
 [node name="LOGO 2" type="Label" parent="Lobby"]
+visible = false
 layout_mode = 2
 offset_left = 214.0
 offset_top = 404.0
@@ -160,6 +176,7 @@ text = "•>•>•>                <•<•<•"
 horizontal_alignment = 1
 
 [node name="Node2D" type="Container" parent="Lobby"]
+visible = false
 layout_mode = 0
 offset_left = -77.03
 offset_top = 78.34
@@ -178,30 +195,33 @@ theme_override_font_sizes/font_size = 76
 text = "† Bubblevania †"
 
 [node name="BG2" type="Sprite2D" parent="Lobby/Node2D"]
+z_index = 2
 position = Vector2(628.614, 399.029)
 scale = Vector2(0.321615, 0.321615)
 texture = ExtResource("20_o851r")
 
 [node name="ScoreView" type="Control" parent="Lobby"]
+z_index = 1000
 layout_mode = 3
 anchors_preset = 0
 
 [node name="ScoreText" type="Label" parent="Lobby/ScoreView"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 381.0
-offset_top = 8.0
-offset_right = 871.0
-offset_bottom = 85.0
-theme_override_colors/font_color = Color(0, 0.942823, 0.959759, 1)
+offset_left = 176.0
+offset_top = 312.0
+offset_right = 1006.0
+offset_bottom = 389.0
+theme_override_colors/font_color = Color(1, 0.941176, 0.960784, 1)
 theme_override_fonts/font = ExtResource("9_07ng1")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 64
 text = "TEXT"
 horizontal_alignment = 1
 script = ExtResource("6_0vasn")
 
 [node name="Team1" type="VFlowContainer" parent="Lobby"]
 modulate = Color(0, 1, 1, 1)
+z_index = 2
 layout_mode = 2
 offset_left = 27.0
 offset_top = 517.0
@@ -224,6 +244,7 @@ horizontal_alignment = 1
 
 [node name="Team2" type="VFlowContainer" parent="Lobby"]
 modulate = Color(1, 0.0196078, 0.882353, 1)
+z_index = 2
 layout_mode = 0
 offset_left = 843.0
 offset_top = 527.0

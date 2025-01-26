@@ -53,7 +53,10 @@ func _process(delta: float) -> void:
 	_tween(lerp(1, 0, factor_remaining))
 	
 	# ends with 0 width
-	rect.set_size(Vector2(floor(window_size.x * factor_remaining), 25))
+	var width = floor(window_size.x * factor_remaining)
+	if width < 10:
+		width = 0
+	rect.set_size(Vector2(width, 25))
 	
 	# ends in the center
 	var x = floor((window_size.x - rect.get_size().x)/2)

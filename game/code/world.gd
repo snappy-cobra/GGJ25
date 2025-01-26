@@ -99,7 +99,8 @@ func send_gamestate() -> void:
 func set_state(is_lobby: bool):
 	if is_lobby:
 		state = State.LOBBY
-		bubbles.hide()
+		#bubbles.hide()
+		$Players.hide_players()
 	else:
 		state = State.RUNNING
 		start_game()

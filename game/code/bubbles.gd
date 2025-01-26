@@ -37,7 +37,6 @@ func tap(pos: Vector2i, player: Player) -> void:
 
 
 func pop_effect(pos: Vector2i, player: Player, flood: bool = true) -> void:
-	
 	var bubble: Bubble = bubbles[pos]
 	for neighbour in neighbours(pos):
 		if bubbles.has(neighbour) and !bubbles[neighbour].is_popped():
