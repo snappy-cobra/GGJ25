@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=24 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
@@ -24,6 +24,9 @@
 
 [sub_resource type="Environment" id="Environment_2gik5"]
 background_mode = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_4fvg5"]
+font_size = 70
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_le5jl")
@@ -75,6 +78,15 @@ position = Vector2(20, -49)
 position = Vector2(1097, 57)
 scale = Vector2(0.309942, 0.311239)
 texture = ExtResource("6_2p6ge")
+
+[node name="Label" type="Label" parent="QR"]
+offset_left = -880.81
+offset_top = -96.3889
+offset_right = -122.81
+offset_bottom = 116.611
+text = "                       JOIN US:
+bubbleserver.fly.dev"
+label_settings = SubResource("LabelSettings_4fvg5")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 462.0
