@@ -31,7 +31,7 @@ func _tween(factor: float) -> void:
 		
 func _process(delta: float) -> void:
 	
-	round_time += delta * 2
+	round_time += delta
 	if round_time >= round_limit:
 		print("GAME OVER!")
 		game_over.emit()

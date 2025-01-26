@@ -28,10 +28,52 @@ func setup_grid(size: Vector2i) -> void:
 			add_child(bubble)
 
 func tap(pos: Vector2i, player: Player) -> void:
-	prints("pop", pos, player)
+	#prints("pop", pos, player)
 	if bubbles.has(pos):
+		var bubble: Bubble = bubbles[pos]
 		bubbles[pos].tap(player)
+		if bubble.is_popped():
+			for neighbour in neighbours(pos):
+				if bubbles.has(neighbour) and !bubbles[neighbour].is_popped():
+					for surrounded in check_fill(neighbour, player.team):
+						bubbles[surrounded].pop(player)
 
+func check_fill(start: Vector2i, team: Player.Team) -> Array[Vector2i]:
+	var fringe: Array[Vector2i] = [start]
+	var to_fill: Dictionary = {}
+	while fringe.size() > 0:
+		var pos: Vector2i = fringe.pop_back()
+		if to_fill.has(pos):
+			continue
+		if !bubbles.has(pos):
+			return []
+		var bubble: Bubble = bubbles[pos]
+		if bubble.is_popped():
+			if bubble.popped_by == team:
+				continue
+			else:
+				return []
+		
+		to_fill[pos] = true
+		for neighbour: Vector2i in neighbours(pos):
+			fringe.append(neighbour)
+	# hack because generics is bad
+	var r: Array[Vector2i] = []
+	r.append_array(to_fill.keys())
+	return r
+
+func neighbours(pos: Vector2i) -> Array[Vector2i]:
+	var n: Array[Vector2i] = [
+		Vector2i(pos.x+1, pos.y),
+		Vector2i(pos.x-1, pos.y),
+		Vector2i(pos.x, pos.y+1),
+		Vector2i(pos.x, pos.y-1)
+	]
+	if pos.y%2 == 0:
+		n.append_array([Vector2i(pos.x-1, pos.y+1), Vector2i(pos.x-1, pos.y-1)])
+	else:
+		n.append_array([Vector2i(pos.x+1, pos.y+1), Vector2i(pos.x+1, pos.y-1)])
+	return n
 
 func view_json() -> Dictionary:
 	var bubble_data: Array[Array] = []
