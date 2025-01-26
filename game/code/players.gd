@@ -3,7 +3,7 @@ extends Node
 
 var teams: Array[Player.Team] = [
 	Player.Team.new(0, Color.CYAN),
-	Player.Team.new(1, Color.PURPLE)
+	Player.Team.new(1, Color.MAGENTA)
 ]
 var next_team: int = 0
 
