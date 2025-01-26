@@ -296,7 +296,7 @@ function displayTeam() {
     console.log("setting team", my_team)
 }
 
-function debounce(func, timeout = 100){
+function debounce(func, timeout = 30){
   let timer;
   return (...args) => {
     if (!timer) {
