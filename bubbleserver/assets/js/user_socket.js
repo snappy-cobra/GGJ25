@@ -221,7 +221,7 @@ var playRandomSound = function(sounds) {
 
 board = document.getElementById("board");
 
-function buildCell(row, col) {
+function buildCell(row, col, state) {
   const index = row * WIDTH + col;
   const cell = document.createElement('div')
   cell.className = 'cell'
@@ -231,7 +231,7 @@ function buildCell(row, col) {
   cell.dataset.col = col;
   cell.dataset.bubblePic = fibonacciHash(index) >> 15;
   // cell.innerHTML = svgString
-  redrawBubble(cell, [1, 1])
+  redrawBubble(cell, state)
   cell.addEventListener('click', bubblePopFunction, false)
   return cell
 }
@@ -246,7 +246,8 @@ function buildBoard(state) {
     rowElem.className = "row"
 
     for(var col=0; col < WIDTH; ++col) {
-      const cell = buildCell(row, col)
+      let i = col + row * WIDTH;
+      const cell = buildCell(row, col, state[i])
       rowElem.appendChild(cell)
     }
 
