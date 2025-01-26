@@ -16,8 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://ce1nest7fcc8y" path="res://img/INK BLOTCH.png" id="8_o5gr0"]
 [ext_resource type="FontFile" uid="uid://cqtsp2p2bxoaf" path="res://fonts/Dracula.ttf" id="9_6nak5"]
 [ext_resource type="FontFile" uid="uid://cufkrtysb5or2" path="res://fonts/POWER_UP.otf" id="9_07ng1"]
-[ext_resource type="Texture2D" path="res://img/texture.png" id="16_aapw6"]
 [ext_resource type="Texture2D" uid="uid://chexk62bjkxgn" path="res://img/istockphoto-1248542684-612x612.jpg" id="17_yy340"]
+[ext_resource type="Script" path="res://code/audio.gd" id="19_ljb4u"]
 
 [sub_resource type="Environment" id="Environment_2gik5"]
 background_mode = 3
@@ -226,7 +226,10 @@ scale = Vector2(0.473498, 0.473498)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 9.0
-texture = ExtResource("16_aapw6")
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource("19_ljb4u")
 
 [connection signal="start" from="." to="TimerBar" method="_on_world_start"]
 [connection signal="start" from="." to="GameLogic" method="_on_world_start"]

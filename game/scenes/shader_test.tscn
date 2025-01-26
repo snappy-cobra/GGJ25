@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dniwv5fqicbgc"]
+
+[ext_resource type="Material" uid="uid://lpq06pwsmbdq" path="res://code/ShaderTest.tres" id="1_qr6a2"]
+
+[node name="ShaderTest" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource("1_qr6a2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
