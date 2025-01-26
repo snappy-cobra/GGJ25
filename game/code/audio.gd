@@ -7,9 +7,9 @@ var rand_pops: AudioStreamRandomizer = AudioStreamRandomizer.new()
 
 func _ready() -> void:
 	
-	var sound1 = preload("res://sounds/tap1.mp3")
-	var sound2 = preload("res://sounds/tap2.mp3")
-	var sound3 = preload("res://sounds/tap3.mp3") 
+	var sound1 = preload("res://sound/tap1.mp3")
+	var sound2 = preload("res://sound/tap2.mp3")
+	var sound3 = preload("res://sound/tap3.mp3") 
 	
 	rand_pops.add_stream(0, sound1)
 	rand_pops.add_stream(0, sound2)
