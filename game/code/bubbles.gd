@@ -36,24 +36,24 @@ func tap(pos: Vector2i, player: Player) -> void:
 			pop_effect(pos, player)
 
 
-func pop_effect(pos: Vector2i, player: Player) -> void:
+func pop_effect(pos: Vector2i, player: Player, flood: bool = true) -> void:
 	
 	var bubble: Bubble = bubbles[pos]
 	for neighbour in neighbours(pos):
 		if bubbles.has(neighbour) and !bubbles[neighbour].is_popped():
 			if bubble.is_bomb():
 				bubbles[neighbour].pop(player)
-				pop_effect(neighbour, player)
-#				
-			for surrounded in check_fill(neighbour, player.team):
-				bubbles[surrounded].pop(player)
-				pop_effect(surrounded, player)
+				pop_effect(neighbour, player, flood)
+			if flood:
+				for surrounded in check_fill(neighbour, player.team):
+					bubbles[surrounded].pop(player)
+					pop_effect(surrounded, player, false)
 	if bubble.is_hor():
 		for x in range(-2, 3):
 			var n = Vector2i(pos.x + x, pos.y)
 			if bubbles.has(n) and !bubbles[n].is_popped():
 				bubbles[n].pop(player)
-				pop_effect(n, player)
+				pop_effect(n, player, flood)
 
 
 func check_fill(start: Vector2i, team: Player.Team) -> Array[Vector2i]:
