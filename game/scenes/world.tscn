@@ -118,10 +118,10 @@ text = "† Bubblevania †"
 
 [node name="LOGO 2" type="Label" parent="Lobby"]
 layout_mode = 0
-offset_left = 214.0
-offset_top = 277.0
-offset_right = 983.0
-offset_bottom = 380.0
+offset_left = 210.0
+offset_top = 308.0
+offset_right = 979.0
+offset_bottom = 411.0
 theme_override_colors/font_color = Color(0.678431, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -141,6 +141,10 @@ offset_left = 383.0
 offset_top = 15.0
 offset_right = 873.0
 offset_bottom = 92.0
+theme_override_colors/font_color = Color(0, 0.968627, 0.74902, 1)
+theme_override_fonts/font = ExtResource("9_07ng1")
+theme_override_font_sizes/font_size = 25
+text = "TEXT"
 horizontal_alignment = 1
 script = ExtResource("6_0vasn")
 
