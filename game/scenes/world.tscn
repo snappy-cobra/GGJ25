@@ -59,6 +59,7 @@ environment = SubResource("Environment_2gik5")
 
 [node name="BG2" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 modulate = Color(1, 1, 1, 0.517647)
 position = Vector2(1276, 51)
 scale = Vector2(0.143678, 0.161459)
@@ -145,6 +146,7 @@ skew = -0.0645772
 texture = ExtResource("8_o5gr0")
 
 [node name="LOGO 2" type="Label" parent="Lobby"]
+z_index = 2
 layout_mode = 2
 offset_left = 214.0
 offset_top = 404.0
@@ -178,6 +180,7 @@ theme_override_font_sizes/font_size = 76
 text = "† Bubblevania †"
 
 [node name="BG2" type="Sprite2D" parent="Lobby/Node2D"]
+z_index = 2
 position = Vector2(628.614, 399.029)
 scale = Vector2(0.321615, 0.321615)
 texture = ExtResource("20_o851r")
@@ -202,6 +205,7 @@ script = ExtResource("6_0vasn")
 
 [node name="Team1" type="VFlowContainer" parent="Lobby"]
 modulate = Color(0, 1, 1, 1)
+z_index = 2
 layout_mode = 2
 offset_left = 27.0
 offset_top = 517.0
@@ -224,6 +228,7 @@ horizontal_alignment = 1
 
 [node name="Team2" type="VFlowContainer" parent="Lobby"]
 modulate = Color(1, 0.0196078, 0.882353, 1)
+z_index = 2
 layout_mode = 0
 offset_left = 765.0
 offset_top = 537.0
@@ -244,6 +249,7 @@ text = "PLAYER COUNT:"
 horizontal_alignment = 1
 
 [node name="QR" type="Sprite2D" parent="Lobby"]
+visible = false
 position = Vector2(579, 596)
 scale = Vector2(0.311239, 0.311239)
 texture = ExtResource("6_2p6ge")
