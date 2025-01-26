@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=21 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
@@ -17,6 +17,7 @@
 [ext_resource type="FontFile" uid="uid://cqtsp2p2bxoaf" path="res://fonts/Dracula.ttf" id="9_6nak5"]
 [ext_resource type="FontFile" uid="uid://cufkrtysb5or2" path="res://fonts/POWER_UP.otf" id="9_07ng1"]
 [ext_resource type="Texture2D" uid="uid://chexk62bjkxgn" path="res://img/istockphoto-1248542684-612x612.jpg" id="17_yy340"]
+[ext_resource type="PackedScene" uid="uid://dniwv5fqicbgc" path="res://scenes/shader_test.tscn" id="19_8yu73"]
 [ext_resource type="Script" path="res://code/audio.gd" id="19_ljb4u"]
 
 [sub_resource type="Environment" id="Environment_2gik5"]
@@ -50,7 +51,6 @@ autostart = true
 
 [node name="Lobby" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 0
 
@@ -188,7 +188,6 @@ text = "PLAYER COUNT:"
 horizontal_alignment = 1
 
 [node name="QR" type="Sprite2D" parent="Lobby"]
-self_modulate = Color(1, 0.117647, 0.14902, 1)
 position = Vector2(579, 596)
 scale = Vector2(0.311239, 0.311239)
 texture = ExtResource("6_2p6ge")
@@ -202,19 +201,20 @@ environment = SubResource("Environment_2gik5")
 [node name="BG2" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.517647)
-position = Vector2(691.277, 244.5)
-scale = Vector2(2.25073, 1.99265)
+position = Vector2(1276, 51)
+scale = Vector2(0.143678, 0.161459)
 texture = ExtResource("17_yy340")
-
-[node name="QR" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0.117647, 0.14902, 1)
-position = Vector2(536, 596)
-scale = Vector2(0.311239, 0.311239)
-texture = ExtResource("6_2p6ge")
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 script = ExtResource("19_ljb4u")
+
+[node name="QR" type="Sprite2D" parent="."]
+position = Vector2(579, 596)
+scale = Vector2(0.309942, 0.311239)
+texture = ExtResource("6_2p6ge")
+
+[node name="ShaderTest" parent="." instance=ExtResource("19_8yu73")]
 
 [connection signal="start" from="." to="TimerBar" method="_on_world_start"]
 [connection signal="start" from="." to="GameLogic" method="_on_world_start"]
