@@ -5,6 +5,7 @@
 [node name="ShaderTest" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = ExtResource("1_qr6a2")
