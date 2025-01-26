@@ -35,4 +35,4 @@ texture_progress = ExtResource("3_2bqyv")
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_q2gao")
-autoplay = true
+pitch_scale = 2.0
