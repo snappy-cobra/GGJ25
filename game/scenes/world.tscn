@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=23 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ce1nest7fcc8y" path="res://img/INK BLOTCH.png" id="8_o5gr0"]
 [ext_resource type="FontFile" uid="uid://cqtsp2p2bxoaf" path="res://fonts/Dracula.ttf" id="9_6nak5"]
 [ext_resource type="FontFile" uid="uid://cufkrtysb5or2" path="res://fonts/POWER_UP.otf" id="9_07ng1"]
+[ext_resource type="Texture2D" uid="uid://dimuym4vfb4t7" path="res://img/Gothic Text Effect Featuring Bubblevania With Colorful Bubbles.png" id="10_wkvxb"]
 [ext_resource type="Texture2D" uid="uid://chexk62bjkxgn" path="res://img/istockphoto-1248542684-612x612.jpg" id="17_yy340"]
 [ext_resource type="PackedScene" uid="uid://dniwv5fqicbgc" path="res://scenes/shader_test.tscn" id="19_8yu73"]
 [ext_resource type="Script" path="res://code/audio.gd" id="19_ljb4u"]
@@ -85,11 +86,11 @@ expand_mode = 5
 
 [node name="Lobby" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 0
 
 [node name="BG" type="Sprite2D" parent="Lobby"]
+visible = false
 position = Vector2(565.5, 402.5)
 scale = Vector2(1.91652, 0.878889)
 texture = ExtResource("7_lxpql")
@@ -131,19 +132,44 @@ rotation = 0.462512
 scale = Vector2(0.507309, 0.594652)
 texture = ExtResource("7_4qsxy")
 
+[node name="BG3" type="Sprite2D" parent="Lobby"]
+position = Vector2(566, 205)
+scale = Vector2(0.785484, 0.765951)
+texture = ExtResource("10_wkvxb")
+
 [node name="Blotch" type="Sprite2D" parent="Lobby"]
-position = Vector2(578, 361)
-rotation = 1.5708
+position = Vector2(555, 429)
+rotation = 1.43117
 scale = Vector2(0.740333, 1.66625)
 skew = -0.0645772
 texture = ExtResource("8_o5gr0")
 
-[node name="LOGO 1" type="Label" parent="Lobby"]
+[node name="LOGO 2" type="Label" parent="Lobby"]
+layout_mode = 2
+offset_left = 214.0
+offset_top = 404.0
+offset_right = 983.0
+offset_bottom = 507.0
+rotation = -0.20944
+theme_override_colors/font_color = Color(0.913725, 0, 0.701961, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_c5qqb")
+theme_override_font_sizes/font_size = 62
+text = "•>•>•>                <•<•<•"
+horizontal_alignment = 1
+
+[node name="Node2D" type="Container" parent="Lobby"]
 layout_mode = 0
-offset_left = 443.0
-offset_top = 81.0
-offset_right = 765.0
-offset_bottom = 184.0
+offset_left = -77.03
+offset_top = 78.34
+offset_right = 53.97
+offset_bottom = 78.34
+rotation = -0.139626
+
+[node name="LOGO 1" type="Label" parent="Lobby/Node2D"]
+visible = false
+layout_mode = 2
 theme_override_colors/font_color = Color(0.301961, 0, 0.580392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -151,19 +177,10 @@ theme_override_fonts/font = ExtResource("9_6nak5")
 theme_override_font_sizes/font_size = 76
 text = "† Bubblevania †"
 
-[node name="LOGO 2" type="Label" parent="Lobby"]
-layout_mode = 0
-offset_left = 210.0
-offset_top = 308.0
-offset_right = 979.0
-offset_bottom = 411.0
-theme_override_colors/font_color = Color(0.678431, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_c5qqb")
-theme_override_font_sizes/font_size = 65
-text = "•>•>•>  Popfest <•<•<•"
-horizontal_alignment = 1
+[node name="BG2" type="Sprite2D" parent="Lobby/Node2D"]
+position = Vector2(628.614, 399.029)
+scale = Vector2(0.321615, 0.321615)
+texture = ExtResource("20_o851r")
 
 [node name="ScoreView" type="Control" parent="Lobby"]
 layout_mode = 3
@@ -172,11 +189,11 @@ anchors_preset = 0
 [node name="ScoreText" type="Label" parent="Lobby/ScoreView"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 383.0
-offset_top = 15.0
-offset_right = 873.0
-offset_bottom = 92.0
-theme_override_colors/font_color = Color(0, 0.968627, 0.74902, 1)
+offset_left = 381.0
+offset_top = 8.0
+offset_right = 871.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0, 0.942823, 0.959759, 1)
 theme_override_fonts/font = ExtResource("9_07ng1")
 theme_override_font_sizes/font_size = 25
 text = "TEXT"
@@ -184,7 +201,7 @@ horizontal_alignment = 1
 script = ExtResource("6_0vasn")
 
 [node name="Team1" type="VFlowContainer" parent="Lobby"]
-modulate = Color(0.757098, 0, 0.221396, 1)
+modulate = Color(0, 1, 1, 1)
 layout_mode = 2
 offset_left = 27.0
 offset_top = 517.0
@@ -196,7 +213,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_c5qqb")
 theme_override_font_sizes/font_size = 45
-text = "TEAM [1]"
+text = "TEAM CYAN"
 
 [node name="T1_P" type="Label" parent="Lobby/Team1"]
 unique_name_in_owner = true
@@ -206,18 +223,18 @@ text = "PLAYER COUNT:"
 horizontal_alignment = 1
 
 [node name="Team2" type="VFlowContainer" parent="Lobby"]
-modulate = Color(0.538702, 0.0187286, 0.883022, 1)
+modulate = Color(1, 0.0196078, 0.882353, 1)
 layout_mode = 0
-offset_left = 833.0
-offset_top = 526.0
-offset_right = 1175.0
-offset_bottom = 981.0
+offset_left = 765.0
+offset_top = 537.0
+offset_right = 1221.0
+offset_bottom = 992.0
 
 [node name="T2" type="Label" parent="Lobby/Team2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_c5qqb")
-theme_override_font_sizes/font_size = 45
-text = "TEAM [1]"
+theme_override_font_sizes/font_size = 35
+text = "TEAM MAGENTA"
 
 [node name="T2_P" type="Label" parent="Lobby/Team2"]
 unique_name_in_owner = true
