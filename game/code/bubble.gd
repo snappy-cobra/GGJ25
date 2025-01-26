@@ -66,12 +66,13 @@ func pop(player: Player) -> void:
 	$Popped2.show()
 	
 	if is_bomb():
+		#$Explosion.play()
 		$Explosion.emitting = true
-		$Explosion.explosiveness =  (10 - score())/2
-		var s = sqrt(score())/2
-		$Explosion.process_material.scale.x = s
-		$Explosion.process_material.scale.y = s
-		get_tree().get_root().get_node("World").apply_large_shake()
+		#$Explosion.explosiveness = 0# (10 - score())/2
+		#var s = sqrt(score())/2
+		#$Explosion.process_material.scale.x = s
+		#$Explosion.process_material.scale.y = s
+		#get_tree().get_root().get_node("World").apply_large_shake()
 	else:
 		$SmallPopParticles.emitting = true
 		get_tree().get_root().get_node("World").apply_small_shake()
