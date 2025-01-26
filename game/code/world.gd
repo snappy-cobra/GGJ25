@@ -6,9 +6,26 @@ enum State {LOBBY, RUNNING}
 var state: State = State.LOBBY
 var bubbles: Bubbles
 
+
+# The starting range of possible offsets using random values
+var RANDOM_SHAKE_STRENGTH: float = 30.0
+# Multiplier for lerping the shake strength to zero
+var SHAKE_DECAY_RATE: float = 5.0
+var rand = RandomNumberGenerator.new()
+
+var shake_strength: float = 0.0
+
 func _ready() -> void:
 	#reset_lobby()
+	rand.randomize()
 	start_game()
+
+
+func apply_large_shake() -> void:
+	shake_strength += 20.0
+	
+func apply_small_shake() -> void:
+	shake_strength += 1.0
 
 func reset_lobby() -> void:
 	%ScoreView.text = "No games have been played yet..."
@@ -104,3 +121,13 @@ func game_state_json() -> Dictionary:
 
 func _on_heartbeat_timeout() -> void:
 	send_gamestate()
+
+func _process(delta: float) -> void:
+	shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
+	position = get_random_offset()
+
+func get_random_offset() -> Vector2:
+	return Vector2(
+		rand.randf_range(-shake_strength, shake_strength),
+		rand.randf_range(-shake_strength, shake_strength)
+	)
