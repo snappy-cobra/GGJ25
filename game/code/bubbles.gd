@@ -33,10 +33,20 @@ func tap(pos: Vector2i, player: Player) -> void:
 		var bubble: Bubble = bubbles[pos]
 		bubbles[pos].tap(player)
 		if bubble.is_popped():
-			for neighbour in neighbours(pos):
-				if bubbles.has(neighbour) and !bubbles[neighbour].is_popped():
-					for surrounded in check_fill(neighbour, player.team):
-						bubbles[surrounded].pop(player)
+			pop_effect(pos, player)
+
+func pop_effect(pos: Vector2i, player: Player) -> void:
+	var bubble: Bubble = bubbles[pos]
+	for neighbour in neighbours(pos):
+		if bubbles.has(neighbour) and !bubbles[neighbour].is_popped():
+			if bubble.is_bomb():
+				bubbles[neighbour].pop(player)
+				pop_effect(neighbour, player)
+			for surrounded in check_fill(neighbour, player.team):
+				bubbles[surrounded].pop(player)
+				bubbles[surrounded].pop_effect(pos, player)
+		#for nei
+
 
 func check_fill(start: Vector2i, team: Player.Team) -> Array[Vector2i]:
 	var fringe: Array[Vector2i] = [start]
