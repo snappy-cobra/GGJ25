@@ -50,9 +50,9 @@ func tap(player: Player) -> void:
 		taps += 1
 		if taps >= taps_max:
 			pop(player)
-		else:
-			get_tree().get_root().get_node("World").send_gamestate()
 		update_taps()
+		
+		get_tree().get_root().get_node("World").send_gamestate()
 	
 var rand = RandomNumberGenerator.new()
 
@@ -77,7 +77,6 @@ func pop(player: Player) -> void:
 		get_tree().get_root().get_node("World").apply_small_shake()
 	get_tree().get_root().get_node("World").get_node("Audio").pop(score())
 	get_tree().get_root().get_node("World").get_node("GameLogic").add_score(score(), player.team.id)
-	get_tree().get_root().get_node("World").send_gamestate()
 	
 func score() -> int:
 	return taps_max

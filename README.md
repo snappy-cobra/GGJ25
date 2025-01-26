@@ -1,6 +1,10 @@
-# Bubble Wrap
+# Bubblevania
+Bubble Wrap simulator for the Global Game Jam 2025.
 
-(_Name TBD_)
+Using a phoenix server to communicate between a godot host (game logic and visuals) and a web client for mobile (controls)
+
+- GGJ: https://globalgamejam.org/games/2025/bubblevania-0
+
 
 ## How to install and run
 
@@ -54,3 +58,9 @@ If you have trouble installing Elixir or some of the app's dependencies on your 
 2. Go to the `bubbleserver` directory
 3. Run `docker build -t bubbleserver -f Dockerfile.dev .` to build a dev-version of the app image
 4. 4. Run `docker run -p 4000:4000 bubbleserver` to start the app image. It should be reachable at localhost:4000 just like normal.
+  
+## Authors
+- [Timo Strating](https://github.com/timostrating)
+- [Wiebe-Marten Wijnja](https://wmcode.nl/)
+- [Michiel de Jong](https://troido.nl)
+- [EiDemiurge](https://github.com/EiDemiurge)
