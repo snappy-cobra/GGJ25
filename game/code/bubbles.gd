@@ -44,7 +44,7 @@ func pop_effect(pos: Vector2i, player: Player) -> void:
 				pop_effect(neighbour, player)
 			for surrounded in check_fill(neighbour, player.team):
 				bubbles[surrounded].pop(player)
-				bubbles[surrounded].pop_effect(pos, player)
+				pop_effect(pos, player)
 		#for nei
 
 
