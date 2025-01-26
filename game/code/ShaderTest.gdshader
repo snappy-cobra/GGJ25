@@ -50,7 +50,7 @@ const vec3 LOOKUP[SIZE] = {
 };
 
 void fragment() {
-	float time = TIME * 0.1;
+	float time = TIME * 0.05;
 	
 	float diagonal = UV.x - time  - UV.y;
 	float index = diagonal * 3.0f;
@@ -61,7 +61,5 @@ void fragment() {
 	vec3 color_b = LOOKUP[(int(index + 1.0)) % SIZE];
 	
 	float mixing_value = fract(index);
-	COLOR = vec4(mix(color_a, color_b, mixing_value), 1);
-	
-	//COLOR = vec4(UV * vec2(abs(sin(time)),abs(cos(time))),1,1);
+	COLOR = vec4(mix(color_a, color_b, mixing_value), 1);	
 }
