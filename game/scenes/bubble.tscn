@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://rygl6mf85v4r" path="res://scenes/orb 64.png" id="2_bruxq"]
 [ext_resource type="Texture2D" uid="uid://cbof12ih4lqiw" path="res://scenes/bubble2.png" id="2_umgci"]
 [ext_resource type="Texture2D" uid="uid://c1qbx4sn2k87h" path="res://scenes/bubble1.png" id="2_vut83"]
-[ext_resource type="Texture2D" uid="uid://pnhjnqhe8nv" path="res://scenes/orb morale border.png" id="3_1r0ol"]
+[ext_resource type="Texture2D" uid="uid://81h16nskywkb" path="res://img/pngwing.com.png" id="4_e5x2j"]
 [ext_resource type="FontFile" uid="uid://cufkrtysb5or2" path="res://fonts/POWER_UP.otf" id="5_nqmqx"]
 [ext_resource type="Texture2D" uid="uid://c022owujorj5e" path="res://scenes/explosion.png" id="6_cvn6h"]
-[ext_resource type="SpriteFrames" path="res://img/arcane 5 6.png" id="8_rpqpb"]
+[ext_resource type="Texture2D" uid="uid://b4li4528215af" path="res://img/glow.png" id="7_dbysj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qxbci"]
 radius = 32.0
@@ -48,6 +48,14 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("1_8xifa")
 picture = Array[Texture2D]([ExtResource("2_vut83"), ExtResource("2_umgci")])
 
+[node name="plastic" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.203922)
+position = Vector2(8, 8)
+rotation = -1.309
+scale = Vector2(0.055, 0.055)
+texture = ExtResource("4_e5x2j")
+
 [node name="DebugInput" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DebugInput"]
@@ -75,9 +83,11 @@ vertical_alignment = 1
 
 [node name="Popped2" type="Sprite2D" parent="."]
 visible = false
+light_mask = 0
 position = Vector2(8, 8)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_1r0ol")
+scale = Vector2(0.115, 0.115)
+skew = 0.0925025
+texture = ExtResource("7_dbysj")
 
 [node name="Explosion" type="GPUParticles2D" parent="."]
 z_index = 100
@@ -98,8 +108,5 @@ process_material = SubResource("ParticleProcessMaterial_8q0kd")
 texture = ExtResource("2_bruxq")
 lifetime = 0.1
 one_shot = true
-
-[node name="sprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("8_rpqpb")
 
 [connection signal="input_event" from="DebugInput" to="." method="_on_debug_input_input_event"]
