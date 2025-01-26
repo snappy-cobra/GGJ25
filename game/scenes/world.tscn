@@ -233,9 +233,11 @@ script = ExtResource("19_ljb4u")
 
 [connection signal="start" from="." to="TimerBar" method="_on_world_start"]
 [connection signal="start" from="." to="GameLogic" method="_on_world_start"]
+[connection signal="start" from="." to="Audio" method="_on_world_start"]
 [connection signal="player_join" from="PhoenixInput" to="." method="_on_player_join"]
 [connection signal="player_leave" from="PhoenixInput" to="." method="_on_player_leave"]
 [connection signal="tap" from="PhoenixInput" to="." method="_on_tap"]
 [connection signal="game_over" from="TimerBar" to="GameLogic" method="_on_timer_bar_game_over"]
+[connection signal="game_over" from="TimerBar" to="Audio" method="_on_timer_bar_game_over"]
 [connection signal="timeout" from="GameLogic/Timer" to="GameLogic" method="_on_timer_timeout"]
 [connection signal="timeout" from="Heartbeat" to="." method="_on_heartbeat_timeout"]

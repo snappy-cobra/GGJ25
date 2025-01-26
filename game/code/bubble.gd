@@ -8,6 +8,8 @@ var taps: int
 var taps_max: int
 var popped_by: Player.Team
 
+signal popped_audio()
+
 @export
 var picture: Array[Texture2D]
 
@@ -58,7 +60,7 @@ func pop(player: Player) -> void:
 	taps = taps_max
 	$Popped2.show()
 	
-	if score() > 1:
+	if is_bomb():
 		$Explosion.emitting = true
 		$Explosion.explosiveness =  (10 - score())/2
 		var s = sqrt(score())/2
@@ -66,7 +68,7 @@ func pop(player: Player) -> void:
 		$Explosion.process_material.scale.y = s
 	else:
 		$SmallPopParticles.emitting = true
-	
+	get_tree().get_root().get_node("World").get_node("Audio").pop(score())
 	get_tree().get_root().get_node("World").get_node("GameLogic").add_score(score(), player.team.id)
 	get_tree().get_root().get_node("World").send_gamestate()
 	
