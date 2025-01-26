@@ -70,8 +70,10 @@ func pop(player: Player) -> void:
 		var s = sqrt(score())/2
 		$Explosion.process_material.scale.x = s
 		$Explosion.process_material.scale.y = s
+		get_tree().get_root().get_node("World").apply_large_shake()
 	else:
 		$SmallPopParticles.emitting = true
+		get_tree().get_root().get_node("World").apply_small_shake()
 	get_tree().get_root().get_node("World").get_node("Audio").pop(score())
 	get_tree().get_root().get_node("World").get_node("GameLogic").add_score(score(), player.team.id)
 	get_tree().get_root().get_node("World").send_gamestate()
