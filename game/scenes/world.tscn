@@ -211,7 +211,7 @@ offset_bottom = 972.0
 [node name="T1" type="Label" parent="Lobby/Team1"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("8_c5qqb")
+theme_override_fonts/font = ExtResource("9_07ng1")
 theme_override_font_sizes/font_size = 45
 text = "TEAM CYAN"
 
@@ -225,15 +225,15 @@ horizontal_alignment = 1
 [node name="Team2" type="VFlowContainer" parent="Lobby"]
 modulate = Color(1, 0.0196078, 0.882353, 1)
 layout_mode = 0
-offset_left = 765.0
-offset_top = 537.0
+offset_left = 843.0
+offset_top = 527.0
 offset_right = 1221.0
 offset_bottom = 992.0
 
 [node name="T2" type="Label" parent="Lobby/Team2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("8_c5qqb")
-theme_override_font_sizes/font_size = 35
+theme_override_fonts/font = ExtResource("9_07ng1")
+theme_override_font_sizes/font_size = 45
 text = "TEAM MAGENTA"
 
 [node name="T2_P" type="Label" parent="Lobby/Team2"]
@@ -244,6 +244,7 @@ text = "PLAYER COUNT:"
 horizontal_alignment = 1
 
 [node name="QR" type="Sprite2D" parent="Lobby"]
+visible = false
 position = Vector2(579, 596)
 scale = Vector2(0.311239, 0.311239)
 texture = ExtResource("6_2p6ge")
