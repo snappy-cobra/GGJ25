@@ -17,10 +17,10 @@
 [ext_resource type="FontFile" uid="uid://cqtsp2p2bxoaf" path="res://fonts/Dracula.ttf" id="9_6nak5"]
 [ext_resource type="FontFile" uid="uid://cufkrtysb5or2" path="res://fonts/POWER_UP.otf" id="9_07ng1"]
 [ext_resource type="Texture2D" uid="uid://dimuym4vfb4t7" path="res://img/Gothic Text Effect Featuring Bubblevania With Colorful Bubbles.png" id="10_wkvxb"]
-[ext_resource type="Texture2D" uid="uid://cquhhio3y3ium" path="res://img/Gothic Popfest Text Effect With Ethereal Glow.png" id="15_0n38j"]
 [ext_resource type="Texture2D" uid="uid://chexk62bjkxgn" path="res://img/istockphoto-1248542684-612x612.jpg" id="17_yy340"]
 [ext_resource type="PackedScene" uid="uid://dniwv5fqicbgc" path="res://scenes/shader_test.tscn" id="19_8yu73"]
 [ext_resource type="Script" path="res://code/audio.gd" id="19_ljb4u"]
+[ext_resource type="Texture2D" uid="uid://phat1e8emop8" path="res://img/popfest_translucent.png" id="20_o851r"]
 
 [sub_resource type="Environment" id="Environment_2gik5"]
 background_mode = 3
@@ -50,6 +50,39 @@ one_shot = true
 
 [node name="Heartbeat" type="Timer" parent="."]
 autostart = true
+
+[node name="DevHelper" type="Node" parent="."]
+script = ExtResource("7_m4s82")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2gik5")
+
+[node name="BG2" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.517647)
+position = Vector2(1276, 51)
+scale = Vector2(0.143678, 0.161459)
+texture = ExtResource("17_yy340")
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource("19_ljb4u")
+
+[node name="ShaderTest" parent="." instance=ExtResource("19_8yu73")]
+position = Vector2(20, -49)
+
+[node name="QR" type="Sprite2D" parent="."]
+position = Vector2(1097, 57)
+scale = Vector2(0.309942, 0.311239)
+texture = ExtResource("6_2p6ge")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 462.0
+offset_top = -21.0
+offset_right = 669.0
+offset_bottom = 134.25
+texture = ExtResource("20_o851r")
+expand_mode = 5
 
 [node name="Lobby" type="Control" parent="."]
 unique_name_in_owner = true
@@ -123,7 +156,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("8_c5qqb")
 theme_override_font_sizes/font_size = 62
-text = "•>•>•>  Popfest <•<•<•"
+text = "•>•>•>                <•<•<•"
 horizontal_alignment = 1
 
 [node name="Node2D" type="Container" parent="Lobby"]
@@ -145,9 +178,9 @@ theme_override_font_sizes/font_size = 76
 text = "† Bubblevania †"
 
 [node name="BG2" type="Sprite2D" parent="Lobby/Node2D"]
-position = Vector2(627.024, 446.268)
+position = Vector2(628.614, 399.029)
 scale = Vector2(0.321615, 0.321615)
-texture = ExtResource("15_0n38j")
+texture = ExtResource("20_o851r")
 
 [node name="ScoreView" type="Control" parent="Lobby"]
 layout_mode = 3
@@ -214,30 +247,6 @@ horizontal_alignment = 1
 position = Vector2(579, 596)
 scale = Vector2(0.311239, 0.311239)
 texture = ExtResource("6_2p6ge")
-
-[node name="DevHelper" type="Node" parent="."]
-script = ExtResource("7_m4s82")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_2gik5")
-
-[node name="BG2" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.517647)
-position = Vector2(1276, 51)
-scale = Vector2(0.143678, 0.161459)
-texture = ExtResource("17_yy340")
-
-[node name="Audio" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-script = ExtResource("19_ljb4u")
-
-[node name="QR" type="Sprite2D" parent="."]
-position = Vector2(579, 596)
-scale = Vector2(0.309942, 0.311239)
-texture = ExtResource("6_2p6ge")
-
-[node name="ShaderTest" parent="." instance=ExtResource("19_8yu73")]
 
 [connection signal="start" from="." to="TimerBar" method="_on_world_start"]
 [connection signal="start" from="." to="GameLogic" method="_on_world_start"]
