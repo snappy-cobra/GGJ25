@@ -14,6 +14,7 @@ var tween:Tween
 func _ready() -> void:
 	window_size = get_viewport_rect().size
 	rect.set_size(Vector2(window_size.x, 50)) 
+	rect.position.y = window_size.y - (rect.size.y / 2)
 	rotation = 0;
 	var tween = create_tween()
 	
@@ -56,7 +57,8 @@ func _process(delta: float) -> void:
 	
 	# ends in the center
 	var x = floor((window_size.x - rect.get_size().x)/2)
-	rect.set_position(Vector2(x, 0))
+	# rect.set_position(Vector2(x, 0))
+	rect.position.x = x
 	
 	rect.color.r = lerp(0, 1, 1/factor_remaining)
 	rect.color.b = lerp(1, 0, factor_remaining)

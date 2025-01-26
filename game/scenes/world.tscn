@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=22 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://chexk62bjkxgn" path="res://img/istockphoto-1248542684-612x612.jpg" id="17_yy340"]
 [ext_resource type="PackedScene" uid="uid://dniwv5fqicbgc" path="res://scenes/shader_test.tscn" id="19_8yu73"]
 [ext_resource type="Script" path="res://code/audio.gd" id="19_ljb4u"]
+[ext_resource type="Texture2D" uid="uid://phat1e8emop8" path="res://img/popfest_translucent.png" id="20_o851r"]
 
 [sub_resource type="Environment" id="Environment_2gik5"]
 background_mode = 3
@@ -51,6 +52,7 @@ autostart = true
 
 [node name="Lobby" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 0
 
@@ -213,12 +215,21 @@ texture = ExtResource("17_yy340")
 unique_name_in_owner = true
 script = ExtResource("19_ljb4u")
 
+[node name="ShaderTest" parent="." instance=ExtResource("19_8yu73")]
+position = Vector2(20, -49)
+
 [node name="QR" type="Sprite2D" parent="."]
-position = Vector2(579, 596)
+position = Vector2(1097, 57)
 scale = Vector2(0.309942, 0.311239)
 texture = ExtResource("6_2p6ge")
 
-[node name="ShaderTest" parent="." instance=ExtResource("19_8yu73")]
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 462.0
+offset_top = -21.0
+offset_right = 669.0
+offset_bottom = 134.25
+texture = ExtResource("20_o851r")
+expand_mode = 5
 
 [connection signal="start" from="." to="TimerBar" method="_on_world_start"]
 [connection signal="start" from="." to="GameLogic" method="_on_world_start"]
