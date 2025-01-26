@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=24 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
@@ -25,13 +25,16 @@
 [sub_resource type="Environment" id="Environment_2gik5"]
 background_mode = 3
 
+[sub_resource type="LabelSettings" id="LabelSettings_4fvg5"]
+font_size = 70
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_le5jl")
 
 [node name="PhoenixInput" type="Node" parent="."]
 script = ExtResource("3_6kcq6")
 
-[node name="Players" type="Node" parent="."]
+[node name="Players" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_qriy4")
 
@@ -59,6 +62,7 @@ environment = SubResource("Environment_2gik5")
 
 [node name="BG2" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 modulate = Color(1, 1, 1, 0.517647)
 position = Vector2(1276, 51)
 scale = Vector2(0.143678, 0.161459)
@@ -75,6 +79,15 @@ position = Vector2(20, -49)
 position = Vector2(1097, 57)
 scale = Vector2(0.309942, 0.311239)
 texture = ExtResource("6_2p6ge")
+
+[node name="Label" type="Label" parent="QR"]
+offset_left = -880.81
+offset_top = -96.3889
+offset_right = -122.81
+offset_bottom = 116.611
+text = "                       JOIN US:
+bubbleserver.fly.dev"
+label_settings = SubResource("LabelSettings_4fvg5")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 462.0
@@ -182,6 +195,7 @@ theme_override_font_sizes/font_size = 76
 text = "† Bubblevania †"
 
 [node name="BG2" type="Sprite2D" parent="Lobby/Node2D"]
+z_index = 2
 position = Vector2(628.614, 399.029)
 scale = Vector2(0.321615, 0.321615)
 texture = ExtResource("20_o851r")
@@ -207,6 +221,7 @@ script = ExtResource("6_0vasn")
 
 [node name="Team1" type="VFlowContainer" parent="Lobby"]
 modulate = Color(0, 1, 1, 1)
+z_index = 2
 layout_mode = 2
 offset_left = 27.0
 offset_top = 517.0
@@ -229,6 +244,7 @@ horizontal_alignment = 1
 
 [node name="Team2" type="VFlowContainer" parent="Lobby"]
 modulate = Color(1, 0.0196078, 0.882353, 1)
+z_index = 2
 layout_mode = 0
 offset_left = 843.0
 offset_top = 527.0

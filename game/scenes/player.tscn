@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bn4m7d6bqaimn"]
+[gd_scene load_steps=3 format=3 uid="uid://bn4m7d6bqaimn"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="2_5smo2"]
+[ext_resource type="Texture2D" uid="uid://cdemdtcjsjb8t" path="res://img/phone_outline.png" id="2_nfbub"]
 
-[node name="Player" type="Node"]
+[node name="Player" type="Node2D"]
+visible = false
 script = ExtResource("2_5smo2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = 1
+texture = ExtResource("2_nfbub")
