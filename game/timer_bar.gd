@@ -32,6 +32,9 @@ func _tween(factor: float) -> void:
 		
 func _process(delta: float) -> void:
 	
+	if round_time < 2:
+		self.rotation = 0
+	
 	round_time += delta
 	if round_time >= round_limit:
 		print("GAME OVER!")
@@ -48,7 +51,7 @@ func _process(delta: float) -> void:
 	_tween(lerp(1, 0, factor_remaining))
 	
 	# ends with 0 width
-	rect.set_size(Vector2(floor(window_size.x * factor_remaining), 50))
+	rect.set_size(Vector2(floor(window_size.x * factor_remaining), 25))
 	
 	# ends in the center
 	var x = floor((window_size.x - rect.get_size().x)/2)

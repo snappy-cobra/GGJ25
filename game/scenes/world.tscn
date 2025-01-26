@@ -43,7 +43,7 @@ script = ExtResource("5_7s8de")
 
 [node name="Timer" type="Timer" parent="GameLogic"]
 unique_name_in_owner = true
-wait_time = 2.683
+wait_time = 9.542
 one_shot = true
 
 [node name="Heartbeat" type="Timer" parent="."]
