@@ -73,6 +73,9 @@ func pop(player: Player) -> void:
 func score() -> int:
 	return taps_max
 
+func is_bomb() -> bool:
+	return score() > 1
+
 func taps_left() -> int:
 	return max(taps_max - taps, 0)
 
