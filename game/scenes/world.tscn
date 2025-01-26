@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cswy8e8u3047b"]
+[gd_scene load_steps=20 format=3 uid="uid://cswy8e8u3047b"]
 
 [ext_resource type="Script" path="res://code/world.gd" id="1_le5jl"]
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
@@ -21,8 +21,6 @@
 
 [sub_resource type="Environment" id="Environment_2gik5"]
 background_mode = 3
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o430l"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_le5jl")
@@ -214,28 +212,17 @@ position = Vector2(536, 596)
 scale = Vector2(0.311239, 0.311239)
 texture = ExtResource("6_2p6ge")
 
-[node name="texture_bg" type="TextureRect" parent="."]
-visible = false
-texture_repeat = 2
-material = SubResource("CanvasItemMaterial_o430l")
-offset_left = 366.0
-offset_top = 164.0
-offset_right = 933.0
-offset_bottom = 730.0
-scale = Vector2(0.473498, 0.473498)
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 9.0
-
 [node name="Audio" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 script = ExtResource("19_ljb4u")
 
 [connection signal="start" from="." to="TimerBar" method="_on_world_start"]
 [connection signal="start" from="." to="GameLogic" method="_on_world_start"]
+[connection signal="start" from="." to="Audio" method="_on_world_start"]
 [connection signal="player_join" from="PhoenixInput" to="." method="_on_player_join"]
 [connection signal="player_leave" from="PhoenixInput" to="." method="_on_player_leave"]
 [connection signal="tap" from="PhoenixInput" to="." method="_on_tap"]
 [connection signal="game_over" from="TimerBar" to="GameLogic" method="_on_timer_bar_game_over"]
+[connection signal="game_over" from="TimerBar" to="Audio" method="_on_timer_bar_game_over"]
 [connection signal="timeout" from="GameLogic/Timer" to="GameLogic" method="_on_timer_timeout"]
 [connection signal="timeout" from="Heartbeat" to="." method="_on_heartbeat_timeout"]
