@@ -22,3 +22,6 @@ static func create(id: String, display_name: String, team: Team) -> Player:
 	player.display_name = display_name
 	player.team = team
 	return player
+
+func set_color():
+	$Outline.modulate = team.color

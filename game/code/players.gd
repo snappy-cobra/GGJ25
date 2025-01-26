@@ -63,7 +63,13 @@ func show_player(id: String, viewpos: Vector2) -> void:
 		return
 	var player = get_player(id)
 	player.visible = true
+	player.set_color()
 	player.position = get_viewport().get_visible_rect().size * (viewpos+Vector2(0, 0.12)) * Vector2(0.9, 0.8)
+
+func hide_players():
+	for player in get_children():
+		player.visible = false
+
 
 func view_json() -> Dictionary:
 	var players = {}
