@@ -221,7 +221,7 @@ var playRandomSound = function(sounds) {
 
  var board = document.getElementById("board");
 var screen = document.getElementById("screen")
-screen.addEventListener("scrollend", (event) => {
+screen.addEventListener("scroll", debounce((event) => {
   let window_middle_x = window.screen.width / 2;
   let window_middle_y = window.screen.height / 2;
   let scroll_x = (screen.scrollLeft + window_middle_x) / screen.scrollWidth
@@ -233,7 +233,7 @@ screen.addEventListener("scrollend", (event) => {
   } catch (e) {
     console.log("Player scroll: Channel not initialized yet?", channel)
   }
-})
+}))
 
 function buildCell(row, col, state) {
   const index = row * WIDTH + col;
@@ -295,6 +295,20 @@ function displayTeam() {
     teambar.dataset.team = my_team;
     console.log("setting team", my_team)
 }
+
+function debounce(func, timeout = 100){
+  let timer;
+  return (...args) => {
+    if (!timer) {
+      func.apply(this, args);
+    // clearTimeout(timer);
+    timer = setTimeout(() => {
+      timer = undefined;
+    }, timeout);
+    }
+  };
+}
+
 
 // buildBoard(state)
 
