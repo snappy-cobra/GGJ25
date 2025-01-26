@@ -21,7 +21,7 @@ func setup_grid(size: Vector2i) -> void:
 			var pos := Vector2i(x, y)
 			var weight: int = 1
 			if randf() < 0.1:
-				weight = [Bubble.BOMB, Bubble.HOR, Bubble.TOPLEFT, Bubble.TOPRIGHT].pick_random()
+				weight = [Bubble.BOMB, Bubble.HOR].pick_random()#, Bubble.TOPLEFT, Bubble.TOPRIGHT].pick_random()
 			var bubble_picture_idx = fibonacci_hash(y * size.y + x) >> 15
 			var bubble := Bubble.create(pos, weight, bubble_picture_idx)
 			bubbles[pos] = bubble

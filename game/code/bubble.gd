@@ -24,14 +24,13 @@ static func create(pos: Vector2i, taps_required: int, img_idx: int) -> Bubble:
 	
 	bubble.pos = pos
 	bubble.position = pos * size
-
 	
 	if (pos.y % 2 == 1):
 		bubble.position.x += 0.5 * size;
-		
-		
+	
+	
 	bubble.get_node("Unpopped2").texture = bubble.picture[img_idx]
-		
+	
 	bubble.setup(taps_required)	
 	return bubble
 
@@ -41,6 +40,8 @@ func setup(taps_required: int):
 	%plastic.flip_v = rand.randf() > 0.5
 	taps_max = taps_required
 	value = taps_required
+	if is_bomb():
+		%BombOverlay.show()
 	update_taps()
 
 

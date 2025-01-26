@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://l5go2111f05g"]
+[gd_scene load_steps=18 format=3 uid="uid://l5go2111f05g"]
 
 [ext_resource type="Script" path="res://code/bubble.gd" id="1_8xifa"]
 [ext_resource type="Texture2D" uid="uid://rygl6mf85v4r" path="res://scenes/orb 64.png" id="2_bruxq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://81h16nskywkb" path="res://img/pngwing.com.png" id="4_e5x2j"]
 [ext_resource type="FontFile" uid="uid://cufkrtysb5or2" path="res://fonts/POWER_UP.otf" id="5_nqmqx"]
 [ext_resource type="Texture2D" uid="uid://c022owujorj5e" path="res://scenes/explosion.png" id="6_cvn6h"]
+[ext_resource type="Shader" path="res://shaders/bomb.gdshader" id="7_7s3ga"]
 [ext_resource type="Texture2D" uid="uid://b4li4528215af" path="res://img/glow.png" id="7_dbysj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qxbci"]
@@ -15,6 +16,11 @@ radius = 32.0
 [sub_resource type="LabelSettings" id="LabelSettings_6p2hi"]
 font_size = 36
 font_color = Color(0, 0, 0, 0.627451)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yt8ho"]
+shader = ExtResource("7_7s3ga")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2pjrv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o1nmh"]
 blend_mode = 1
@@ -80,6 +86,14 @@ theme_override_fonts/font = ExtResource("5_nqmqx")
 label_settings = SubResource("LabelSettings_6p2hi")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BombOverlay" type="Sprite2D" parent="Unpopped2"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_yt8ho")
+position = Vector2(1.90735e-06, 3.57628e-07)
+scale = Vector2(64, 64)
+texture = SubResource("CanvasTexture_2pjrv")
 
 [node name="Popped2" type="Sprite2D" parent="."]
 visible = false
