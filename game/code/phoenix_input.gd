@@ -83,6 +83,9 @@ func _on_Channel_event(event: String, payload, status):
 			tap.emit(Vector2i(payload.x, payload.y), player_id)
 			#%Bubbles.pop(Vector2i(payload.x, payload.y), player)
 			#channel.push("game_state", {})
+		if event == "scroll":
+			print(payload)
+			# TODO: Do something with them
 
 func _on_Channel_join_result(status, result):
 	print("_on_Channel_join_result:  ", status, result)
