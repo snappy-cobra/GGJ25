@@ -91,7 +91,7 @@ var my_team = null;
 socket.connect()
 let channel = socket.channel("godot", {})
 channel.join()
-  .receive("ok", player_id => { 
+  .receive("ok", player_id => {
     console.log("Joined successfully, player_id set:", player_id) 
     my_player_id = player_id;
     // my_team = null;//player_id % 2;
@@ -219,7 +219,21 @@ var playRandomSound = function(sounds) {
 }
 
 
-board = document.getElementById("board");
+ var board = document.getElementById("board");
+var screen = document.getElementById("screen")
+screen.addEventListener("scrollend", (event) => {
+  let window_middle_x = window.screen.width / 2;
+  let window_middle_y = window.screen.height / 2;
+  let scroll_x = (screen.scrollLeft + window_middle_x) / screen.scrollWidth
+  let scroll_y = (screen.scrollTop  + window_middle_y) / screen.scrollHeight
+  
+  console.log(scroll_x, scroll_y)
+  try {
+    channel.push("scroll", {scroll_x, scroll_y});
+  } catch (e) {
+    console.log("Player scroll: Channel not initialized yet?", channel)
+  }
+})
 
 function buildCell(row, col, state) {
   const index = row * WIDTH + col;
@@ -283,8 +297,6 @@ function displayTeam() {
 }
 
 // buildBoard(state)
-
-
 
 
 export default socket
