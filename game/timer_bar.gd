@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 		%BG2.hide()
 		set_process(false)
 		return
-	var factor_remaining:float =  1-round_time/round_limit
+	var factor_remaining:float =  1 - round_time/round_limit
 	
 	_tween(lerp(1, 0, factor_remaining))
 	 
@@ -60,9 +60,9 @@ func _process(delta: float) -> void:
 	# rect.set_position(Vector2(x, 0))
 	rect.position.x = x
 	
-	rect.color.r = lerp(0, 1, 1/factor_remaining)
-	rect.color.b = lerp(1, 0, factor_remaining)
-	rect.color.g = lerp(1, 0, 1/factor_remaining)
+	rect.color.r = lerp(1, 0, factor_remaining)
+	rect.color.b = lerp(0, 0, factor_remaining)
+	rect.color.g = lerp(0, 1, factor_remaining)
 	#%TextureProgressBar.tint_progress = rect.color 
 	pass
 

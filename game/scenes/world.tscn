@@ -50,6 +50,39 @@ one_shot = true
 [node name="Heartbeat" type="Timer" parent="."]
 autostart = true
 
+[node name="DevHelper" type="Node" parent="."]
+script = ExtResource("7_m4s82")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2gik5")
+
+[node name="BG2" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.517647)
+position = Vector2(1276, 51)
+scale = Vector2(0.143678, 0.161459)
+texture = ExtResource("17_yy340")
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource("19_ljb4u")
+
+[node name="ShaderTest" parent="." instance=ExtResource("19_8yu73")]
+position = Vector2(20, -49)
+
+[node name="QR" type="Sprite2D" parent="."]
+position = Vector2(1097, 57)
+scale = Vector2(0.309942, 0.311239)
+texture = ExtResource("6_2p6ge")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 462.0
+offset_top = -21.0
+offset_right = 669.0
+offset_bottom = 134.25
+texture = ExtResource("20_o851r")
+expand_mode = 5
+
 [node name="Lobby" type="Control" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -197,39 +230,6 @@ horizontal_alignment = 1
 position = Vector2(579, 596)
 scale = Vector2(0.311239, 0.311239)
 texture = ExtResource("6_2p6ge")
-
-[node name="DevHelper" type="Node" parent="."]
-script = ExtResource("7_m4s82")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_2gik5")
-
-[node name="BG2" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.517647)
-position = Vector2(1276, 51)
-scale = Vector2(0.143678, 0.161459)
-texture = ExtResource("17_yy340")
-
-[node name="Audio" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-script = ExtResource("19_ljb4u")
-
-[node name="ShaderTest" parent="." instance=ExtResource("19_8yu73")]
-position = Vector2(20, -49)
-
-[node name="QR" type="Sprite2D" parent="."]
-position = Vector2(1097, 57)
-scale = Vector2(0.309942, 0.311239)
-texture = ExtResource("6_2p6ge")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 462.0
-offset_top = -21.0
-offset_right = 669.0
-offset_bottom = 134.25
-texture = ExtResource("20_o851r")
-expand_mode = 5
 
 [connection signal="start" from="." to="TimerBar" method="_on_world_start"]
 [connection signal="start" from="." to="GameLogic" method="_on_world_start"]
