@@ -21,7 +21,7 @@ func setup_grid(size: Vector2i) -> void:
 			var pos := Vector2i(x, y)
 			var weight: int = 1
 			if randf() < 0.1:
-				weight = randi_range(3, 8)
+				weight = [Bubble.BOMB, Bubble.HOR, Bubble.TOPLEFT, Bubble.TOPRIGHT].pick_random()
 			var bubble_picture_idx = fibonacci_hash(y * size.y + x) >> 15
 			var bubble := Bubble.create(pos, weight, bubble_picture_idx)
 			bubbles[pos] = bubble
@@ -35,17 +35,25 @@ func tap(pos: Vector2i, player: Player) -> void:
 		if bubble.is_popped():
 			pop_effect(pos, player)
 
+
 func pop_effect(pos: Vector2i, player: Player) -> void:
+	
 	var bubble: Bubble = bubbles[pos]
 	for neighbour in neighbours(pos):
 		if bubbles.has(neighbour) and !bubbles[neighbour].is_popped():
 			if bubble.is_bomb():
 				bubbles[neighbour].pop(player)
 				pop_effect(neighbour, player)
+#				
 			for surrounded in check_fill(neighbour, player.team):
 				bubbles[surrounded].pop(player)
-				pop_effect(pos, player)
-		#for nei
+				pop_effect(surrounded, player)
+	if bubble.is_hor():
+		for x in range(-2, 3):
+			var n = Vector2i(pos.x + x, pos.y)
+			if bubbles.has(n) and !bubbles[n].is_popped():
+				bubbles[n].pop(player)
+				pop_effect(n, player)
 
 
 func check_fill(start: Vector2i, team: Player.Team) -> Array[Vector2i]:

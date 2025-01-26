@@ -8,6 +8,10 @@ var taps: int
 var taps_max: int
 var popped_by: Player.Team
 
+const BOMB = 7
+const HOR = 4
+const TOPLEFT = 5
+const TOPRIGHT = 6
 signal popped_audio()
 
 @export
@@ -76,7 +80,10 @@ func score() -> int:
 	return taps_max
 
 func is_bomb() -> bool:
-	return score() > 1
+	return score() > 1 && !is_hor()
+
+func is_hor() -> bool:
+	return score() == HOR
 
 func taps_left() -> int:
 	return max(taps_max - taps, 0)
