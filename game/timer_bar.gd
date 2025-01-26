@@ -5,7 +5,7 @@ extends Control
 signal game_over()
 
 var round_time: float = 0
-var round_limit: float = 2*60+25 # The drop of the song is at 2:25
+var round_limit: float = (2*60+25) / 2 # The drop of the song is at 2:25
 var window_size = DisplayServer.window_get_size()
 var is_tweening = false
 var tween:Tween
@@ -16,6 +16,7 @@ func _ready() -> void:
 	rect.set_size(Vector2(window_size.x, 50)) 
 	rotation = 0;
 	var tween = create_tween()
+	
 	
 	
 	pass # Replace with function body.
@@ -71,4 +72,10 @@ func _on_world_start() -> void:
 	set_process(true)
 	rotation = 0
 	round_time = 0
+	
+	
+	var bgm: AudioStreamPlayer = get_node("BGMusic")
+	bgm.seek(0) # Restart song from the start
+	bgm.playing = true
+	
 	pass # Replace with function body.

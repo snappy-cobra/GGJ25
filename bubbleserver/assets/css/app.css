@@ -8,6 +8,9 @@ html, body {
     margin: 0 !important;
     padding: 0 !important;
 
+    /* Disable scroll down to refresh as that can be accidental */
+    overscroll-behavior: contain;
+
     font-family: sans-serif;
 }
 
