@@ -61,5 +61,5 @@ func _on_world_start() -> void:
 	pass # Replace with function body.
 
 func _on_timer_bar_game_over() -> void:
-	play_("res://sound/task2_04.wav")
+	play_("res://sound/gong.mp3")
 	pass # Replace with function body.
