@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ce1nest7fcc8y" path="res://img/INK BLOTCH.png" id="8_o5gr0"]
 [ext_resource type="FontFile" uid="uid://cqtsp2p2bxoaf" path="res://fonts/Dracula.ttf" id="9_6nak5"]
 [ext_resource type="FontFile" uid="uid://cufkrtysb5or2" path="res://fonts/POWER_UP.otf" id="9_07ng1"]
-[ext_resource type="Texture2D" uid="uid://dimuym4vfb4t7" path="res://img/Gothic Text Effect Featuring Bubblevania With Colorful Bubbles.png" id="10_wkvxb"]
+[ext_resource type="Texture2D" uid="uid://4ji887toumt6" path="res://img/bubblevania.png" id="17_xnd0v"]
 [ext_resource type="Texture2D" uid="uid://chexk62bjkxgn" path="res://img/istockphoto-1248542684-612x612.jpg" id="17_yy340"]
 [ext_resource type="PackedScene" uid="uid://dniwv5fqicbgc" path="res://scenes/shader_test.tscn" id="19_8yu73"]
 [ext_resource type="Script" path="res://code/audio.gd" id="19_ljb4u"]
@@ -133,11 +133,13 @@ scale = Vector2(0.507309, 0.594652)
 texture = ExtResource("7_4qsxy")
 
 [node name="BG3" type="Sprite2D" parent="Lobby"]
-position = Vector2(566, 205)
-scale = Vector2(0.785484, 0.765951)
-texture = ExtResource("10_wkvxb")
+z_index = 300
+position = Vector2(601, 179)
+scale = Vector2(0.456219, 0.435059)
+texture = ExtResource("17_xnd0v")
 
 [node name="Blotch" type="Sprite2D" parent="Lobby"]
+visible = false
 position = Vector2(555, 429)
 rotation = 1.43117
 scale = Vector2(0.740333, 1.66625)
@@ -145,6 +147,7 @@ skew = -0.0645772
 texture = ExtResource("8_o5gr0")
 
 [node name="LOGO 2" type="Label" parent="Lobby"]
+visible = false
 layout_mode = 2
 offset_left = 214.0
 offset_top = 404.0
@@ -160,6 +163,7 @@ text = "•>•>•>                <•<•<•"
 horizontal_alignment = 1
 
 [node name="Node2D" type="Container" parent="Lobby"]
+visible = false
 layout_mode = 0
 offset_left = -77.03
 offset_top = 78.34
@@ -183,19 +187,20 @@ scale = Vector2(0.321615, 0.321615)
 texture = ExtResource("20_o851r")
 
 [node name="ScoreView" type="Control" parent="Lobby"]
+z_index = 1000
 layout_mode = 3
 anchors_preset = 0
 
 [node name="ScoreText" type="Label" parent="Lobby/ScoreView"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 381.0
-offset_top = 8.0
-offset_right = 871.0
-offset_bottom = 85.0
-theme_override_colors/font_color = Color(0, 0.942823, 0.959759, 1)
+offset_left = 176.0
+offset_top = 312.0
+offset_right = 1006.0
+offset_bottom = 389.0
+theme_override_colors/font_color = Color(1, 0.941176, 0.960784, 1)
 theme_override_fonts/font = ExtResource("9_07ng1")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 64
 text = "TEXT"
 horizontal_alignment = 1
 script = ExtResource("6_0vasn")
