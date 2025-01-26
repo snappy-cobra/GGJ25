@@ -22,7 +22,11 @@ func _on_timer_bar_game_over() -> void:
 		if scores[team] > largest:
 			winner = str(team)
 			largest = scores[team]
-		scores_text = scores_text + "Team <" + str(team) + ">:"+ str(scores[team])+"\n"
+		var team_str = "***CYAN***"
+		if (team == 1):
+			team_str = "***MAGENTA***"
+			
+		scores_text = scores_text + "Team " + team_str + ":"+ str(scores[team])+"\n"
 	scores = {}	
 	var final_score_text = "";
 	if winner == null:
