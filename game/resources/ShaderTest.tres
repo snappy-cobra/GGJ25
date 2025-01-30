@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://lpq06pwsmbdq"]
 
-[ext_resource type="Shader" path="res://code/ShaderTest.gdshader" id="1_ixmuc"]
+[ext_resource type="Shader" path="res://shaders/ShaderTest.gdshader" id="1_ixmuc"]
 
 [resource]
 shader = ExtResource("1_ixmuc")

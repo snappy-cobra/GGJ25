@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pnhjnqhe8nv"
-path="res://.godot/imported/orb morale border.png-443ed0cf3f57103a55f17f45ded4ae03.ctex"
+uid="uid://dw4b1pjdw7vr3"
+path="res://.godot/imported/star.png-d9e21300bfdce2df88dc348114f24979.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/orb morale border.png"
-dest_files=["res://.godot/imported/orb morale border.png-443ed0cf3f57103a55f17f45ded4ae03.ctex"]
+source_file="res://img/star.png"
+dest_files=["res://.godot/imported/star.png-d9e21300bfdce2df88dc348114f24979.ctex"]
 
 [params]
 

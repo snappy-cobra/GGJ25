@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dniwv5fqicbgc"]
 
-[ext_resource type="Material" uid="uid://lpq06pwsmbdq" path="res://code/ShaderTest.tres" id="1_qr6a2"]
+[ext_resource type="Material" uid="uid://lpq06pwsmbdq" path="res://resources/ShaderTest.tres" id="1_qr6a2"]
 
 [node name="ShaderTest" type="Node2D"]
 

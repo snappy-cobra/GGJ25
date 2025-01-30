@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rygl6mf85v4r"
-path="res://.godot/imported/orb 64.png-00509a60224c9d99edf54cd4e270f1dc.ctex"
+uid="uid://c1qbx4sn2k87h"
+path="res://.godot/imported/bubble1.png-a7ea8e0938a2bec595a21945034cd92f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/orb 64.png"
-dest_files=["res://.godot/imported/orb 64.png-00509a60224c9d99edf54cd4e270f1dc.ctex"]
+source_file="res://img/bubble1.png"
+dest_files=["res://.godot/imported/bubble1.png-a7ea8e0938a2bec595a21945034cd92f.ctex"]
 
 [params]
 

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://code/players.gd" id="2_qriy4"]
 [ext_resource type="Script" path="res://code/phoenix_input.gd" id="3_6kcq6"]
 [ext_resource type="PackedScene" uid="uid://clcyvn2gf0kae" path="res://scenes/timer_bar.tscn" id="4_j3cyd"]
-[ext_resource type="Script" path="res://scenes/game_logic.gd" id="5_7s8de"]
+[ext_resource type="Script" path="res://code/game_logic.gd" id="5_7s8de"]
 [ext_resource type="Script" path="res://code/score_text.gd" id="6_0vasn"]
 [ext_resource type="Texture2D" uid="uid://c6b5nd2rsllh5" path="res://img/QR_.png" id="6_2p6ge"]
 [ext_resource type="Texture2D" uid="uid://dplhcm3ytv2yl" path="res://img/orb endurance.png" id="6_eve1c"]
